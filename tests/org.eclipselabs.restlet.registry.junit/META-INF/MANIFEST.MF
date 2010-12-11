@@ -1,0 +1,12 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Junit
+Bundle-SymbolicName: org.eclipselabs.restlet.registry.junit;singleton:=true
+Bundle-Version: 1.0.0.qualifier
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Require-Bundle: org.eclipselabs.restlet.registry;bundle-version="1.0.0",
+ org.junit;bundle-version="4.8.1"
+Import-Package: org.restlet,
+ org.restlet.resource,
+ org.restlet.routing
+Export-Package: org.eclipselabs.restlet.registry.junit.tests

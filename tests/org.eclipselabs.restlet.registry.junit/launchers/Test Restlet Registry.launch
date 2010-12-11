@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<launchConfiguration type="org.eclipse.pde.ui.JunitLaunchConfig">
+<booleanAttribute key="append.args" value="true"/>
+<stringAttribute key="application" value="org.eclipse.pde.junit.runtime.coretestapplication"/>
+<booleanAttribute key="askclear" value="false"/>
+<booleanAttribute key="automaticAdd" value="false"/>
+<booleanAttribute key="automaticValidate" value="false"/>
+<stringAttribute key="bad_container_name" value="/org.eclipselabs.restlet.registry.junit/launcher"/>
+<stringAttribute key="bootstrap" value=""/>
+<stringAttribute key="checked" value="[NONE]"/>
+<booleanAttribute key="clearConfig" value="true"/>
+<booleanAttribute key="clearws" value="true"/>
+<booleanAttribute key="clearwslog" value="false"/>
+<stringAttribute key="configLocation" value="${workspace_loc}/.metadata/.plugins/org.eclipse.pde.core/pde-junit"/>
+<booleanAttribute key="default" value="false"/>
+<booleanAttribute key="includeOptional" value="false"/>
+<stringAttribute key="location" value="${workspace_loc}/../junit-workspace-2"/>
+<listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_PATHS">
+<listEntry value="/org.eclipselabs.restlet.registry.junit"/>
+</listAttribute>
+<listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_TYPES">
+<listEntry value="4"/>
+</listAttribute>
+<stringAttribute key="org.eclipse.jdt.junit.CONTAINER" value="=org.eclipselabs.restlet.registry.junit"/>
+<booleanAttribute key="org.eclipse.jdt.junit.KEEPRUNNING_ATTR" value="false"/>
+<stringAttribute key="org.eclipse.jdt.junit.TESTNAME" value=""/>
+<stringAttribute key="org.eclipse.jdt.junit.TEST_KIND" value="org.eclipse.jdt.junit.loader.junit4"/>
+<stringAttribute key="org.eclipse.jdt.launching.MAIN_TYPE" value=""/>
+<stringAttribute key="org.eclipse.jdt.launching.PROGRAM_ARGUMENTS" value="-os ${target.os} -ws ${target.ws} -arch ${target.arch} -nl ${target.nl} -consoleLog"/>
+<stringAttribute key="org.eclipse.jdt.launching.PROJECT_ATTR" value="org.eclipselabs.restlet.registry.junit"/>
+<stringAttribute key="org.eclipse.jdt.launching.SOURCE_PATH_PROVIDER" value="org.eclipse.pde.ui.workbenchClasspathProvider"/>
+<stringAttribute key="org.eclipse.jdt.launching.VM_ARGUMENTS" value="-Dorg.osgi.service.http.port=8080"/>
+<stringAttribute key="pde.version" value="3.3"/>
+<stringAttribute key="product" value="com.ibm.rational.wvcm.interop.product"/>
+<booleanAttribute key="run_in_ui_thread" value="true"/>
+<stringAttribute key="selected_target_plugins" value="org.eclipse.equinox.util@default:default,org.hamcrest.core@default:default,org.eclipse.core.contenttype@default:default,org.eclipse.equinox.http.jetty@default:true,org.eclipse.osgi.services*3.3.0.v20101018@default:default,org.eclipse.equinox.transforms.hook@default:false,org.eclipse.equinox.http.servlet@default:default,org.eclipse.equinox.ds*1.2.1.R36x_v20100803@default:true,org.eclipse.core.runtime@default:true,org.eclipse.equinox.registry*3.5.100.v20101018@default:default,org.mortbay.jetty.server@default:default,org.eclipse.core.runtime.compatibility.registry@default:false,org.restlet.ext.servlet@default:default,org.eclipse.equinox.servletbridge.extensionbundle@default:false,org.eclipse.equinox.common@2:true,javax.servlet*2.5.0.v200910301333@default:default,org.eclipse.equinox.weaving.hook@default:false,org.eclipse.osgi*3.7.0.v20101022@-1:true,org.eclipse.core.jobs*3.5.100.v20101008@default:default,org.restlet@default:default,org.eclipse.equinox.preferences@default:default,org.mortbay.jetty.util@default:default,org.junit*4.8.1.v4_8_1_v20100427-1100@default:default,org.eclipse.equinox.log@default:true,org.eclipse.equinox.app*1.3.100.v20100803@default:default"/>
+<stringAttribute key="selected_workspace_plugins" value="org.eclipselabs.restlet.servlet@default:true,org.eclipselabs.restlet@default:default,org.eclipselabs.restlet.registry@default:true,org.eclipselabs.restlet.registry.junit@default:default"/>
+<booleanAttribute key="show_selected_only" value="false"/>
+<stringAttribute key="templateConfig" value="${target_home}/configuration/config.ini"/>
+<booleanAttribute key="tracing" value="false"/>
+<booleanAttribute key="useCustomFeatures" value="false"/>
+<booleanAttribute key="useDefaultConfig" value="true"/>
+<booleanAttribute key="useDefaultConfigArea" value="false"/>
+<booleanAttribute key="useProduct" value="false"/>
+</launchConfiguration>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0" immediate="true" name="org.eclipselabs.restlet.examples.app.hello">
+   <implementation class="org.eclipselabs.restlet.examples.app.HelloResourceProvider"/>
+   <service>
+      <provide interface="org.eclipselabs.restlet.IResourceProvider"/>
+   </service>
+</scr:component>

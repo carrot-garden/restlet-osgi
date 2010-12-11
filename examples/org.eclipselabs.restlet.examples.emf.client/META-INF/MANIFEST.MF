@@ -1,0 +1,13 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: EMF Example Client
+Bundle-SymbolicName: org.eclipselabs.restlet.examples.emf.client
+Bundle-Version: 1.0.0.qualifier
+Bundle-Vendor: EclipseLabs
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Import-Package: org.osgi.framework;version="1.5.0"
+Require-Bundle: org.eclipse.emf.ecore;bundle-version="2.7.0",
+ org.eclipselabs.restlet.examples.emf.model;bundle-version="1.0.0",
+ org.eclipse.emf.utilities.restlet;bundle-version="1.0.0"
+Bundle-ActivationPolicy: lazy
+Bundle-Activator: org.eclipselabs.restlet.examples.emf.client.Activator

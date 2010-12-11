@@ -1,0 +1,22 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: MongoDB Restlet
+Bundle-SymbolicName: org.eclipselabs.restlet.mongo
+Bundle-Version: 1.0.0.qualifier
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Import-Package: com.mongodb,
+ com.mongodb.util,
+ org.bson,
+ org.bson.types,
+ org.eclipselabs.mongo,
+ org.json,
+ org.osgi.framework;version="1.5.0",
+ org.osgi.util.tracker;version="1.4.0",
+ org.restlet,
+ org.restlet.data,
+ org.restlet.ext.json,
+ org.restlet.representation,
+ org.restlet.resource
+Bundle-ActivationPolicy: lazy
+Bundle-Activator: org.eclipselabs.restlet.internal.mongo.Activator
+Export-Package: org.eclipselabs.restlet.mongo

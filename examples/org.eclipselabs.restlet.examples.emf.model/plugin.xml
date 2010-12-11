@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+ <copyright>
+ </copyright>
+
+ $Id$
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <package
+            uri="http://code.google.com/a/eclipselabs.org/p/restlet-integration-with-equinox/examples/"
+            class="org.eclipselabs.restlet.examples.emf.model.ModelPackage"
+            genModel="model/model.genmodel"/>
+   </extension>
+
+</plugin>

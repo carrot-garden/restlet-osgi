@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0" name="org.eclipselabs.restlet.registry">
+   <implementation class="org.eclipselabs.restlet.registry.RestletRegistry"/>
+   <reference bind="bindExtensionRegistry" cardinality="1..1" interface="org.eclipse.core.runtime.IExtensionRegistry" name="IExtensionRegistry" policy="static" unbind="unbindExtensionRegistry"/>
+   <reference bind="bindPackageAdmin" cardinality="1..1" interface="org.osgi.service.packageadmin.PackageAdmin" name="PackageAdmin" policy="static" unbind="unbindPackageAdmin"/>
+   <reference bind="bindLogService" cardinality="0..n" interface="org.osgi.service.log.LogService" name="LogService" policy="dynamic" unbind="unbindLogService"/>
+</scr:component>

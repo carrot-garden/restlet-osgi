@@ -1,0 +1,9 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: All
+Bundle-SymbolicName: org.eclipselabs.restlet.junit.all
+Bundle-Version: 1.0.0.qualifier
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Require-Bundle: org.eclipselabs.restlet.registry.junit;bundle-version="1.0.0",
+ org.eclipselabs.restlet.servlet.junit;bundle-version="1.0.0",
+ org.junit;bundle-version="4.8.1"
