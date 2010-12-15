@@ -1,18 +1,21 @@
-/**
- * <copyright>
- * </copyright>
+/*******************************************************************************
+ * Copyright (c) 2010 Bryan Hunt.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
  *
- * $Id$
- */
+ * Contributors:
+ *    Bryan Hunt - initial API and implementation
+ *******************************************************************************/
+
 package org.eclipselabs.restlet.examples.emf.model;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 
@@ -20,15 +23,15 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Child</b></em>'.
  * <!-- end-user-doc -->
- *
+ * 
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipselabs.restlet.examples.emf.model.Child#getName <em>Name</em>}</li>
- *   <li>{@link org.eclipselabs.restlet.examples.emf.model.Child#getData <em>Data</em>}</li>
+ * <li>{@link org.eclipselabs.restlet.examples.emf.model.Child#getName <em>Name</em>}</li>
+ * <li>{@link org.eclipselabs.restlet.examples.emf.model.Child#getData <em>Data</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @see org.eclipselabs.restlet.examples.emf.model.ModelPackage#getChild()
  * @model kind="class"
  * @generated
@@ -39,6 +42,7 @@ public class Child extends EObjectImpl implements EObject
 	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getName()
 	 * @generated
 	 * @ordered
@@ -49,6 +53,7 @@ public class Child extends EObjectImpl implements EObject
 	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getName()
 	 * @generated
 	 * @ordered
@@ -59,6 +64,7 @@ public class Child extends EObjectImpl implements EObject
 	 * The cached value of the '{@link #getData() <em>Data</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getData()
 	 * @generated
 	 * @ordered
@@ -68,6 +74,7 @@ public class Child extends EObjectImpl implements EObject
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected Child()
@@ -78,6 +85,7 @@ public class Child extends EObjectImpl implements EObject
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -90,10 +98,11 @@ public class Child extends EObjectImpl implements EObject
 	 * Returns the value of the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Name</em>' attribute isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of the '<em>Name</em>' attribute isn't clear, there really should be more of a
+	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Name</em>' attribute.
 	 * @see #setName(String)
 	 * @see org.eclipselabs.restlet.examples.emf.model.ModelPackage#getChild_Name()
@@ -106,9 +115,11 @@ public class Child extends EObjectImpl implements EObject
 	}
 
 	/**
-	 * Sets the value of the '{@link org.eclipselabs.restlet.examples.emf.model.Child#getName <em>Name</em>}' attribute.
+	 * Sets the value of the '{@link org.eclipselabs.restlet.examples.emf.model.Child#getName
+	 * <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @param value the new value of the '<em>Name</em>' attribute.
 	 * @see #getName()
 	 * @generated
@@ -125,10 +136,11 @@ public class Child extends EObjectImpl implements EObject
 	 * Returns the value of the '<em><b>Data</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Data</em>' containment reference isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of the '<em>Data</em>' containment reference isn't clear, there really should be
+	 * more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Data</em>' containment reference.
 	 * @see #setData(Data)
 	 * @see org.eclipselabs.restlet.examples.emf.model.ModelPackage#getChild_Data()
@@ -143,6 +155,7 @@ public class Child extends EObjectImpl implements EObject
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetData(Data newData, NotificationChain msgs)
@@ -152,15 +165,20 @@ public class Child extends EObjectImpl implements EObject
 		if (eNotificationRequired())
 		{
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ModelPackage.CHILD__DATA, oldData, newData);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
+			if (msgs == null)
+				msgs = notification;
+			else
+				msgs.add(notification);
 		}
 		return msgs;
 	}
 
 	/**
-	 * Sets the value of the '{@link org.eclipselabs.restlet.examples.emf.model.Child#getData <em>Data</em>}' containment reference.
+	 * Sets the value of the '{@link org.eclipselabs.restlet.examples.emf.model.Child#getData
+	 * <em>Data</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @param value the new value of the '<em>Data</em>' containment reference.
 	 * @see #getData()
 	 * @generated
@@ -171,11 +189,12 @@ public class Child extends EObjectImpl implements EObject
 		{
 			NotificationChain msgs = null;
 			if (data != null)
-				msgs = ((InternalEObject)data).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ModelPackage.CHILD__DATA, null, msgs);
+				msgs = ((InternalEObject) data).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ModelPackage.CHILD__DATA, null, msgs);
 			if (newData != null)
-				msgs = ((InternalEObject)newData).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ModelPackage.CHILD__DATA, null, msgs);
+				msgs = ((InternalEObject) newData).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ModelPackage.CHILD__DATA, null, msgs);
 			msgs = basicSetData(newData, msgs);
-			if (msgs != null) msgs.dispatch();
+			if (msgs != null)
+				msgs.dispatch();
 		}
 		else if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, ModelPackage.CHILD__DATA, newData, newData));
@@ -184,6 +203,7 @@ public class Child extends EObjectImpl implements EObject
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -200,6 +220,7 @@ public class Child extends EObjectImpl implements EObject
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -218,6 +239,7 @@ public class Child extends EObjectImpl implements EObject
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -226,10 +248,10 @@ public class Child extends EObjectImpl implements EObject
 		switch (featureID)
 		{
 			case ModelPackage.CHILD__NAME:
-				setName((String)newValue);
+				setName((String) newValue);
 				return;
 			case ModelPackage.CHILD__DATA:
-				setData((Data)newValue);
+				setData((Data) newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -238,6 +260,7 @@ public class Child extends EObjectImpl implements EObject
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -249,7 +272,7 @@ public class Child extends EObjectImpl implements EObject
 				setName(NAME_EDEFAULT);
 				return;
 			case ModelPackage.CHILD__DATA:
-				setData((Data)null);
+				setData((Data) null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -258,6 +281,7 @@ public class Child extends EObjectImpl implements EObject
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -276,12 +300,14 @@ public class Child extends EObjectImpl implements EObject
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public String toString()
 	{
-		if (eIsProxy()) return super.toString();
+		if (eIsProxy())
+			return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (name: ");
