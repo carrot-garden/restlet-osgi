@@ -44,7 +44,9 @@ public class Activator implements BundleActivator
 
 		{
 			ResourceSet resourceSet = new ResourceSetImpl();
-			URIHandler handler = createURIHandlerWithExplicitStrategy("http://localhost:8080/resource/emf/{resource}", "http://localhost:8080/resource/emf/");
+			URIHandler handler = createURIHandlerWithExplicitStrategy(
+					"http://localhost:8080/resource/{collection}/{resource}",
+					"http://localhost:8080/resource/{collection}/");
 			EList<URIHandler> handlers = resourceSet.getURIConverter().getURIHandlers();
 			handlers.add(handlers.size() - 2, handler);
 
@@ -84,18 +86,23 @@ public class Activator implements BundleActivator
 		}
 
 		{
+			//parentURI = URI.createURI("http://localhost:8080/resource/emf/4d28c164f7999f249eb36467");
+			
 			ResourceSet resourceSet = new ResourceSetImpl();
-			URIHandler handler = createURIHandlerWithExplicitStrategy("http://localhost:8080/resource/emf/{resource}", "http://localhost:8080/resource/emf/");
+			URIHandler handler = createURIHandlerWithExplicitStrategy(
+					"http://localhost:8080/resource/emf/{resource}", "http://localhost:8080/resource/emf/");
 			EList<URIHandler> handlers = resourceSet.getURIConverter().getURIHandlers();
 			handlers.add(handlers.size() - 2, handler);
 
 			Resource parentResource = resourceSet.getResource(parentURI, true);
 			Parent parent = (Parent) parentResource.getContents().get(0);
 			System.out.println("Parent: " + parent.getName());
+			System.out.println("Children: " + parent.getChildren().size());
 
 			for (Child child : parent.getChildren())
 			{
 				System.out.println("Child: " + child.getName());
+				System.out.println("Proxy uri: "+child.eProxyURI());
 				System.out.println("Child data: " + child.getData().getName());
 			}
 		}
