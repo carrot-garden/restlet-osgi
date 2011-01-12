@@ -16,7 +16,7 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.URIHandler;
 import org.eclipse.emf.utilities.restlet.RestletEmfServerResource;
 import org.eclipse.emf.utilities.restlet.impl.DefaultResourceNameCreator;
-import org.eclipse.emf.utilities.restlet.impl.DefaultRestURIConverter;
+import org.eclipse.emf.utilities.restlet.impl.RequestAttributesRestURIConverter;
 import org.eclipselabs.mongo.emf.MongoDBURIHandlerImpl;
 
 /**
@@ -28,9 +28,9 @@ public class EMFResource extends RestletEmfServerResource
 	public EMFResource()
 	{
 		setResourceNameCreator(new DefaultResourceNameCreator());
-		DefaultRestURIConverter restUriConverter = new DefaultRestURIConverter();
-		restUriConverter.setServerSideResourcePattern("mongo://localhost/test/emf/{resourcename}");
-		restUriConverter.setClientSideResourcePattern("/resource/emf/{resourcename}");
+		RequestAttributesRestURIConverter restUriConverter = new RequestAttributesRestURIConverter();
+		restUriConverter.setServerSideResourcePattern("mongo://localhost/test/{collection}/{resource}");
+		restUriConverter.setClientSideResourcePattern("/resource/{collection}/{resource}");
 		setRestUriConverter(restUriConverter);
 	}
 
@@ -46,5 +46,9 @@ public class EMFResource extends RestletEmfServerResource
 	{
 		EList<URIHandler> uriHandlers = resourceSet.getURIConverter().getURIHandlers();
 		uriHandlers.add(0, new MongoDBURIHandlerImpl());
+		
+		/*resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put(
+				Resource.Factory.Registry.DEFAULT_EXTENSION, ModelFactory.eINSTANCE);
+		resourceSet.getPackageRegistry().put(ModelPackage.eINSTANCE.getNsURI(), ModelPackage.eINSTANCE);*/
 	}
 }
