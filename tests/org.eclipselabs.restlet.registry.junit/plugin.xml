@@ -6,6 +6,10 @@
       <application
             alias="/registry"
             class="org.eclipselabs.restlet.registry.junit.support.TestApplication">
+         <init_parm
+               key="junit"
+               value="JUnit">
+         </init_parm>
       </application>
       <resource
             application_alias="/registry"

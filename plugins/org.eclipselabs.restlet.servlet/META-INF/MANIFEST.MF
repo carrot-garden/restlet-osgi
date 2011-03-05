@@ -16,4 +16,4 @@ Import-Package: javax.servlet;version="2.5.0",
  org.restlet.routing
 Service-Component: OSGI-INF/restlet.xml
 Bundle-ActivationPolicy: lazy
-Export-Package: org.eclipselabs.restlet.servlet; x-friends:="org.eclipselabs.restlet.servlet.junit"
+Export-Package: org.eclipselabs.restlet.servlet; x-friends:="org.eclipselabs.restlet.servlet.junit, org.eclipselabs.restlet.junit"

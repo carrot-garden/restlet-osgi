@@ -12,6 +12,7 @@
 package org.eclipselabs.restlet.registry;
 
 import java.util.Dictionary;
+import java.util.Hashtable;
 
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;
@@ -69,7 +70,12 @@ public class RegistryApplicationProvider implements IApplicationProvider
 	@Override
 	public Dictionary<String, Object> getInitParms()
 	{
-		return null;
+		Hashtable<String, Object> initParms = new Hashtable<String, Object>();
+
+		for (IConfigurationElement configElement : config.getChildren("init_parm"))
+			initParms.put(configElement.getAttribute("key"), configElement.getAttribute("value"));
+
+		return initParms;
 	}
 
 	@Override

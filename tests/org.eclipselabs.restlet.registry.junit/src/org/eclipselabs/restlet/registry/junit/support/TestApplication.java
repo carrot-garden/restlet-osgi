@@ -12,7 +12,9 @@
 package org.eclipselabs.restlet.registry.junit.support;
 
 import org.restlet.Application;
+import org.restlet.Context;
 import org.restlet.Restlet;
+import org.restlet.data.Parameter;
 import org.restlet.routing.Router;
 
 /**
@@ -30,5 +32,21 @@ public class TestApplication extends Application
 	public Restlet createInboundRoot()
 	{
 		return new Router();
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.restlet.Application#setContext(org.restlet.Context)
+	 */
+	@Override
+	public void setContext(Context context)
+	{
+		// TODO Auto-generated method stub
+		super.setContext(context);
+		System.out.println("Context parameters");
+
+		for (Parameter parameter : context.getParameters())
+			System.out.println(parameter.getName() + " : " + parameter.getValue());
 	}
 }

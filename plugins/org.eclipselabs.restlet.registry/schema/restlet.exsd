@@ -75,6 +75,9 @@
 
    <element name="application">
       <complexType>
+         <sequence minOccurs="0" maxOccurs="unbounded">
+            <element ref="init_parm"/>
+         </sequence>
          <attribute name="alias" type="string" use="required">
             <annotation>
                <documentation>
@@ -98,6 +101,25 @@
    <element name="resource_path">
       <complexType>
          <attribute name="path" type="string" use="required">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="init_parm">
+      <complexType>
+         <attribute name="key" type="string" use="required">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="value" type="string" use="required">
             <annotation>
                <documentation>
                   
