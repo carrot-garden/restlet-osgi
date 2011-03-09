@@ -70,11 +70,11 @@ public class RestletTestHarness
 		restletServletService.bindLogService(logService);
 	}
 
-	public void tearDown()
+	public void tearDown(String applicationAlias)
 	{
 		try
 		{
-			httpService.unregister("/");
+			httpService.unregister(applicationAlias);
 		}
 		catch (Throwable t)
 		{}
