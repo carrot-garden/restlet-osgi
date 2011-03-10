@@ -30,28 +30,14 @@ public class EMFResource extends RestletEmfServerResource
 		setResourceNameCreator(new DefaultResourceNameCreator());
 		RequestAttributesRestURIConverter restUriConverter = new RequestAttributesRestURIConverter();
 		restUriConverter.setServerSideResourcePattern("mongo://localhost/test/{collection}/{resource}");
-		restUriConverter.setClientSideResourcePattern("/resource/{collection}/{resource}");
+		restUriConverter.setClientSideResourcePattern("/test/{collection}/{resource}");
 		setRestletUriConverter(restUriConverter);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * org.eclipse.emf.utilities.restlet.RestletEmfServerResource#configureResourceSet(org.eclipse
-	 * .emf.utilities.restlet.ResourceSet)
-	 */
 	@Override
 	protected void configureResourceSet(ResourceSet resourceSet)
 	{
 		EList<URIHandler> uriHandlers = resourceSet.getURIConverter().getURIHandlers();
 		uriHandlers.add(0, new MongoDBURIHandlerImpl());
-
-		/*
-		 * resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put(
-		 * Resource.Factory.Registry.DEFAULT_EXTENSION, ModelFactory.eINSTANCE);
-		 * resourceSet.getPackageRegistry().put(ModelPackage.eINSTANCE.getNsURI(),
-		 * ModelPackage.eINSTANCE);
-		 */
 	}
 }

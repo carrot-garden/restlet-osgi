@@ -32,30 +32,21 @@ import org.osgi.framework.BundleContext;
  */
 public class Activator implements BundleActivator
 {
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.osgi.framework.BundleActivator#start(org.osgi.framework.BundleContext)
-	 */
 	@Override
 	public void start(BundleContext context) throws Exception
 	{
-		URI parentURI = URI.createURI("http://localhost:8080/resource/emf/");
+		URI baseURI = URI.createURI("http://localhost:8080/test/emf/");
+		URI parentURI = null;
 
 		{
-			ResourceSet resourceSet = new ResourceSetImpl();
-			URIHandler handler = createURIHandlerWithExplicitStrategy(
-					"http://localhost:8080/resource/{collection}/{resource}",
-					"http://localhost:8080/resource/{collection}/");
-			EList<URIHandler> handlers = resourceSet.getURIConverter().getURIHandlers();
-			handlers.add(handlers.size() - 2, handler);
+			ResourceSet resourceSet = createResourceSet();
 
-			Resource resource = resourceSet.createResource(URI.createURI("http://localhost:8080/resource/emf/"));
+			Resource resource = resourceSet.createResource(baseURI);
 			Data data = ModelFactory.eINSTANCE.createData();
 			data.setName("Created");
 			resource.getContents().add(data);
 
-			Resource childResource1 = resourceSet.createResource(URI.createURI("http://localhost:8080/resource/emf/"));
+			Resource childResource1 = resourceSet.createResource(baseURI);
 			Child child1 = ModelFactory.eINSTANCE.createChild();
 			child1.setName("Child 1");
 			Data data1 = ModelFactory.eINSTANCE.createData();
@@ -63,7 +54,7 @@ public class Activator implements BundleActivator
 			child1.setData(data1);
 			childResource1.getContents().add(child1);
 
-			Resource childResource2 = resourceSet.createResource(URI.createURI("http://localhost:8080/resource/emf/"));
+			Resource childResource2 = resourceSet.createResource(baseURI);
 			Child child2 = ModelFactory.eINSTANCE.createChild();
 			child2.setName("Child 2");
 			Data data2 = ModelFactory.eINSTANCE.createData();
@@ -71,7 +62,7 @@ public class Activator implements BundleActivator
 			child2.setData(data2);
 			childResource2.getContents().add(child2);
 
-			Resource parentResource = resourceSet.createResource(parentURI);
+			Resource parentResource = resourceSet.createResource(baseURI);
 			Parent parent = ModelFactory.eINSTANCE.createParent();
 			parent.setName("Parent");
 			parent.getChildren().add(child1);
@@ -86,14 +77,7 @@ public class Activator implements BundleActivator
 		}
 
 		{
-			//parentURI = URI.createURI("http://localhost:8080/resource/emf/4d28c164f7999f249eb36467");
-			
-			ResourceSet resourceSet = new ResourceSetImpl();
-			URIHandler handler = createURIHandlerWithExplicitStrategy(
-					"http://localhost:8080/resource/emf/{resource}", "http://localhost:8080/resource/emf/");
-			EList<URIHandler> handlers = resourceSet.getURIConverter().getURIHandlers();
-			handlers.add(handlers.size() - 2, handler);
-
+			ResourceSet resourceSet = createResourceSet();
 			Resource parentResource = resourceSet.getResource(parentURI, true);
 			Parent parent = (Parent) parentResource.getContents().get(0);
 			System.out.println("Parent: " + parent.getName());
@@ -102,30 +86,31 @@ public class Activator implements BundleActivator
 			for (Child child : parent.getChildren())
 			{
 				System.out.println("Child: " + child.getName());
-				System.out.println("Proxy uri: "+child.eProxyURI());
+				System.out.println("Proxy uri: " + child.eProxyURI());
 				System.out.println("Child data: " + child.getData().getName());
 			}
 		}
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.osgi.framework.BundleActivator#stop(org.osgi.framework.BundleContext)
-	 */
 	@Override
 	public void stop(BundleContext context) throws Exception
 	{}
 
-	protected URIHandler createURIHandlerWithExplicitStrategy(String putPattern, String postPattern)
+	private ResourceSet createResourceSet()
 	{
+		ResourceSet resourceSet = new ResourceSetImpl();
+		EList<URIHandler> uriHandlers = resourceSet.getURIConverter().getURIHandlers();
 		RestletURIHandler uriHandler = new RestletURIHandler();
-		ExplicitCreateSaveStrategyDetectorImpl detector = new ExplicitCreateSaveStrategyDetectorImpl();
-		detector.setPostUriPattern(postPattern);
-		detector.setPutUriPattern(putPattern);
-		detector.init();
-		uriHandler.setCreateSaveStrategyDetector(detector);
-		return uriHandler;
-	}
 
+		ExplicitCreateSaveStrategyDetectorImpl detector = new ExplicitCreateSaveStrategyDetectorImpl();
+		detector.setPostUriPattern("http://localhost:8080/test/{collection}/");
+		detector.setPutUriPattern("http://localhost:8080/test/{collection}/{resource}");
+		detector.setDeltaPattern("http://localhost:8080/test/{collection}/delta/");
+		detector.init();
+
+		uriHandler.setCreateSaveStrategyDetector(detector);
+		uriHandlers.add(0, uriHandler);
+
+		return resourceSet;
+	}
 }

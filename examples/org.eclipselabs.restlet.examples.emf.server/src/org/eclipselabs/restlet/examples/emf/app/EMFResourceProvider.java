@@ -39,7 +39,7 @@ public class EMFResourceProvider implements IResourceProvider
 	@Override
 	public String[] getPaths()
 	{
-		return new String[] { "/resource/{collection}/", "/resource/{collection}/{resource}" };
+		return new String[] { "/test/{collection}/", "/test/{collection}/{resource}" };
 	}
 
 	/*
