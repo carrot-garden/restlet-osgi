@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<?pde version="3.6"?>
+
+<target name="Restlet" sequenceNumber="13">
+<locations>
+<location path="${targets}/MongoDB" type="Directory"/>
+<location path="${targets}/Extras" type="Directory"/>
+<location path="${targets}/EMF 2.7M5" type="Directory"/>
+<location path="${targets}/Eclipse SDK 3.7M5" type="Directory"/>
+<location path="${targets}/equinox-SDK-3.7M5" type="Directory"/>
+<location path="${targets}/restlet-jee-2.0.5/lib" type="Directory"/>
+</locations>
+</target>
