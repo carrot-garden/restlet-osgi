@@ -15,14 +15,13 @@ import java.util.Dictionary;
 
 import org.osgi.service.http.HttpContext;
 import org.restlet.Application;
-import org.restlet.routing.Router;
 
 /**
  * This is an OSGi service interface for registering Restlet applications with a server servlet.
- * Users are expected to implement this interface and register an instance as an OSGi service. A
- * server servlet will be created and registered with the web container at the specified alias. The
- * application will then be registered with the servlet. Any resources registered with the
- * application alias will be automatically attached to the router.
+ * Users are expected to register an instance as an OSGi service. You may use the
+ * DefaultApplicationProvider directly, extend it, or provide your own implementation of
+ * IApplicationProvider. A server servlet will be created and registered with the web container at
+ * the specified alias. The application will then be registered with the servlet.
  * 
  * @author bhunt
  */
@@ -62,13 +61,4 @@ public interface IApplicationProvider
 	 * @return the initialization parameters to use with the server servlet.
 	 */
 	Dictionary<String, Object> getInitParms();
-
-	/**
-	 * All resources registered with the application alias will be attached to this router. It is
-	 * up to the implementation of this interface to attach the router to the application for example,
-	 * the inboundRoot.
-	 * 
-	 * @return the application router.
-	 */
-	Router getRouter();
 }

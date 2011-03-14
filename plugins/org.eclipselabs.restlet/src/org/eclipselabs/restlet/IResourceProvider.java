@@ -34,15 +34,15 @@ public interface IResourceProvider
 
 	/**
 	 * 
-	 * @return the paths to the resource relative to the application alias. The paths must start with
-	 *         '/'.
-	 */
-	String[] getPaths();
-
-	/**
-	 * 
 	 * @return the finder for locating the resource. It is recommended to use @see DynamicFinder if
 	 *         you need to support lazy loading.
 	 */
 	Finder getFinder();
+
+	/**
+	 * 
+	 * @return the paths to the resource relative to the application alias. The paths must start with
+	 *         '/'.
+	 */
+	String[] getPaths();
 }

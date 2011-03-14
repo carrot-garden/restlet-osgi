@@ -11,11 +11,13 @@
 
 package org.eclipselabs.restlet.servlet;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 
+import org.eclipselabs.restlet.IApplicationBuilder;
 import org.eclipselabs.restlet.IApplicationProvider;
+import org.eclipselabs.restlet.IFilterProvider;
 import org.eclipselabs.restlet.IResourceProvider;
+import org.eclipselabs.restlet.IRouterProvider;
 import org.osgi.service.http.HttpService;
 import org.osgi.service.log.LogService;
 
@@ -25,26 +27,25 @@ import org.osgi.service.log.LogService;
  */
 public class RestletServletService
 {
-	public synchronized void bindApplicationProvider(IApplicationProvider applicationProvider)
+	public void bindApplicationBuilder(IApplicationBuilder applicationBuilder)
 	{
-		if (!applicationProviders.containsKey(applicationProvider.getAlias()))
+		ApplicationStagingArea applicationStagingArea = getApplicationStagingArea(applicationBuilder.getApplicationAlias());
+		applicationStagingArea.setApplicationBuilder(applicationBuilder);
+
+		if (applicationStagingArea.isReady() && httpService != null)
+			registerServlet(applicationStagingArea);
+	}
+
+	public void bindApplicationProvider(IApplicationProvider applicationProvider)
+	{
+		ApplicationStagingArea applicationStagingArea = getApplicationStagingArea(applicationProvider.getAlias());
+
+		if (applicationStagingArea.getApplicationProvider() == null)
 		{
-			applicationProviders.put(applicationProvider.getAlias(), applicationProvider);
-			ArrayList<IResourceProvider> resourceProviders = pendingResources.get(applicationProvider.getAlias());
+			applicationStagingArea.setApplicationProvider(applicationProvider);
 
-			if (resourceProviders != null)
-			{
-				for (IResourceProvider resourceProvider : resourceProviders)
-				{
-					for (String path : resourceProvider.getPaths())
-						applicationProvider.getRouter().attach(path, resourceProvider.getFinder());
-				}
-
-				resourceProviders.clear();
-			}
-
-			if (httpService != null)
-				registerServlet(applicationProvider);
+			if (applicationStagingArea.isReady() && httpService != null)
+				registerServlet(applicationStagingArea);
 		}
 		else
 		{
@@ -53,43 +54,43 @@ public class RestletServletService
 		}
 	}
 
-	public synchronized void bindHttpService(HttpService httpService)
+	public void bindFilterProvider(IFilterProvider filterProvider)
+	{
+		getApplicationStagingArea(filterProvider.getApplicationAlias()).addFilterProvider(filterProvider);
+	}
+
+	public void bindHttpService(HttpService httpService)
 	{
 		this.httpService = httpService;
 
-		for (IApplicationProvider provider : applicationProviders.values())
-			registerServlet(provider);
+		for (ApplicationStagingArea applicationStagingArea : applicationStagingAreas.values())
+		{
+			if (applicationStagingArea.isReady())
+				registerServlet(applicationStagingArea);
+		}
 	}
 
-	public synchronized void bindLogService(LogService logService)
+	public void bindLogService(LogService logService)
 	{
 		this.logService = logService;
 	}
 
-	public synchronized void bindResourceProvider(IResourceProvider resourceProvider)
+	public void bindResourceProvider(IResourceProvider resourceProvider)
 	{
-		IApplicationProvider applicationProvider = applicationProviders.get(resourceProvider.getApplicationAlias());
-
-		if (applicationProvider != null)
-		{
-			for (String path : resourceProvider.getPaths())
-				applicationProvider.getRouter().attach(path, resourceProvider.getFinder());
-		}
-		else
-		{
-			ArrayList<IResourceProvider> resources = pendingResources.get(resourceProvider.getApplicationAlias());
-
-			if (resources == null)
-			{
-				resources = new ArrayList<IResourceProvider>();
-				pendingResources.put(resourceProvider.getApplicationAlias(), resources);
-			}
-
-			resources.add(resourceProvider);
-		}
+		getApplicationStagingArea(resourceProvider.getApplicationAlias()).addResourceProvider(resourceProvider);
 	}
 
-	public synchronized void unbindApplicationProvider(IApplicationProvider applicationProvider)
+	public void bindRouterProvider(IRouterProvider routerProvider)
+	{
+		getApplicationStagingArea(routerProvider.getApplicationAlias()).addRouterProvider(routerProvider);
+	}
+
+	public void unbindApplicationBuilder(IApplicationBuilder applicationBuilder)
+	{
+		getApplicationStagingArea(applicationBuilder.getApplicationAlias()).setApplicationBuilder(null);
+	}
+
+	public void unbindApplicationProvider(IApplicationProvider applicationProvider)
 	{
 		if (httpService != null)
 		{
@@ -101,47 +102,66 @@ public class RestletServletService
 			{}
 		}
 
-		applicationProviders.remove(applicationProvider.getAlias());
+		getApplicationStagingArea(applicationProvider.getAlias()).setApplicationProvider(null);
 	}
 
-	public synchronized void unbindHttpService(HttpService httpService)
+	public void unbindFilterProvider(IFilterProvider filterProvider)
+	{
+		getApplicationStagingArea(filterProvider.getApplicationAlias()).removeFilterProvider(filterProvider);
+	}
+
+	public void unbindHttpService(HttpService httpService)
 	{
 		if (this.httpService == httpService)
 		{
-			for (String alias : applicationProviders.keySet())
-				httpService.unregister(alias);
+			for (String alias : applicationStagingAreas.keySet())
+			{
+				try
+				{
+					httpService.unregister(alias);
+				}
+				catch (IllegalArgumentException e)
+				{}
+			}
 
 			httpService = null;
 		}
 	}
 
-	public synchronized void unbindLogService(LogService logService)
+	public void unbindLogService(LogService logService)
 	{
 		if (this.logService == logService)
 			this.logService = null;
 	}
 
-	public synchronized void unbindResourceProvider(IResourceProvider resourceProvider)
+	public void unbindResourceProvider(IResourceProvider resourceProvider)
 	{
-		IApplicationProvider applicationProvider = applicationProviders.get(resourceProvider.getApplicationAlias());
-
-		if (applicationProvider != null)
-		{
-			applicationProvider.getRouter().detach(resourceProvider.getFinder());
-		}
-		else
-		{
-			ArrayList<IResourceProvider> resources = pendingResources.get(resourceProvider.getApplicationAlias());
-
-			if (resources != null)
-				resources.remove(resourceProvider);
-		}
+		getApplicationStagingArea(resourceProvider.getApplicationAlias()).removeResourceProvider(resourceProvider);
 	}
 
-	private void registerServlet(IApplicationProvider applicationProvider)
+	public void unbindRouterProvider(IRouterProvider routerProvider)
+	{
+		getApplicationStagingArea(routerProvider.getApplicationAlias()).removeRouterProvider(routerProvider);
+	}
+
+	private synchronized ApplicationStagingArea getApplicationStagingArea(String applicationAlias)
+	{
+		ApplicationStagingArea applicationStagingArea = applicationStagingAreas.get(applicationAlias);
+
+		if (applicationStagingArea == null)
+		{
+			applicationStagingArea = new ApplicationStagingArea();
+			applicationStagingAreas.put(applicationAlias, applicationStagingArea);
+		}
+
+		return applicationStagingArea;
+	}
+
+	private void registerServlet(ApplicationStagingArea applicationStagingArea)
 	{
 		ApplicationServlet servlet = new ApplicationServlet();
-		servlet.setApplication(applicationProvider.getApplication());
+		servlet.setApplication(applicationStagingArea.getApplication());
+		IApplicationProvider applicationProvider = applicationStagingArea.getApplicationProvider();
 
 		try
 		{
@@ -156,6 +176,5 @@ public class RestletServletService
 
 	private HttpService httpService;
 	private LogService logService;
-	private HashMap<String, IApplicationProvider> applicationProviders = new HashMap<String, IApplicationProvider>();
-	private HashMap<String, ArrayList<IResourceProvider>> pendingResources = new HashMap<String, ArrayList<IResourceProvider>>();
+	private HashMap<String, ApplicationStagingArea> applicationStagingAreas = new HashMap<String, ApplicationStagingArea>();
 }

@@ -1,19 +1,18 @@
 /*******************************************************************************
- * Copyright (c) 2010 Bryan Hunt.
+ * Copyright (c) 2011.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *    Bryan Hunt - initial API and implementation
+ *     - initial API and implementation
  *******************************************************************************/
 
-package org.eclipselabs.restlet.servlet.junit.support;
+package org.eclipselabs.restlet;
 
 import java.util.Dictionary;
 
-import org.eclipselabs.restlet.IApplicationProvider;
 import org.osgi.service.http.HttpContext;
 import org.restlet.Application;
 
@@ -21,34 +20,50 @@ import org.restlet.Application;
  * @author bhunt
  * 
  */
-public class TestApplicationProvider implements IApplicationProvider
+public class DefaultApplicationProvider implements IApplicationProvider
 {
+	public DefaultApplicationProvider()
+	{
+		this.application = createApplication();
+	}
+
+	public DefaultApplicationProvider(String alias)
+	{
+		this();
+		this.alias = alias;
+	}
+
 	@Override
 	public String getAlias()
 	{
-		return "/";
+		return alias;
 	}
 
 	@Override
 	public Application getApplication()
 	{
-		if (application == null)
-			application = new TestApplication();
-
 		return application;
 	}
 
 	@Override
 	public HttpContext getContext()
 	{
-		return null;
+		return context;
 	}
 
 	@Override
 	public Dictionary<String, Object> getInitParms()
 	{
-		return null;
+		return initParms;
+	}
+
+	protected Application createApplication()
+	{
+		return new Application();
 	}
 
 	private Application application;
+	private String alias;
+	private HttpContext context;
+	private Dictionary<String, Object> initParms;
 }
