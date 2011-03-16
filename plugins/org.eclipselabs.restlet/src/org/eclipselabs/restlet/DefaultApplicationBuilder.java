@@ -14,7 +14,7 @@ package org.eclipselabs.restlet;
 import java.util.LinkedList;
 
 import org.restlet.Application;
-import org.restlet.routing.Filter;
+import org.restlet.Restlet;
 import org.restlet.routing.Router;
 
 /**
@@ -44,10 +44,19 @@ public class DefaultApplicationBuilder implements IApplicationBuilder
 	@Override
 	public void addFilterProvider(IFilterProvider filterProvider)
 	{
-		if (applicationProvider != null)
-			applyApplicationFilter(applicationProvider.getApplication(), filterProvider);
-		else
-			filterProviders.add(filterProvider);
+		filterProviders.add(filterProvider);
+		boolean firstRouter = true;
+
+		for (IRouterProvider routerProvider : routerProviders)
+		{
+			if (filterProvider.isFilterFor(routerProvider))
+			{
+				boolean inboundRootChanged = routerProvider.addFilterProvider(filterProvider);
+
+				if (firstRouter && inboundRootChanged)
+					appllicationProvider.getApplication().setInboundRoot(routerProvider.getInboundRoot());
+			}
+		}
 	}
 
 	@Override
@@ -74,6 +83,12 @@ public class DefaultApplicationBuilder implements IApplicationBuilder
 
 		Router router = routerProvider.getRouter();
 
+		for (IFilterProvider filterProvider : filterProviders)
+		{
+			if (filterProvider.isFilterFor(routerProvider))
+				routerProvider.addFilterProvider(filterProvider);
+		}
+
 		for (IResourceProvider resourceProvider : resourceProviders)
 		{
 			if (routerProvider.isRouterFor(resourceProvider))
@@ -84,9 +99,8 @@ public class DefaultApplicationBuilder implements IApplicationBuilder
 	@Override
 	public Application buildApplication(IApplicationProvider applicationProvider)
 	{
-		this.applicationProvider = applicationProvider;
+		this.appllicationProvider = applicationProvider;
 		attachRouters(applicationProvider.getApplication());
-
 		return applicationProvider.getApplication();
 	}
 
@@ -143,69 +157,30 @@ public class DefaultApplicationBuilder implements IApplicationBuilder
 			router.attach(path, resourceProvider.getFinder());
 	}
 
-	private void applyApplicationFilter(Application application, IFilterProvider filterProvider)
-	{
-		if (!filterProviders.isEmpty())
-		{
-			for (int i = filterProviders.size() - 1; i >= 0; i--)
-			{
-				IFilterProvider previousFilterProvider = filterProviders.get(i);
-
-				if (!filterProvider.isFilterFor(previousFilterProvider))
-				{
-					Filter previousFilter = previousFilterProvider.getFilter();
-					filterProvider.getFilter().setNext(previousFilter.getNext());
-					previousFilter.setNext(filterProvider.getFilter());
-					filterProviders.add(i + 1, filterProvider);
-					return;
-				}
-			}
-		}
-
-		filterProviders.addFirst(filterProvider);
-		Filter filter = filterProvider.getFilter();
-		filter.setNext(application.getInboundRoot());
-		application.setInboundRoot(filter);
-	}
-
 	private void attachRouters(Application application)
 	{
-		Router root = null;
+		Restlet applicationRoot = null;
 		Router previousRouter = null;
 
 		for (IRouterProvider routerProvider : routerProviders)
 		{
 			Router router = routerProvider.getRouter();
 
-			if (root == null)
-				root = router;
+			if (applicationRoot == null)
+				applicationRoot = routerProvider.getInboundRoot();
 
 			if (previousRouter != null)
-				previousRouter.attachDefault(router);
+				previousRouter.attachDefault(routerProvider.getInboundRoot());
 
 			previousRouter = router;
 		}
 
-		if (application.getInboundRoot() == null)
-		{
-			application.setInboundRoot(root);
-		}
-		else
-		{
-			Filter filter = (Filter) application.getInboundRoot();
-
-			while (filter.getNext() != null)
-				filter = (Filter) filter.getNext();
-
-			filter.setNext(root);
-		}
+		application.setInboundRoot(applicationRoot);
 	}
 
 	private String applicationAlias;
-
-	private IApplicationProvider applicationProvider;
+	private IApplicationProvider appllicationProvider;
 	private LinkedList<IFilterProvider> filterProviders;
-
 	private LinkedList<IRouterProvider> routerProviders;
 	private LinkedList<IResourceProvider> resourceProviders;
 }

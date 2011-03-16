@@ -12,6 +12,7 @@
 package org.eclipselabs.restlet.servlet.junit.support;
 
 import org.eclipselabs.restlet.IFilterProvider;
+import org.eclipselabs.restlet.IRouterProvider;
 import org.restlet.routing.Filter;
 
 /**
@@ -58,6 +59,12 @@ public class TestFilterProvider implements IFilterProvider
 	public boolean isFilterFor(IFilterProvider filterProvider)
 	{
 		return filterProvider.getWeight() > weight;
+	}
+
+	@Override
+	public boolean isFilterFor(IRouterProvider routerProvider)
+	{
+		return true;
 	}
 
 	private int weight;

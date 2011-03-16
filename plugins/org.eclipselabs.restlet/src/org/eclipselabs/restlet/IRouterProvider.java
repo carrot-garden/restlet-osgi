@@ -11,6 +11,7 @@
 
 package org.eclipselabs.restlet;
 
+import org.restlet.Restlet;
 import org.restlet.routing.Router;
 
 /**
@@ -19,11 +20,19 @@ import org.restlet.routing.Router;
  */
 public interface IRouterProvider
 {
+	boolean addFilterProvider(IFilterProvider filterProvider);
+
 	String getApplicationAlias();
+
+	Restlet getInboundRoot();
 
 	Router getRouter();
 
 	Object getRouterInfo();
 
 	boolean isRouterFor(IResourceProvider resourceProvider);
+
+	boolean isRouterFor(IRouterProvider routerProvider);
+
+	boolean removeFilterProvider(IFilterProvider filterProvider);
 }

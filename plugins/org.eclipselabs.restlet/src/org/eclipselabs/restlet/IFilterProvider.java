@@ -60,4 +60,6 @@ public interface IFilterProvider
 	int getWeight();
 
 	boolean isFilterFor(IFilterProvider filterProvider);
+
+	boolean isFilterFor(IRouterProvider routerProvider);
 }
