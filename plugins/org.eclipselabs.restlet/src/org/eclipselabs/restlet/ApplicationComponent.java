@@ -11,21 +11,30 @@
 
 package org.eclipselabs.restlet;
 
-import org.restlet.routing.Router;
-
 /**
  * @author bhunt
  * 
  */
-public interface IRouterProvider extends IFilteredProvider
+public class ApplicationComponent implements IApplicationComponent
 {
-	String getApplicationAlias();
+	public ApplicationComponent()
+	{}
 
-	Router getRouter();
+	public ApplicationComponent(String applicationAlias)
+	{
+		this.applicationAlias = applicationAlias;
+	}
 
-	Object getRouterInfo();
+	@Override
+	public String getApplicationAlias()
+	{
+		return applicationAlias;
+	}
 
-	boolean isRouterFor(IResourceProvider resourceProvider);
+	protected void setApplicationAlias(String applicationAlias)
+	{
+		this.applicationAlias = applicationAlias;
+	}
 
-	boolean isRouterFor(IRouterProvider routerProvider);
+	private String applicationAlias;
 }

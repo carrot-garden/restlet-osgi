@@ -11,21 +11,40 @@
 
 package org.eclipselabs.restlet;
 
-import org.restlet.routing.Router;
+import org.restlet.Restlet;
+import org.restlet.resource.Finder;
 
 /**
  * @author bhunt
  * 
  */
-public interface IRouterProvider extends IFilteredProvider
+public abstract class ResourceProvider extends FilteredProvider implements IResourceProvider
 {
-	String getApplicationAlias();
+	public ResourceProvider(String applicationAlias, String[] paths, Finder finder)
+	{
+		super(applicationAlias);
+		this.paths = paths;
+		this.finder = finder;
+	}
 
-	Router getRouter();
+	@Override
+	public Finder getFinder()
+	{
+		return finder;
+	}
 
-	Object getRouterInfo();
+	@Override
+	public String[] getPaths()
+	{
+		return paths;
+	}
 
-	boolean isRouterFor(IResourceProvider resourceProvider);
+	@Override
+	protected Restlet getFilteredRestlet()
+	{
+		return finder;
+	}
 
-	boolean isRouterFor(IRouterProvider routerProvider);
+	private String[] paths;
+	private Finder finder;
 }

@@ -23,14 +23,8 @@ import org.restlet.resource.Finder;
  * 
  * @author bhunt
  */
-public interface IResourceProvider
+public interface IResourceProvider extends IFilteredProvider
 {
-	/**
-	 * The application alias is the identifier of the application to which this resource belongs.
-	 * 
-	 * @return the application alias to attach this resource to.
-	 */
-	String getApplicationAlias();
 
 	/**
 	 * 

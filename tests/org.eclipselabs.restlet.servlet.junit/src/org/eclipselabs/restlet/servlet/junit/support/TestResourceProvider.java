@@ -11,42 +11,17 @@
 
 package org.eclipselabs.restlet.servlet.junit.support;
 
-import org.eclipselabs.restlet.IResourceProvider;
+import org.eclipselabs.restlet.ResourceProvider;
 import org.restlet.resource.Finder;
 
 /**
  * @author bhunt
  * 
  */
-public class TestResourceProvider implements IResourceProvider
+public class TestResourceProvider extends ResourceProvider
 {
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.eclipselabs.restlet.IResourceProvider#getApplicationAlias()
-	 */
-	@Override
-	public String getApplicationAlias()
+	public TestResourceProvider()
 	{
-		return "/";
+		super("/", new String[] { "/junit/" }, new Finder(null, TestResource.class));
 	}
-
-	@Override
-	public Finder getFinder()
-	{
-		return finder;
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.eclipselabs.restlet.IResourceProvider#getPath()
-	 */
-	@Override
-	public String[] getPaths()
-	{
-		return new String[] { "/junit/" };
-	}
-
-	private Finder finder = new Finder(null, TestResource.class);
 }

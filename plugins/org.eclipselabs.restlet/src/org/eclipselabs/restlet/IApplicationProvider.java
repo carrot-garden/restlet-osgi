@@ -25,20 +25,8 @@ import org.restlet.Application;
  * 
  * @author bhunt
  */
-public interface IApplicationProvider
+public interface IApplicationProvider extends IApplicationComponent
 {
-	/**
-	 * The alias is passed to @See org.osgi.service.http.HttpService#registerServlet(String
-	 * alias, Servlet servlet, Dictionary initparams, HttpContext context) when the servlet is
-	 * registered. Any resources that are to be registered with the application must use this alias.
-	 * The alias must begin with '/' and must not end with '/' with one exception when the alias is
-	 * '/' itself.
-	 * 
-	 * @return the application alias used to register the server servlet with the web container.
-	 * 
-	 */
-	String getAlias();
-
 	/**
 	 * 
 	 * @return the application to be register at the specified alias.

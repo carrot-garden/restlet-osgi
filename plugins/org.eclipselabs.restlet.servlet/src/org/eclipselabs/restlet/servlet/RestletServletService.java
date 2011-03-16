@@ -38,7 +38,7 @@ public class RestletServletService
 
 	public void bindApplicationProvider(IApplicationProvider applicationProvider)
 	{
-		ApplicationStagingArea applicationStagingArea = getApplicationStagingArea(applicationProvider.getAlias());
+		ApplicationStagingArea applicationStagingArea = getApplicationStagingArea(applicationProvider.getApplicationAlias());
 
 		if (applicationStagingArea.getApplicationProvider() == null)
 		{
@@ -50,7 +50,7 @@ public class RestletServletService
 		else
 		{
 			if (logService != null)
-				logService.log(LogService.LOG_ERROR, "Application servlet at alias: '" + applicationProvider.getAlias() + "' is already registered");
+				logService.log(LogService.LOG_ERROR, "Application servlet at alias: '" + applicationProvider.getApplicationAlias() + "' is already registered");
 		}
 	}
 
@@ -96,13 +96,13 @@ public class RestletServletService
 		{
 			try
 			{
-				httpService.unregister(applicationProvider.getAlias());
+				httpService.unregister(applicationProvider.getApplicationAlias());
 			}
 			catch (Throwable t)
 			{}
 		}
 
-		getApplicationStagingArea(applicationProvider.getAlias()).setApplicationProvider(null);
+		getApplicationStagingArea(applicationProvider.getApplicationAlias()).setApplicationProvider(null);
 	}
 
 	public void unbindFilterProvider(IFilterProvider filterProvider)
@@ -165,12 +165,12 @@ public class RestletServletService
 
 		try
 		{
-			httpService.registerServlet(applicationProvider.getAlias(), servlet, applicationProvider.getInitParms(), applicationProvider.getContext());
+			httpService.registerServlet(applicationProvider.getApplicationAlias(), servlet, applicationProvider.getInitParms(), applicationProvider.getContext());
 		}
 		catch (Exception e)
 		{
 			if (logService != null)
-				logService.log(LogService.LOG_ERROR, "Failed to register the application servlet at alias: '" + applicationProvider.getAlias() + "'", e);
+				logService.log(LogService.LOG_ERROR, "Failed to register the application servlet at alias: '" + applicationProvider.getApplicationAlias() + "'", e);
 		}
 	}
 

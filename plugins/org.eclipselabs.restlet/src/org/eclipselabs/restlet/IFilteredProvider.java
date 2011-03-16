@@ -11,21 +11,17 @@
 
 package org.eclipselabs.restlet;
 
-import org.restlet.routing.Router;
+import org.restlet.Restlet;
 
 /**
  * @author bhunt
  * 
  */
-public interface IRouterProvider extends IFilteredProvider
+public interface IFilteredProvider extends IApplicationComponent
 {
-	String getApplicationAlias();
+	boolean addFilterProvider(IFilterProvider filterProvider);
 
-	Router getRouter();
+	Restlet getInboundRoot();
 
-	Object getRouterInfo();
-
-	boolean isRouterFor(IResourceProvider resourceProvider);
-
-	boolean isRouterFor(IRouterProvider routerProvider);
+	boolean removeFilterProvider(IFilterProvider filterProvider);
 }

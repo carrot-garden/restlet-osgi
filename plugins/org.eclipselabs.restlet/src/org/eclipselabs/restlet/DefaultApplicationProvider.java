@@ -20,23 +20,19 @@ import org.restlet.Application;
  * @author bhunt
  * 
  */
-public class DefaultApplicationProvider implements IApplicationProvider
+public class DefaultApplicationProvider extends ApplicationComponent implements IApplicationProvider
 {
 	public DefaultApplicationProvider()
 	{
 		this.application = createApplication();
 	}
 
-	public DefaultApplicationProvider(String alias)
+	public DefaultApplicationProvider(String applicationAlias, HttpContext context, Dictionary<String, Object> initParms)
 	{
-		this();
-		this.alias = alias;
-	}
-
-	@Override
-	public String getAlias()
-	{
-		return alias;
+		super(applicationAlias);
+		this.application = createApplication();
+		this.context = context;
+		this.initParms = initParms;
 	}
 
 	@Override
@@ -62,8 +58,17 @@ public class DefaultApplicationProvider implements IApplicationProvider
 		return new Application();
 	}
 
+	protected void setContext(HttpContext context)
+	{
+		this.context = context;
+	}
+
+	protected void setInitParms(Dictionary<String, Object> initParms)
+	{
+		this.initParms = initParms;
+	}
+
 	private Application application;
-	private String alias;
 	private HttpContext context;
 	private Dictionary<String, Object> initParms;
 }
