@@ -12,27 +12,14 @@
 package org.eclipselabs.restlet.registry;
 
 import org.eclipse.core.runtime.IConfigurationElement;
-import org.eclipselabs.restlet.DynamicFinder;
-import org.eclipselabs.restlet.ResourceProvider;
+import org.eclipselabs.restlet.DefaultApplicationBuilder;
 import org.osgi.framework.Bundle;
 import org.osgi.service.log.LogService;
 
-public class RegistryResourceProvider extends ResourceProvider
+public class RegistryApplicationBuilder extends DefaultApplicationBuilder
 {
-	public RegistryResourceProvider(Bundle bundle, IConfigurationElement config, LogService logService)
+	public RegistryApplicationBuilder(Bundle bundle, IConfigurationElement config, LogService logService)
 	{
-		super(config.getAttribute("application_alias"), getPaths(config), new DynamicFinder(bundle, config.getAttribute("class"), logService));
-	}
-
-	private static String[] getPaths(IConfigurationElement config)
-	{
-
-		IConfigurationElement[] resourcePaths = config.getChildren("resource_path");
-		String[] paths = new String[resourcePaths.length];
-
-		for (int i = 0; i < resourcePaths.length; i++)
-			paths[i] = resourcePaths[i].getAttribute("path");
-
-		return paths;
+		super(config.getAttribute("application_alias"));
 	}
 }

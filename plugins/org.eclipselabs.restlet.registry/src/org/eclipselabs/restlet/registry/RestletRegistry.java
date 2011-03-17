@@ -18,6 +18,7 @@ import org.eclipse.core.runtime.IExtension;
 import org.eclipse.core.runtime.IExtensionPoint;
 import org.eclipse.core.runtime.IExtensionRegistry;
 import org.eclipse.core.runtime.IRegistryEventListener;
+import org.eclipselabs.restlet.IApplicationBuilder;
 import org.eclipselabs.restlet.IApplicationProvider;
 import org.eclipselabs.restlet.IResourceProvider;
 import org.osgi.framework.Bundle;
@@ -31,14 +32,9 @@ import org.osgi.service.packageadmin.PackageAdmin;
  * @author bhunt
  * 
  */
+@SuppressWarnings("deprecation")
 public class RestletRegistry implements IRegistryEventListener
 {
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * org.eclipse.core.runtime.IRegistryEventListener#added(org.eclipse.core.runtime.IExtension[])
-	 */
 	@Override
 	public void added(IExtension[] extensions)
 	{
@@ -46,12 +42,6 @@ public class RestletRegistry implements IRegistryEventListener
 			addElements(extension.getConfigurationElements());
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * org.eclipse.core.runtime.IRegistryEventListener#removed(org.eclipse.core.runtime.IExtension[])
-	 */
 	@Override
 	public void removed(IExtension[] extensions)
 	{
@@ -59,24 +49,10 @@ public class RestletRegistry implements IRegistryEventListener
 			removeElements(extension.getConfigurationElements());
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * org.eclipse.core.runtime.IRegistryEventListener#added(org.eclipse.core.runtime.IExtensionPoint
-	 * [])
-	 */
 	@Override
 	public void added(IExtensionPoint[] extensionPoints)
 	{}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * org.eclipse.core.runtime.IRegistryEventListener#removed(org.eclipse.core.runtime.IExtensionPoint
-	 * [])
-	 */
 	@Override
 	public void removed(IExtensionPoint[] extensionPoints)
 	{}
@@ -133,13 +109,19 @@ public class RestletRegistry implements IRegistryEventListener
 			{
 				RegistryApplicationProvider registryApplicationProvider = new RegistryApplicationProvider(config, logService);
 				ServiceRegistration serviceRegistration = bundleContext.registerService(IApplicationProvider.class.getName(), registryApplicationProvider, null);
-				applicationProviders.put(config.getAttribute("alias"), serviceRegistration);
+				applicationProviders.put(config.getAttribute("application_alias"), serviceRegistration);
 			}
 			else if (config.getName().equals("resource"))
 			{
 				RegistryResourceProvider registryResourceProvider = new RegistryResourceProvider(getBundle(config.getContributor().getName()), config, logService);
 				ServiceRegistration serviceRegistration = bundleContext.registerService(IResourceProvider.class.getName(), registryResourceProvider, null);
 				resourceProviders.put(config.getAttribute("application_alias") + config.getAttribute("path"), serviceRegistration);
+			}
+			else if (config.getName().equals("builder"))
+			{
+				RegistryApplicationBuilder registryApplicationBuilder = new RegistryApplicationBuilder(getBundle(config.getContributor().getName()), config, logService);
+				ServiceRegistration serviceRegistration = bundleContext.registerService(IApplicationBuilder.class.getName(), registryApplicationBuilder, null);
+				applicationBuilders.put(config.getAttribute("application_alias"), serviceRegistration);
 			}
 		}
 	}
@@ -174,9 +156,11 @@ public class RestletRegistry implements IRegistryEventListener
 		for (IConfigurationElement config : configs)
 		{
 			if (config.getName().equals("application"))
-				applicationProviders.remove(config.getAttribute("alias")).unregister();
+				applicationProviders.remove(config.getAttribute("application_alias")).unregister();
 			else if (config.getName().equals("resource"))
 				resourceProviders.remove(config.getAttribute("application_alias") + config.getAttribute("path")).unregister();
+			else if (config.getName().equals("builder"))
+				applicationBuilders.remove(config.getAttribute("application_alias")).unregister();
 		}
 	}
 
@@ -185,5 +169,6 @@ public class RestletRegistry implements IRegistryEventListener
 	private PackageAdmin packageAdmin;
 	private HashMap<String, ServiceRegistration> applicationProviders = new HashMap<String, ServiceRegistration>();
 	private HashMap<String, ServiceRegistration> resourceProviders = new HashMap<String, ServiceRegistration>();
+	private HashMap<String, ServiceRegistration> applicationBuilders = new HashMap<String, ServiceRegistration>();
 	private BundleContext bundleContext;
 }

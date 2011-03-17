@@ -4,7 +4,7 @@
    <extension
          point="org.eclipselabs.restlet.registry.restlet">
       <application
-            alias="/registry"
+            application_alias="/registry"
             class="org.eclipselabs.restlet.registry.junit.support.TestApplication">
          <init_parm
                key="junit"
@@ -32,6 +32,9 @@
                path="/param/{uriParam}">
          </resource_path>
       </resource>
+      <builder
+            application_alias="/registry">
+      </builder>
    </extension>
 
 </plugin>

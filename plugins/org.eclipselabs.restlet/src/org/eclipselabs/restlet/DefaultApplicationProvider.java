@@ -23,14 +23,11 @@ import org.restlet.Application;
 public class DefaultApplicationProvider extends ApplicationComponent implements IApplicationProvider
 {
 	public DefaultApplicationProvider()
-	{
-		this.application = createApplication();
-	}
+	{}
 
 	public DefaultApplicationProvider(String applicationAlias, HttpContext context, Dictionary<String, Object> initParms)
 	{
 		super(applicationAlias);
-		this.application = createApplication();
 		this.context = context;
 		this.initParms = initParms;
 	}
@@ -38,6 +35,9 @@ public class DefaultApplicationProvider extends ApplicationComponent implements 
 	@Override
 	public Application getApplication()
 	{
+		if (application == null)
+			application = createApplication();
+
 		return application;
 	}
 

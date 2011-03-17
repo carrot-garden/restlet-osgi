@@ -16,59 +16,40 @@ import java.util.Hashtable;
 
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;
-import org.eclipselabs.restlet.IApplicationProvider;
-import org.osgi.service.http.HttpContext;
+import org.eclipselabs.restlet.DefaultApplicationProvider;
 import org.osgi.service.log.LogService;
 import org.restlet.Application;
-import org.restlet.routing.Router;
 
 /**
  * @author bhunt
  * 
  */
-public class RegistryApplicationProvider implements IApplicationProvider
+public class RegistryApplicationProvider extends DefaultApplicationProvider
 {
 	public RegistryApplicationProvider(IConfigurationElement config, LogService logService)
 	{
-		this.alias = config.getAttribute("alias");
+		super(config.getAttribute("application_alias"), null, getInitParms(config));
 		this.config = config;
 		this.logService = logService;
 	}
 
 	@Override
-	public String getAlias()
+	protected Application createApplication()
 	{
-		return alias;
-	}
-
-	@Override
-	public Application getApplication()
-	{
-		if (application == null)
+		try
 		{
-			try
-			{
-				application = (Application) config.createExecutableExtension("class");
-				application.setInboundRoot(router);
-			}
-			catch (CoreException e)
-			{
-				if (logService != null)
-					logService.log(LogService.LOG_ERROR, "Failed to create application class: '" + config.getAttribute("class"), e);
-			}
+			return (Application) config.createExecutableExtension("class");
 		}
+		catch (CoreException e)
+		{
+			if (logService != null)
+				logService.log(LogService.LOG_ERROR, "Failed to create application class: '" + config.getAttribute("class"), e);
 
-		return application;
+			return null;
+		}
 	}
 
-	@Override
-	public HttpContext getContext()
-	{
-		return null;
-	}
-
-	@Override
-	public Dictionary<String, Object> getInitParms()
+	private static Dictionary<String, Object> getInitParms(IConfigurationElement config)
 	{
 		Hashtable<String, Object> initParms = new Hashtable<String, Object>();
 
@@ -78,15 +59,6 @@ public class RegistryApplicationProvider implements IApplicationProvider
 		return initParms;
 	}
 
-	@Override
-	public Router getRouter()
-	{
-		return router;
-	}
-
-	private String alias;
 	private IConfigurationElement config;
-	private Router router = new Router();
-	private Application application;
 	private LogService logService;
 }
