@@ -10,5 +10,6 @@ Import-Package: org.osgi.framework;version="1.5.0",
  org.restlet,
  org.restlet.resource,
  org.restlet.routing
-Export-Package: org.eclipselabs.restlet
+Export-Package: org.eclipselabs.restlet,
+ org.eclipselabs.restlet.impl
 Bundle-ActivationPolicy: lazy

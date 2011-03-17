@@ -11,7 +11,7 @@
 
 package org.eclipselabs.restlet.servlet.junit.support;
 
-import org.eclipselabs.restlet.ResourceProvider;
+import org.eclipselabs.restlet.impl.ResourceProvider;
 import org.restlet.resource.Finder;
 
 /**

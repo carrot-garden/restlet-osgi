@@ -9,10 +9,15 @@
  *     - initial API and implementation
  *******************************************************************************/
 
-package org.eclipselabs.restlet;
+package org.eclipselabs.restlet.impl;
 
 import java.util.LinkedList;
 
+import org.eclipselabs.restlet.IApplicationBuilder;
+import org.eclipselabs.restlet.IApplicationProvider;
+import org.eclipselabs.restlet.IFilterProvider;
+import org.eclipselabs.restlet.IResourceProvider;
+import org.eclipselabs.restlet.IRouterProvider;
 import org.restlet.Application;
 import org.restlet.Restlet;
 import org.restlet.routing.Router;
@@ -21,9 +26,9 @@ import org.restlet.routing.Router;
  * @author bhunt
  * 
  */
-public class DefaultApplicationBuilder implements IApplicationBuilder
+public class ApplicationBuilder implements IApplicationBuilder
 {
-	public DefaultApplicationBuilder()
+	public ApplicationBuilder()
 	{
 		filterProviders = new LinkedList<IFilterProvider>();
 		routerProviders = new LinkedList<IRouterProvider>();
@@ -35,7 +40,7 @@ public class DefaultApplicationBuilder implements IApplicationBuilder
 			addRouterProvider(rootRouterProvider);
 	}
 
-	public DefaultApplicationBuilder(String applicationAlias)
+	public ApplicationBuilder(String applicationAlias)
 	{
 		this();
 		this.applicationAlias = applicationAlias;
@@ -54,7 +59,7 @@ public class DefaultApplicationBuilder implements IApplicationBuilder
 				boolean inboundRootChanged = routerProvider.addFilterProvider(filterProvider);
 
 				if (firstRouter && inboundRootChanged)
-					appllicationProvider.getApplication().setInboundRoot(routerProvider.getInboundRoot());
+					applicationProvider.getApplication().setInboundRoot(routerProvider.getInboundRoot());
 			}
 		}
 	}
@@ -99,7 +104,7 @@ public class DefaultApplicationBuilder implements IApplicationBuilder
 	@Override
 	public Application buildApplication(IApplicationProvider applicationProvider)
 	{
-		this.appllicationProvider = applicationProvider;
+		this.applicationProvider = applicationProvider;
 		attachRouters(applicationProvider.getApplication());
 		return applicationProvider.getApplication();
 	}
@@ -113,8 +118,14 @@ public class DefaultApplicationBuilder implements IApplicationBuilder
 	@Override
 	public void removeFilterProvider(IFilterProvider filterProvider)
 	{
-		// TODO Auto-generated method stub
-
+		for (IRouterProvider routerProvider : routerProviders)
+		{
+			if (filterProvider.isFilterFor(routerProvider))
+			{
+				routerProvider.removeFilterProvider(filterProvider);
+				break;
+			}
+		}
 	}
 
 	@Override
@@ -135,8 +146,30 @@ public class DefaultApplicationBuilder implements IApplicationBuilder
 	@Override
 	public void removeRouterProvider(IRouterProvider routerProvider)
 	{
-		// TODO Auto-generated method stub
+		int index = routerProviders.indexOf(routerProvider);
 
+		if (index == 0)
+		{
+			if (applicationProvider != null)
+			{
+				Router nextRouter = null;
+
+				if (routerProviders.size() > 1)
+					nextRouter = routerProviders.get(1).getRouter();
+
+				applicationProvider.getApplication().setInboundRoot(nextRouter);
+			}
+		}
+		else
+		{
+			Router previousRouter = routerProviders.get(index - 1).getRouter();
+			previousRouter.detach(routerProvider.getRouter());
+
+			if (routerProviders.size() > index + 1)
+				previousRouter.attachDefault(routerProviders.get(index + 1).getInboundRoot());
+		}
+
+		routerProviders.remove(index);
 	}
 
 	protected Application createApplication()
@@ -146,13 +179,11 @@ public class DefaultApplicationBuilder implements IApplicationBuilder
 
 	protected IRouterProvider createRootRouterProvider()
 	{
-		return new DefaultRouterProvider();
+		return new RouterProvider();
 	}
 
 	protected void routeResource(IResourceProvider resourceProvider, Router router)
 	{
-		resourceProviders.remove(resourceProvider);
-
 		for (String path : resourceProvider.getPaths())
 			router.attach(path, resourceProvider.getFinder());
 	}
@@ -179,7 +210,7 @@ public class DefaultApplicationBuilder implements IApplicationBuilder
 	}
 
 	private String applicationAlias;
-	private IApplicationProvider appllicationProvider;
+	private IApplicationProvider applicationProvider;
 	private LinkedList<IFilterProvider> filterProviders;
 	private LinkedList<IRouterProvider> routerProviders;
 	private LinkedList<IResourceProvider> resourceProviders;

@@ -9,7 +9,7 @@
  *    Bryan Hunt & Wolfgang Werner - initial API and implementation
  *******************************************************************************/
 
-package org.eclipselabs.restlet;
+package org.eclipselabs.restlet.impl;
 
 import org.osgi.framework.Bundle;
 import org.osgi.service.log.LogService;
@@ -50,11 +50,6 @@ public class DynamicFinder extends Finder
 		this.logService = logService;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.restlet.resource.Finder#getTargetClass()
-	 */
 	@Override
 	public Class<?> getTargetClass()
 	{

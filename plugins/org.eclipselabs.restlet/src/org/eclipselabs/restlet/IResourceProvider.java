@@ -11,6 +11,7 @@
 
 package org.eclipselabs.restlet;
 
+import org.eclipselabs.restlet.impl.ResourceProvider;
 import org.restlet.resource.Finder;
 
 /**
@@ -21,15 +22,16 @@ import org.restlet.resource.Finder;
  * cached until the application is registered. If your resources are not being registered, check
  * there is not a typo in the alias in both the resource provider and application provider.
  * 
+ * It is recommended that you use or extend {@link ResourceProvider}
+ * 
  * @author bhunt
  */
 public interface IResourceProvider extends IFilteredProvider
 {
-
 	/**
 	 * 
-	 * @return the finder for locating the resource. It is recommended to use @see DynamicFinder if
-	 *         you need to support lazy loading.
+	 * @return the finder for locating the resource. It is recommended to use
+	 *         {@link org.eclipselabs.restlet.impl.DynamicFinder} if you need to support lazy loading.
 	 */
 	Finder getFinder();
 

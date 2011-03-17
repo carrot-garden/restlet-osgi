@@ -9,7 +9,9 @@
  *     - initial API and implementation
  *******************************************************************************/
 
-package org.eclipselabs.restlet;
+package org.eclipselabs.restlet.impl;
+
+import org.eclipselabs.restlet.IApplicationComponent;
 
 /**
  * @author bhunt

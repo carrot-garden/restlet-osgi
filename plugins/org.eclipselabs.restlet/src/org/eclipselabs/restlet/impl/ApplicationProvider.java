@@ -9,10 +9,11 @@
  *     - initial API and implementation
  *******************************************************************************/
 
-package org.eclipselabs.restlet;
+package org.eclipselabs.restlet.impl;
 
 import java.util.Dictionary;
 
+import org.eclipselabs.restlet.IApplicationProvider;
 import org.osgi.service.http.HttpContext;
 import org.restlet.Application;
 
@@ -20,12 +21,12 @@ import org.restlet.Application;
  * @author bhunt
  * 
  */
-public class DefaultApplicationProvider extends ApplicationComponent implements IApplicationProvider
+public class ApplicationProvider extends ApplicationComponent implements IApplicationProvider
 {
-	public DefaultApplicationProvider()
+	public ApplicationProvider()
 	{}
 
-	public DefaultApplicationProvider(String applicationAlias, HttpContext context, Dictionary<String, Object> initParms)
+	public ApplicationProvider(String applicationAlias, HttpContext context, Dictionary<String, Object> initParms)
 	{
 		super(applicationAlias);
 		this.context = context;

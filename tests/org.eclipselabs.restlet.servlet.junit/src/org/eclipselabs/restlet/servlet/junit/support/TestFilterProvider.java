@@ -44,12 +44,6 @@ public class TestFilterProvider implements IFilterProvider
 	}
 
 	@Override
-	public String getPath()
-	{
-		return "";
-	}
-
-	@Override
 	public int getWeight()
 	{
 		return weight;

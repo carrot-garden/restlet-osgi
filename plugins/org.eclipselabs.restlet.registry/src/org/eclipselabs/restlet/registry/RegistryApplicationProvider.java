@@ -16,7 +16,7 @@ import java.util.Hashtable;
 
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;
-import org.eclipselabs.restlet.DefaultApplicationProvider;
+import org.eclipselabs.restlet.impl.ApplicationProvider;
 import org.osgi.service.log.LogService;
 import org.restlet.Application;
 
@@ -24,7 +24,7 @@ import org.restlet.Application;
  * @author bhunt
  * 
  */
-public class RegistryApplicationProvider extends DefaultApplicationProvider
+public class RegistryApplicationProvider extends ApplicationProvider
 {
 	public RegistryApplicationProvider(IConfigurationElement config, LogService logService)
 	{

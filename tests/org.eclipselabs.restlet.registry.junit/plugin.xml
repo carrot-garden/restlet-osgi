@@ -5,7 +5,7 @@
          point="org.eclipselabs.restlet.registry.restlet">
       <application
             application_alias="/registry"
-            class="org.eclipselabs.restlet.registry.junit.support.TestApplication">
+            class="org.restlet.Application">
          <init_parm
                key="junit"
                value="JUnit">

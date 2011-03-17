@@ -9,8 +9,9 @@
  *     - initial API and implementation
  *******************************************************************************/
 
-package org.eclipselabs.restlet;
+package org.eclipselabs.restlet.impl;
 
+import org.eclipselabs.restlet.IResourceProvider;
 import org.restlet.Restlet;
 import org.restlet.resource.Finder;
 

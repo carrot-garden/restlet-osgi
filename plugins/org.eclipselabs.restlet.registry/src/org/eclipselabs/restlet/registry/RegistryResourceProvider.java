@@ -12,8 +12,8 @@
 package org.eclipselabs.restlet.registry;
 
 import org.eclipse.core.runtime.IConfigurationElement;
-import org.eclipselabs.restlet.DynamicFinder;
-import org.eclipselabs.restlet.ResourceProvider;
+import org.eclipselabs.restlet.impl.DynamicFinder;
+import org.eclipselabs.restlet.impl.ResourceProvider;
 import org.osgi.framework.Bundle;
 import org.osgi.service.log.LogService;
 

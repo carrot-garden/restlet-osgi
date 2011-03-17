@@ -9,8 +9,10 @@
  *     - initial API and implementation
  *******************************************************************************/
 
-package org.eclipselabs.restlet;
+package org.eclipselabs.restlet.impl;
 
+import org.eclipselabs.restlet.IResourceProvider;
+import org.eclipselabs.restlet.IRouterProvider;
 import org.restlet.Restlet;
 import org.restlet.routing.Router;
 
@@ -18,14 +20,14 @@ import org.restlet.routing.Router;
  * @author bhunt
  * 
  */
-public class DefaultRouterProvider extends FilteredProvider implements IRouterProvider
+public class RouterProvider extends FilteredProvider implements IRouterProvider
 {
-	public DefaultRouterProvider()
+	public RouterProvider()
 	{
 		this.router = createRouter();
 	}
 
-	public DefaultRouterProvider(String applicationAlias)
+	public RouterProvider(String applicationAlias)
 	{
 		super(applicationAlias);
 		this.router = createRouter();

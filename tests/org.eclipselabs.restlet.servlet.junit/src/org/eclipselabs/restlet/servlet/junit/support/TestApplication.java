@@ -21,12 +21,6 @@ import org.restlet.routing.Router;
  */
 public class TestApplication extends Application
 {
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.restlet.Application#createInboundRoot()
-	 */
 	@Override
 	public Restlet createInboundRoot()
 	{

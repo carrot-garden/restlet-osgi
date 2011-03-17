@@ -12,11 +12,11 @@
 package org.eclipselabs.restlet.registry;
 
 import org.eclipse.core.runtime.IConfigurationElement;
-import org.eclipselabs.restlet.DefaultApplicationBuilder;
+import org.eclipselabs.restlet.impl.ApplicationBuilder;
 import org.osgi.framework.Bundle;
 import org.osgi.service.log.LogService;
 
-public class RegistryApplicationBuilder extends DefaultApplicationBuilder
+public class RegistryApplicationBuilder extends ApplicationBuilder
 {
 	public RegistryApplicationBuilder(Bundle bundle, IConfigurationElement config, LogService logService)
 	{

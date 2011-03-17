@@ -9,10 +9,12 @@
  *     - initial API and implementation
  *******************************************************************************/
 
-package org.eclipselabs.restlet;
+package org.eclipselabs.restlet.impl;
 
 import java.util.LinkedList;
 
+import org.eclipselabs.restlet.IFilterProvider;
+import org.eclipselabs.restlet.IFilteredProvider;
 import org.restlet.Restlet;
 
 /**
