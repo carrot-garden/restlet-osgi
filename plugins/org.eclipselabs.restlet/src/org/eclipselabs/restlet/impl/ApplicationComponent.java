@@ -11,7 +11,10 @@
 
 package org.eclipselabs.restlet.impl;
 
+import java.util.Dictionary;
+
 import org.eclipselabs.restlet.IApplicationComponent;
+import org.osgi.service.component.ComponentContext;
 
 /**
  * @author bhunt
@@ -31,6 +34,13 @@ public class ApplicationComponent implements IApplicationComponent
 	public String getApplicationAlias()
 	{
 		return applicationAlias;
+	}
+
+	protected void activate(ComponentContext context)
+	{
+		@SuppressWarnings("unchecked")
+		Dictionary<String, Object> properties = context.getProperties();
+		applicationAlias = (String) properties.get("application.alias");
 	}
 
 	protected void setApplicationAlias(String applicationAlias)

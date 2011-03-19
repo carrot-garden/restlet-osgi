@@ -26,10 +26,17 @@ import org.restlet.routing.Router;
  * @author bhunt
  * 
  */
-public class ApplicationBuilder implements IApplicationBuilder
+public class ApplicationBuilder extends ApplicationComponent implements IApplicationBuilder
 {
 	public ApplicationBuilder()
 	{
+		this("");
+	}
+
+	public ApplicationBuilder(String applicationAlias)
+	{
+		super(applicationAlias);
+
 		filterProviders = new LinkedList<IFilterProvider>();
 		routerProviders = new LinkedList<IRouterProvider>();
 		resourceProviders = new LinkedList<IResourceProvider>();
@@ -38,12 +45,6 @@ public class ApplicationBuilder implements IApplicationBuilder
 
 		if (rootRouterProvider != null)
 			addRouterProvider(rootRouterProvider);
-	}
-
-	public ApplicationBuilder(String applicationAlias)
-	{
-		this();
-		this.applicationAlias = applicationAlias;
 	}
 
 	@Override
@@ -107,12 +108,6 @@ public class ApplicationBuilder implements IApplicationBuilder
 		this.applicationProvider = applicationProvider;
 		attachRouters(applicationProvider.getApplication());
 		return applicationProvider.getApplication();
-	}
-
-	@Override
-	public String getApplicationAlias()
-	{
-		return applicationAlias;
 	}
 
 	@Override
@@ -209,7 +204,6 @@ public class ApplicationBuilder implements IApplicationBuilder
 		application.setInboundRoot(applicationRoot);
 	}
 
-	private String applicationAlias;
 	private IApplicationProvider applicationProvider;
 	private LinkedList<IFilterProvider> filterProviders;
 	private LinkedList<IRouterProvider> routerProviders;
