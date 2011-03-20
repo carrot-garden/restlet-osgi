@@ -15,8 +15,11 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.junit.Assert.assertThat;
 
+import org.eclipselabs.restlet.IApplicationBuilder;
 import org.eclipselabs.restlet.IApplicationProvider;
+import org.eclipselabs.restlet.IFilterProvider;
 import org.eclipselabs.restlet.IResourceProvider;
+import org.eclipselabs.restlet.IRouterProvider;
 import org.eclipselabs.restlet.junit.bundle.Activator;
 import org.eclipselabs.restlet.servlet.RestletServletService;
 import org.osgi.service.http.HttpService;
@@ -34,9 +37,24 @@ public class RestletTestHarness
 		restletServletService.bindApplicationProvider(applicationProvider);
 	}
 
+	public void addApplicationBuilder(IApplicationBuilder applicationBuilder)
+	{
+		restletServletService.bindApplicationBuilder(applicationBuilder);
+	}
+
+	public void addFilter(IFilterProvider filterProvider)
+	{
+		restletServletService.bindFilterProvider(filterProvider);
+	}
+
 	public void addResource(IResourceProvider resourceProvider)
 	{
 		restletServletService.bindResourceProvider(resourceProvider);
+	}
+
+	public void addRouter(IRouterProvider routerProvider)
+	{
+		restletServletService.bindRouterProvider(routerProvider);
 	}
 
 	public LogReaderService getLogReaderService()
@@ -49,9 +67,24 @@ public class RestletTestHarness
 		restletServletService.unbindApplicationProvider(applicationProvider);
 	}
 
+	public void removeApplicationBuilder(IApplicationBuilder applicationBuilder)
+	{
+		restletServletService.unbindApplicationBuilder(applicationBuilder);
+	}
+
+	public void removeFilter(IFilterProvider filterProvider)
+	{
+		restletServletService.unbindFilterProvider(filterProvider);
+	}
+
 	public void removeResource(IResourceProvider resourceProvider)
 	{
 		restletServletService.unbindResourceProvider(resourceProvider);
+	}
+
+	public void removeRouter(IRouterProvider routerProvider)
+	{
+		restletServletService.unbindRouterProvider(routerProvider);
 	}
 
 	public void setUp() throws InterruptedException
