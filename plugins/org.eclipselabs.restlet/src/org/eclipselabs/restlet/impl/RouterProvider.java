@@ -11,6 +11,9 @@
 
 package org.eclipselabs.restlet.impl;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import org.eclipselabs.restlet.IResourceProvider;
 import org.eclipselabs.restlet.IRouterProvider;
 import org.restlet.Restlet;
@@ -24,37 +27,66 @@ public class RouterProvider extends FilteredProvider implements IRouterProvider
 {
 	public RouterProvider()
 	{
-		this.router = createRouter();
+		this(null, new String[] { "" });
 	}
 
-	public RouterProvider(String applicationAlias)
+	public RouterProvider(String applicationAlias, String[] path)
 	{
 		super(applicationAlias);
-		this.router = createRouter();
+		this.path = path;
+		resourceProviders = new HashSet<IResourceProvider>();
+	}
+
+	@Override
+	public void addResourceProvider(IResourceProvider resourceProvider)
+	{
+		resourceProviders.add(resourceProvider);
+
+		for (String path : resourceProvider.getPaths())
+			router.attach(path, resourceProvider.getInboundRoot());
+	}
+
+	@Override
+	public String[] getPath()
+	{
+		return path;
+	}
+
+	@Override
+	public Set<IResourceProvider> getResourceProviders()
+	{
+		return resourceProviders; // TODO do we need to worry about thread safety
 	}
 
 	@Override
 	public Router getRouter()
 	{
-		return router;
-	}
+		if (router == null)
+			router = createRouter();
 
-	@Override
-	public Object getRouterInfo()
-	{
-		return null;
+		return router;
 	}
 
 	@Override
 	public boolean isRouterFor(IResourceProvider resourceProvider)
 	{
-		return true;
+		return path[path.length - 1].equals(resourceProvider.getRouter());
 	}
 
 	@Override
 	public boolean isRouterFor(IRouterProvider routerProvider)
 	{
-		return false;
+		if (path.length == routerProvider.getPath().length)
+			throw new IllegalStateException("Router provider has conflicting path at " + path);
+
+		return path.length < routerProvider.getPath().length;
+	}
+
+	@Override
+	public void removeResourceProvider(IResourceProvider resourceProvider)
+	{
+		if (resourceProviders.remove(resourceProvider))
+			router.detach(resourceProvider.getInboundRoot());
 	}
 
 	protected Router createRouter()
@@ -68,5 +100,7 @@ public class RouterProvider extends FilteredProvider implements IRouterProvider
 		return router;
 	}
 
-	Router router;
+	private Router router;
+	private String[] path;
+	private HashSet<IResourceProvider> resourceProviders;
 }

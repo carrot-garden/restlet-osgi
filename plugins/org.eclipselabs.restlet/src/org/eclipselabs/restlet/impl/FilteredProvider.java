@@ -11,7 +11,9 @@
 
 package org.eclipselabs.restlet.impl;
 
+import java.util.HashSet;
 import java.util.LinkedList;
+import java.util.Set;
 
 import org.eclipselabs.restlet.IFilterProvider;
 import org.eclipselabs.restlet.IFilteredProvider;
@@ -23,9 +25,6 @@ import org.restlet.Restlet;
  */
 public abstract class FilteredProvider extends ApplicationComponent implements IFilteredProvider
 {
-	public FilteredProvider()
-	{}
-
 	public FilteredProvider(String applicationAlias)
 	{
 		super(applicationAlias);
@@ -55,6 +54,12 @@ public abstract class FilteredProvider extends ApplicationComponent implements I
 			filterProviders.get(filterProviders.size() - 2).getFilter().setNext(filterProvider.getFilter());
 
 		return filterProviders.size() == 1;
+	}
+
+	@Override
+	public Set<IFilterProvider> getFilterProviders()
+	{
+		return new HashSet<IFilterProvider>(filterProviders);
 	}
 
 	@Override

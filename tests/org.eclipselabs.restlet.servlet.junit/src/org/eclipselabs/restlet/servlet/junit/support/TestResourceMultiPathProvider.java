@@ -22,6 +22,12 @@ public class TestResourceMultiPathProvider extends ResourceProvider
 {
 	public TestResourceMultiPathProvider()
 	{
-		super("/", new String[] { "/junit/", "/junit/{$id}" }, new Finder(null, TestResource.class));
+		super("/", new String[] { "/junit/", "/junit/{$id}" }, "");
+	}
+
+	@Override
+	protected Finder createFinder()
+	{
+		return new Finder(null, TestResource.class);
 	}
 }

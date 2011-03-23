@@ -12,21 +12,22 @@
 package org.eclipselabs.restlet.registry;
 
 import org.eclipse.core.runtime.IConfigurationElement;
-import org.eclipselabs.restlet.impl.DynamicFinder;
 import org.eclipselabs.restlet.impl.ResourceProvider;
+import org.eclipselabs.restlet.util.DynamicFinder;
 import org.osgi.framework.Bundle;
 import org.osgi.service.log.LogService;
+import org.restlet.resource.Finder;
 
 public class RegistryResourceProvider extends ResourceProvider
 {
 	public RegistryResourceProvider(Bundle bundle, IConfigurationElement config, LogService logService)
 	{
-		super(config.getAttribute("application_alias"), getPaths(config), new DynamicFinder(bundle, config.getAttribute("class"), logService));
+		super(config.getAttribute("application_alias"), getPaths(config), getRouter(config));
+		finder = new DynamicFinder(bundle, config.getAttribute("class"), logService);
 	}
 
 	private static String[] getPaths(IConfigurationElement config)
 	{
-
 		IConfigurationElement[] resourcePaths = config.getChildren("resource_path");
 		String[] paths = new String[resourcePaths.length];
 
@@ -35,4 +36,18 @@ public class RegistryResourceProvider extends ResourceProvider
 
 		return paths;
 	}
+
+	private static String getRouter(IConfigurationElement config)
+	{
+		String router = config.getAttribute("router");
+		return router != null ? router : "";
+	}
+
+	@Override
+	protected Finder createFinder()
+	{
+		return finder;
+	}
+
+	private Finder finder;
 }

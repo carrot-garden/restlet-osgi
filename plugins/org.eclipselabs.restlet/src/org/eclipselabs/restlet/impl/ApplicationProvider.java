@@ -24,7 +24,14 @@ import org.restlet.Application;
 public class ApplicationProvider extends ApplicationComponent implements IApplicationProvider
 {
 	public ApplicationProvider()
-	{}
+	{
+		this(null, null, null);
+	}
+
+	public ApplicationProvider(String applicationAlias)
+	{
+		this(applicationAlias, null, null);
+	}
 
 	public ApplicationProvider(String applicationAlias, HttpContext context, Dictionary<String, Object> initParms)
 	{

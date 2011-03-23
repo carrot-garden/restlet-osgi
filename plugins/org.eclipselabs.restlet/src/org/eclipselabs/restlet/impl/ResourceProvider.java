@@ -21,16 +21,19 @@ import org.restlet.resource.Finder;
  */
 public abstract class ResourceProvider extends FilteredProvider implements IResourceProvider
 {
-	public ResourceProvider(String applicationAlias, String[] paths, Finder finder)
+	public ResourceProvider(String applicationAlias, String[] paths, String router)
 	{
 		super(applicationAlias);
 		this.paths = paths;
-		this.finder = finder;
+		this.router = router;
 	}
 
 	@Override
 	public Finder getFinder()
 	{
+		if (finder == null)
+			finder = createFinder();
+
 		return finder;
 	}
 
@@ -41,11 +44,20 @@ public abstract class ResourceProvider extends FilteredProvider implements IReso
 	}
 
 	@Override
-	protected Restlet getFilteredRestlet()
+	public String getRouter()
 	{
-		return finder;
+		return router;
 	}
 
+	protected abstract Finder createFinder();
+
+	@Override
+	protected Restlet getFilteredRestlet()
+	{
+		return getFinder();
+	}
+
+	private String router;
 	private String[] paths;
 	private Finder finder;
 }

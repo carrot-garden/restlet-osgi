@@ -20,11 +20,8 @@ import org.osgi.service.component.ComponentContext;
  * @author bhunt
  * 
  */
-public class ApplicationComponent implements IApplicationComponent
+public abstract class ApplicationComponent implements IApplicationComponent
 {
-	public ApplicationComponent()
-	{}
-
 	public ApplicationComponent(String applicationAlias)
 	{
 		this.applicationAlias = applicationAlias;
@@ -33,19 +30,20 @@ public class ApplicationComponent implements IApplicationComponent
 	@Override
 	public String getApplicationAlias()
 	{
+		if (applicationAlias == null || applicationAlias.length() == 0)
+			throw new IllegalStateException("The application.alias property was not set when the provider was registered.");
+
 		return applicationAlias;
 	}
 
 	protected void activate(ComponentContext context)
 	{
-		@SuppressWarnings("unchecked")
-		Dictionary<String, Object> properties = context.getProperties();
-		applicationAlias = (String) properties.get("application.alias");
-	}
-
-	protected void setApplicationAlias(String applicationAlias)
-	{
-		this.applicationAlias = applicationAlias;
+		if (applicationAlias == null)
+		{
+			@SuppressWarnings("unchecked")
+			Dictionary<String, Object> properties = context.getProperties();
+			applicationAlias = (String) properties.get("application.alias");
+		}
 	}
 
 	private String applicationAlias;

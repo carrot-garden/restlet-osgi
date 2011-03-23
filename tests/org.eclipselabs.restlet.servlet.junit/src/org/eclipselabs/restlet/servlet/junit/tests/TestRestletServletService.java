@@ -92,7 +92,7 @@ public class TestRestletServletService
 	{
 		restletServletService.bindApplicationBuilder(new ApplicationBuilder("/"));
 		restletServletService.bindHttpService(httpService);
-		restletServletService.bindApplicationProvider(new ApplicationProvider("/", null, null));
+		restletServletService.bindApplicationProvider(new ApplicationProvider("/"));
 		restletServletService.bindResourceProvider(new TestResourceProvider());
 
 		ClientResource client = createResource("/junit/");
@@ -107,7 +107,7 @@ public class TestRestletServletService
 		restletServletService.bindApplicationBuilder(new ApplicationBuilder("/"));
 		restletServletService.bindHttpService(httpService);
 		restletServletService.bindResourceProvider(new TestResourceProvider());
-		restletServletService.bindApplicationProvider(new ApplicationProvider("/", null, null));
+		restletServletService.bindApplicationProvider(new ApplicationProvider("/"));
 
 		ClientResource client = createResource("/junit/");
 		String result = client.get(String.class);
@@ -119,7 +119,7 @@ public class TestRestletServletService
 	public void testApplicationHttpResource()
 	{
 		restletServletService.bindApplicationBuilder(new ApplicationBuilder("/"));
-		restletServletService.bindApplicationProvider(new ApplicationProvider("/", null, null));
+		restletServletService.bindApplicationProvider(new ApplicationProvider("/"));
 		restletServletService.bindHttpService(httpService);
 		restletServletService.bindResourceProvider(new TestResourceProvider());
 
@@ -133,7 +133,7 @@ public class TestRestletServletService
 	public void testApplicationResourceHttp()
 	{
 		restletServletService.bindApplicationBuilder(new ApplicationBuilder("/"));
-		restletServletService.bindApplicationProvider(new ApplicationProvider("/", null, null));
+		restletServletService.bindApplicationProvider(new ApplicationProvider("/"));
 		restletServletService.bindResourceProvider(new TestResourceProvider());
 		restletServletService.bindHttpService(httpService);
 
@@ -149,7 +149,7 @@ public class TestRestletServletService
 		restletServletService.bindApplicationBuilder(new ApplicationBuilder("/"));
 		restletServletService.bindResourceProvider(new TestResourceProvider());
 		restletServletService.bindHttpService(httpService);
-		restletServletService.bindApplicationProvider(new ApplicationProvider("/", null, null));
+		restletServletService.bindApplicationProvider(new ApplicationProvider("/"));
 
 		ClientResource client = createResource("/junit/");
 		String result = client.get(String.class);
@@ -162,7 +162,7 @@ public class TestRestletServletService
 	{
 		restletServletService.bindApplicationBuilder(new ApplicationBuilder("/"));
 		restletServletService.bindResourceProvider(new TestResourceProvider());
-		restletServletService.bindApplicationProvider(new ApplicationProvider("/", null, null));
+		restletServletService.bindApplicationProvider(new ApplicationProvider("/"));
 		restletServletService.bindHttpService(httpService);
 
 		ClientResource client = createResource("/junit/");
@@ -178,7 +178,7 @@ public class TestRestletServletService
 
 		restletServletService.bindHttpService(httpService);
 		restletServletService.bindApplicationBuilder(new ApplicationBuilder("/"));
-		restletServletService.bindApplicationProvider(new ApplicationProvider("/", null, null));
+		restletServletService.bindApplicationProvider(new ApplicationProvider("/"));
 		restletServletService.bindResourceProvider(resourceProvider);
 
 		restletServletService.unbindResourceProvider(resourceProvider);
@@ -190,7 +190,7 @@ public class TestRestletServletService
 	@Test(expected = ResourceException.class)
 	public void testUnbindApplication()
 	{
-		ApplicationProvider applicationProvider = new ApplicationProvider("/", null, null);
+		ApplicationProvider applicationProvider = new ApplicationProvider("/");
 
 		restletServletService.bindHttpService(httpService);
 		restletServletService.bindApplicationBuilder(new ApplicationBuilder("/"));
@@ -208,7 +208,7 @@ public class TestRestletServletService
 	{
 		restletServletService.bindHttpService(httpService);
 		restletServletService.bindApplicationBuilder(new ApplicationBuilder("/"));
-		restletServletService.bindApplicationProvider(new ApplicationProvider("/", null, null));
+		restletServletService.bindApplicationProvider(new ApplicationProvider("/"));
 		restletServletService.bindResourceProvider(new TestResourceProvider());
 
 		restletServletService.unbindHttpService(httpService);
@@ -222,7 +222,7 @@ public class TestRestletServletService
 	{
 		restletServletService.bindHttpService(httpService);
 		restletServletService.bindApplicationBuilder(new ApplicationBuilder("/"));
-		restletServletService.bindApplicationProvider(new ApplicationProvider("/", null, null));
+		restletServletService.bindApplicationProvider(new ApplicationProvider("/"));
 		restletServletService.bindResourceProvider(new TestResourceProvider());
 
 		restletServletService.unbindHttpService(httpService);
@@ -244,7 +244,7 @@ public class TestRestletServletService
 		restletServletService.bindResourceProvider(resourceProvider);
 
 		restletServletService.unbindResourceProvider(resourceProvider);
-		restletServletService.bindApplicationProvider(new ApplicationProvider("/", null, null));
+		restletServletService.bindApplicationProvider(new ApplicationProvider("/"));
 
 		ClientResource client = createResource("/junit/");
 		client.get(String.class);
@@ -259,9 +259,9 @@ public class TestRestletServletService
 		restletServletService.bindHttpService(httpService);
 		restletServletService.bindLogService(logService);
 		restletServletService.bindApplicationBuilder(new ApplicationBuilder("/"));
-		restletServletService.bindApplicationProvider(new ApplicationProvider("/", null, null));
+		restletServletService.bindApplicationProvider(new ApplicationProvider("/"));
 		restletServletService.bindResourceProvider(new TestResourceProvider());
-		restletServletService.bindApplicationProvider(new ApplicationProvider("/", null, null));
+		restletServletService.bindApplicationProvider(new ApplicationProvider("/"));
 
 		ClientResource client = createResource("/junit/");
 		String result = client.get(String.class);
@@ -277,7 +277,7 @@ public class TestRestletServletService
 	{
 		restletServletService.bindHttpService(httpService);
 		restletServletService.bindApplicationBuilder(new ApplicationBuilder("/"));
-		restletServletService.bindApplicationProvider(new ApplicationProvider("/", null, null));
+		restletServletService.bindApplicationProvider(new ApplicationProvider("/"));
 		restletServletService.bindResourceProvider(new TestResourceMultiPathProvider());
 
 		ClientResource client = createResource("/junit/");
@@ -297,9 +297,9 @@ public class TestRestletServletService
 	{
 		restletServletService.bindHttpService(httpService);
 		restletServletService.bindApplicationBuilder(new ApplicationBuilder("/"));
-		restletServletService.bindApplicationProvider(new ApplicationProvider("/", null, null));
+		restletServletService.bindApplicationProvider(new ApplicationProvider("/"));
 		restletServletService.bindResourceProvider(new TestResourceProvider());
-		IFilterProvider filterProvider = new TestFilterProvider();
+		IFilterProvider filterProvider = new TestFilterProvider(0);
 		restletServletService.bindFilterProvider(filterProvider);
 
 		TestFilter filter = (TestFilter) filterProvider.getFilter();
@@ -316,7 +316,7 @@ public class TestRestletServletService
 	{
 		restletServletService.bindHttpService(httpService);
 		restletServletService.bindApplicationBuilder(new ApplicationBuilder("/"));
-		restletServletService.bindApplicationProvider(new ApplicationProvider("/", null, null));
+		restletServletService.bindApplicationProvider(new ApplicationProvider("/"));
 		restletServletService.bindResourceProvider(new TestResourceProvider());
 
 		IFilterProvider filterProvider1 = new TestFilterProvider(0);
@@ -342,7 +342,7 @@ public class TestRestletServletService
 	{
 		restletServletService.bindHttpService(httpService);
 		restletServletService.bindApplicationBuilder(new ApplicationBuilder("/"));
-		restletServletService.bindApplicationProvider(new ApplicationProvider("/", null, null));
+		restletServletService.bindApplicationProvider(new ApplicationProvider("/"));
 		restletServletService.bindResourceProvider(new TestResourceProvider());
 
 		IFilterProvider filterProvider1 = new TestFilterProvider(1);
@@ -369,7 +369,7 @@ public class TestRestletServletService
 		// This test MUST be last
 
 		context.registerService(IApplicationBuilder.class.getName(), new ApplicationBuilder("/"), null);
-		context.registerService(IApplicationProvider.class.getName(), new ApplicationProvider("/", null, null), null);
+		context.registerService(IApplicationProvider.class.getName(), new ApplicationProvider("/"), null);
 		context.registerService(IResourceProvider.class.getName(), new TestResourceProvider(), null);
 		unregisterApplication = false;
 

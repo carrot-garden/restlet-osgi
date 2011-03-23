@@ -22,6 +22,12 @@ public class TestResourceProvider extends ResourceProvider
 {
 	public TestResourceProvider()
 	{
-		super("/", new String[] { "/junit/" }, new Finder(null, TestResource.class));
+		super("/", new String[] { "/junit/" }, "");
+	}
+
+	@Override
+	protected Finder createFinder()
+	{
+		return new Finder(null, TestResource.class);
 	}
 }

@@ -52,6 +52,8 @@ public interface IFilterProvider extends IApplicationComponent
 	 */
 	boolean isFilterFor(IFilterProvider filterProvider);
 
+	boolean isFilterFor(IResourceProvider resourceProvider);
+
 	/**
 	 * Determines whether or not this filter is a filter for the target router.
 	 * 

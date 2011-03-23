@@ -11,6 +11,8 @@
 
 package org.eclipselabs.restlet;
 
+import java.util.Set;
+
 import org.restlet.Restlet;
 
 /**
@@ -31,6 +33,8 @@ public interface IFilteredProvider extends IApplicationComponent
 	 * @return true if the filter was added as the first filter in the chain and false otherwise.
 	 */
 	boolean addFilterProvider(IFilterProvider filterProvider);
+
+	Set<IFilterProvider> getFilterProviders();
 
 	/**
 	 * Returns the Restlet that is the first one in the chain which could be a filter, router, or

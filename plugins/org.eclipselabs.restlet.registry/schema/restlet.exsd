@@ -61,6 +61,13 @@
                </documentation>
             </annotation>
          </attribute>
+         <attribute name="router" type="string" use="default" value="">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
          <attribute name="class" type="string" use="required">
             <annotation>
                <documentation>

@@ -19,7 +19,6 @@ import org.eclipselabs.restlet.IFilterProvider;
 import org.eclipselabs.restlet.IResourceProvider;
 import org.eclipselabs.restlet.IRouterProvider;
 import org.restlet.Application;
-import org.restlet.Restlet;
 import org.restlet.routing.Router;
 
 /**
@@ -30,7 +29,7 @@ public class ApplicationBuilder extends ApplicationComponent implements IApplica
 {
 	public ApplicationBuilder()
 	{
-		this("");
+		this(null);
 	}
 
 	public ApplicationBuilder(String applicationAlias)
@@ -61,6 +60,19 @@ public class ApplicationBuilder extends ApplicationComponent implements IApplica
 
 				if (firstRouter && inboundRootChanged)
 					applicationProvider.getApplication().setInboundRoot(routerProvider.getInboundRoot());
+
+				return;
+			}
+		}
+
+		for (IResourceProvider resourceProvider : resourceProviders)
+		{
+			if (filterProvider.isFilterFor(resourceProvider))
+			{
+				if (resourceProvider.addFilterProvider(filterProvider))
+					rerouteResource(resourceProvider);
+
+				break;
 			}
 		}
 	}
@@ -74,8 +86,17 @@ public class ApplicationBuilder extends ApplicationComponent implements IApplica
 		{
 			if (routerProvider.isRouterFor(resourceProvider))
 			{
-				Router router = routerProvider.getRouter();
-				routeResource(resourceProvider, router);
+				routerProvider.addResourceProvider(resourceProvider);
+				break;
+			}
+		}
+
+		for (IFilterProvider filterProvider : filterProviders)
+		{
+			if (filterProvider.isFilterFor(resourceProvider))
+			{
+				if (resourceProvider.addFilterProvider(filterProvider))
+					rerouteResource(resourceProvider);
 
 				break;
 			}
@@ -85,20 +106,30 @@ public class ApplicationBuilder extends ApplicationComponent implements IApplica
 	@Override
 	public void addRouterProvider(IRouterProvider routerProvider)
 	{
-		routerProviders.add(routerProvider);
+		if (attachRouter(routerProvider))
+		{
+			if (applicationProvider != null)
+				applicationProvider.getApplication().setInboundRoot(routerProvider.getInboundRoot());
+		}
 
 		Router router = routerProvider.getRouter();
 
 		for (IFilterProvider filterProvider : filterProviders)
 		{
 			if (filterProvider.isFilterFor(routerProvider))
+			{
 				routerProvider.addFilterProvider(filterProvider);
+				break;
+			}
 		}
 
 		for (IResourceProvider resourceProvider : resourceProviders)
 		{
 			if (routerProvider.isRouterFor(resourceProvider))
+			{
 				routeResource(resourceProvider, router);
+				break;
+			}
 		}
 	}
 
@@ -106,8 +137,83 @@ public class ApplicationBuilder extends ApplicationComponent implements IApplica
 	public Application buildApplication(IApplicationProvider applicationProvider)
 	{
 		this.applicationProvider = applicationProvider;
-		attachRouters(applicationProvider.getApplication());
+
+		if (!routerProviders.isEmpty())
+			applicationProvider.getApplication().setInboundRoot(routerProviders.getFirst().getInboundRoot());
+
+		String messages = checkRouting();
+
+		if (messages.length() > 0)
+			System.out.println(messages);
+
 		return applicationProvider.getApplication();
+	}
+
+	public String checkRouting()
+	{
+		StringBuilder messages = new StringBuilder();
+
+		for (IResourceProvider resourceProvider : resourceProviders)
+		{
+			boolean routed = false;
+
+			for (IRouterProvider routerProvider : routerProviders)
+			{
+				if (routerProvider.getResourceProviders().contains(resourceProvider))
+				{
+					routed = true;
+					break;
+				}
+			}
+
+			if (!routed)
+			{
+				messages.append("Resource not routed: ");
+
+				for (String path : resourceProvider.getPaths())
+				{
+					messages.append(path);
+					messages.append(' ');
+				}
+
+				messages.append("\n");
+			}
+		}
+
+		for (IFilterProvider filterProvider : filterProviders)
+		{
+			boolean routed = false;
+
+			for (IRouterProvider routerProvider : routerProviders)
+			{
+				if (routerProvider.getFilterProviders().contains(filterProvider))
+				{
+					routed = true;
+					break;
+				}
+
+				if (!routed)
+				{
+					for (IResourceProvider resourceProvider : routerProvider.getResourceProviders())
+					{
+						if (resourceProvider.getFilterProviders().contains(filterProvider))
+						{
+							routed = true;
+							break;
+						}
+					}
+				}
+			}
+
+			if (!routed)
+			{
+				messages.append("Filter not routed: ");
+				messages.append(filterProvider.getFilter().getClass().getName());
+				messages.append("\n");
+			}
+		}
+
+		return messages.toString();
 	}
 
 	@Override
@@ -118,7 +224,18 @@ public class ApplicationBuilder extends ApplicationComponent implements IApplica
 			if (filterProvider.isFilterFor(routerProvider))
 			{
 				routerProvider.removeFilterProvider(filterProvider);
-				break;
+				return;
+			}
+		}
+
+		for (IResourceProvider resourceProvider : resourceProviders)
+		{
+			if (filterProvider.isFilterFor(resourceProvider))
+			{
+				if (resourceProvider.removeFilterProvider(filterProvider))
+					rerouteResource(resourceProvider);
+
+				return;
 			}
 		}
 	}
@@ -132,7 +249,7 @@ public class ApplicationBuilder extends ApplicationComponent implements IApplica
 		{
 			if (routerProvider.isRouterFor(resourceProvider))
 			{
-				routerProvider.getRouter().detach(resourceProvider.getFinder());
+				routerProvider.removeResourceProvider(resourceProvider);
 				break;
 			}
 		}
@@ -183,25 +300,41 @@ public class ApplicationBuilder extends ApplicationComponent implements IApplica
 			router.attach(path, resourceProvider.getFinder());
 	}
 
-	private void attachRouters(Application application)
+	private void rerouteResource(IResourceProvider resourceProvider)
 	{
-		Restlet applicationRoot = null;
-		Router previousRouter = null;
-
 		for (IRouterProvider routerProvider : routerProviders)
 		{
-			Router router = routerProvider.getRouter();
+			if (routerProvider.getResourceProviders().contains(resourceProvider))
+			{
+				routeResource(resourceProvider, routerProvider.getRouter());
+				break;
+			}
+		}
+	}
 
-			if (applicationRoot == null)
-				applicationRoot = routerProvider.getInboundRoot();
+	private boolean attachRouter(IRouterProvider routerProvider)
+	{
+		for (int i = 0; i < routerProviders.size(); i++)
+		{
+			IRouterProvider targetFilterProvider = routerProviders.get(i);
 
-			if (previousRouter != null)
-				previousRouter.attachDefault(routerProvider.getInboundRoot());
+			if (routerProvider.isRouterFor(targetFilterProvider))
+			{
+				routerProviders.add(i, routerProvider);
+				routerProvider.getRouter().attachDefault(targetFilterProvider.getInboundRoot());
 
-			previousRouter = router;
+				if (i > 0)
+				{
+					IRouterProvider previousRouterProvider = routerProviders.get(i - 1);
+					previousRouterProvider.getRouter().attachDefault(routerProvider.getRouter());
+				}
+
+				return i == 0;
+			}
 		}
 
-		application.setInboundRoot(applicationRoot);
+		routerProviders.add(routerProvider);
+		return true;
 	}
 
 	private IApplicationProvider applicationProvider;

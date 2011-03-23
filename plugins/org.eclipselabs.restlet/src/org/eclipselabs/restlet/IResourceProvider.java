@@ -31,7 +31,7 @@ public interface IResourceProvider extends IFilteredProvider
 	/**
 	 * 
 	 * @return the finder for locating the resource. It is recommended to use
-	 *         {@link org.eclipselabs.restlet.impl.DynamicFinder} if you need to support lazy loading.
+	 *         {@link org.eclipselabs.restlet.util.DynamicFinder} if you need to support lazy loading.
 	 */
 	Finder getFinder();
 
@@ -41,4 +41,6 @@ public interface IResourceProvider extends IFilteredProvider
 	 *         '/'.
 	 */
 	String[] getPaths();
+
+	String getRouter();
 }

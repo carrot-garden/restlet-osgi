@@ -11,6 +11,9 @@
 
 package org.eclipselabs.restlet;
 
+import java.util.Collection;
+import java.util.Set;
+
 import org.restlet.routing.Router;
 
 /**
@@ -24,18 +27,16 @@ import org.restlet.routing.Router;
  */
 public interface IRouterProvider extends IFilteredProvider
 {
+	void addResourceProvider(IResourceProvider resourceProvider);
+
+	String[] getPath();
+
+	Set<IResourceProvider> getResourceProviders();
+
 	/**
 	 * @return the router to add to the routing chain.
 	 */
 	Router getRouter();
-
-	/**
-	 * Users can return an application specific object to help in determining whether or not this
-	 * router should be before or after another router.
-	 * 
-	 * @return application specific data
-	 */
-	Object getRouterInfo();
 
 	/**
 	 * Determines whether or not this router handles the routing for the target resource.
@@ -53,4 +54,6 @@ public interface IRouterProvider extends IFilteredProvider
 	 *         target filter
 	 */
 	boolean isRouterFor(IRouterProvider routerProvider);
+
+	void removeResourceProvider(IResourceProvider resourceProvider);
 }

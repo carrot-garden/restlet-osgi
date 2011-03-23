@@ -9,7 +9,7 @@
  *    Bryan Hunt & Wolfgang Werner - initial API and implementation
  *******************************************************************************/
 
-package org.eclipselabs.restlet.impl;
+package org.eclipselabs.restlet.util;
 
 import org.osgi.framework.Bundle;
 import org.osgi.service.log.LogService;

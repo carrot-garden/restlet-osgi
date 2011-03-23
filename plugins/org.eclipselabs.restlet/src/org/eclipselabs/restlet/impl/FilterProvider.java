@@ -9,46 +9,41 @@
  *     - initial API and implementation
  *******************************************************************************/
 
-package org.eclipselabs.restlet.servlet.junit.support;
+package org.eclipselabs.restlet.impl;
 
 import org.eclipselabs.restlet.IFilterProvider;
-import org.eclipselabs.restlet.IResourceProvider;
 import org.eclipselabs.restlet.IRouterProvider;
-import org.eclipselabs.restlet.impl.FilterProvider;
 import org.restlet.routing.Filter;
 
 /**
  * @author bhunt
  * 
  */
-public class TestFilterProvider extends FilterProvider
+public abstract class FilterProvider extends ApplicationComponent implements IFilterProvider
 {
-	public TestFilterProvider(int weight)
+	public FilterProvider(String applicationAlias, int weight)
 	{
-		super("/", weight);
+		super(applicationAlias);
+		this.weight = weight;
 	}
 
 	@Override
-	protected Filter createFilter()
+	public Filter getFilter()
 	{
-		return new TestFilter();
+		if (filter == null)
+			filter = createFilter();
+
+		return filter;
 	}
 
 	@Override
-	public boolean isFilterFor(IFilterProvider filterProvider)
+	public int getWeight()
 	{
-		return getWeight() < filterProvider.getWeight();
+		return weight;
 	}
 
-	@Override
-	public boolean isFilterFor(IResourceProvider resourceProvider)
-	{
-		return false;
-	}
+	protected abstract Filter createFilter();
 
-	@Override
-	public boolean isFilterFor(IRouterProvider routerProvider)
-	{
-		return true;
-	}
+	private int weight;
+	private Filter filter;
 }
