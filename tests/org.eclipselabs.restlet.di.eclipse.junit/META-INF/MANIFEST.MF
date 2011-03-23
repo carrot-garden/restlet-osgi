@@ -1,0 +1,23 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Junit
+Bundle-SymbolicName: org.eclipselabs.restlet.di.eclipse.junit
+Bundle-Version: 1.0.0.qualifier
+Bundle-Vendor: Restlet DI JUnit
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Import-Package: javax.inject;version="1.0.0",
+ org.eclipselabs.restlet,
+ org.eclipselabs.restlet.di,
+ org.eclipselabs.restlet.impl,
+ org.eclipselabs.restlet.junit,
+ org.eclipselabs.restlet.servlet,
+ org.junit;version="4.8.1",
+ org.osgi.framework,
+ org.osgi.service.http,
+ org.osgi.service.log,
+ org.osgi.util.tracker,
+ org.restlet.representation,
+ org.restlet.resource
+Require-Bundle: org.hamcrest.core;bundle-version="1.1.0"
+Bundle-ActivationPolicy: lazy
+Bundle-Activator: org.eclipselabs.restlet.di.junit.support.Activator
