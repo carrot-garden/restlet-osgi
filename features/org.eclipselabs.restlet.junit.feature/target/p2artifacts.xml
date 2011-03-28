@@ -1,0 +1,15 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<?artifactRepository version='1.1.0'?>
+<artifacts size='1'>
+  <artifact classifier='org.eclipse.update.feature' id='org.eclipselabs.restlet.junt.feature' version='0.3.0.201103280132'>
+    <properties size='7'>
+      <property name='artifact.size' value='2168'/>
+      <property name='download.size' value='2168'/>
+      <property name='download.md5' value='55b5692b5c7cfd061320820c87e87c8c'/>
+      <property name='maven-groupId' value='mongo-emf'/>
+      <property name='maven-artifactId' value='org.eclipselabs.restlet.junit.feature'/>
+      <property name='maven-version' value='0.3.0-SNAPSHOT'/>
+      <property name='download.contentType' value='application/zip'/>
+    </properties>
+  </artifact>
+</artifacts>

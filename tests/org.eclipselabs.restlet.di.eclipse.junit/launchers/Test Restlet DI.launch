@@ -24,7 +24,7 @@
 <booleanAttribute key="includeOptional" value="false"/>
 <stringAttribute key="location" value="${workspace_loc}/../junit-workspace"/>
 <listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_PATHS">
-<listEntry value="/org.eclipselabs.restlet.di.eclipse.junit"/>
+<listEntry value="/org.eclipselabs.restlet.di.junit"/>
 </listAttribute>
 <listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_TYPES">
 <listEntry value="4"/>
@@ -33,16 +33,17 @@
 <booleanAttribute key="org.eclipse.jdt.junit.KEEPRUNNING_ATTR" value="false"/>
 <stringAttribute key="org.eclipse.jdt.junit.TESTNAME" value=""/>
 <stringAttribute key="org.eclipse.jdt.junit.TEST_KIND" value="org.eclipse.jdt.junit.loader.junit4"/>
+<stringAttribute key="org.eclipse.jdt.launching.JRE_CONTAINER" value="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.launching.macosx.MacOSXType/Java SE 6 (MacOS X Default)"/>
 <stringAttribute key="org.eclipse.jdt.launching.MAIN_TYPE" value=""/>
 <stringAttribute key="org.eclipse.jdt.launching.PROGRAM_ARGUMENTS" value="-os ${target.os} -ws ${target.ws} -arch ${target.arch} -nl ${target.nl} -consoleLog -console"/>
-<stringAttribute key="org.eclipse.jdt.launching.PROJECT_ATTR" value="org.eclipselabs.restlet.di.eclipse.junit"/>
+<stringAttribute key="org.eclipse.jdt.launching.PROJECT_ATTR" value="org.eclipselabs.restlet.di.junit"/>
 <stringAttribute key="org.eclipse.jdt.launching.SOURCE_PATH_PROVIDER" value="org.eclipse.pde.ui.workbenchClasspathProvider"/>
 <stringAttribute key="org.eclipse.jdt.launching.VM_ARGUMENTS" value="-Dorg.osgi.service.http.port=8080"/>
 <stringAttribute key="pde.version" value="3.3"/>
 <stringAttribute key="product" value="com.ibm.rational.wvcm.interop.product"/>
 <booleanAttribute key="run_in_ui_thread" value="true"/>
-<stringAttribute key="selected_target_plugins" value="org.eclipse.equinox.weaving.hook@default:false,org.eclipse.equinox.registry@default:default,org.eclipse.equinox.http.servlet@default:default,org.osgi@default:default,org.eclipse.e4.core.contexts@default:default,org.restlet@default:default,javax.servlet*2.5.0.v201012071420@default:default,org.eclipse.equinox.preferences@default:default,org.restlet.ext.servlet@default:default,org.eclipse.osgi@-1:true,org.eclipse.equinox.http.jetty@default:true,org.eclipse.core.runtime.compatibility.registry@default:false,org.hamcrest.core@default:default,org.eclipse.equinox.app@default:default,org.mortbay.jetty.server@default:default,org.eclipse.equinox.common@2:true,org.eclipse.equinox.transforms.hook@default:false,org.eclipse.e4.core.di@default:default,javax.inject@default:default,org.eclipse.core.contenttype@default:default,org.mortbay.jetty.util@default:default,javax.annotation@default:default,org.eclipse.core.jobs@default:default,org.eclipse.osgi.services@default:default,org.eclipse.equinox.servletbridge.extensionbundle@default:false,org.junit*4.8.1.v4_8_1_v20100427-1100@default:default,org.eclipse.core.runtime@default:true"/>
-<stringAttribute key="selected_workspace_plugins" value="org.eclipselabs.restlet.servlet@default:default,org.eclipselabs.restlet.junit@default:default,org.eclipselabs.restlet.di@default:default,org.eclipselabs.restlet@default:default,org.eclipselabs.restlet.di.junit@default:default"/>
+<stringAttribute key="selected_target_plugins" value="org.eclipse.core.contenttype@default:default,org.mortbay.jetty.util@default:default,org.eclipse.equinox.transforms.hook@default:false,org.restlet.ext.servlet@default:default,org.osgi@default:default,org.eclipse.equinox.app@default:default,org.mortbay.jetty.server@default:default,org.eclipse.equinox.registry@default:default,org.eclipse.equinox.http.jetty@default:true,org.eclipse.core.runtime.compatibility.registry@default:false,org.eclipse.equinox.preferences@default:default,org.eclipse.core.jobs@default:default,org.eclipse.core.runtime@default:true,org.eclipse.equinox.weaving.hook@default:false,org.eclipse.equinox.common@2:true,org.eclipse.osgi@-1:true,org.eclipse.equinox.servletbridge.extensionbundle@default:false,org.hamcrest.core@default:default,org.eclipse.equinox.http.servlet@default:default,javax.servlet@default:default,org.eclipse.osgi.services@default:default,org.junit*4.8.1.v4_8_1_v20100427-1100@default:default,org.restlet@default:default"/>
+<stringAttribute key="selected_workspace_plugins" value="org.eclipselabs.restlet@default:default,org.eclipselabs.restlet.servlet@default:default,org.eclipselabs.restlet.junit"/>
 <booleanAttribute key="show_selected_only" value="true"/>
 <stringAttribute key="templateConfig" value="${target_home}/configuration/config.ini"/>
 <stringAttribute key="timestamp" value="1300722544470"/>

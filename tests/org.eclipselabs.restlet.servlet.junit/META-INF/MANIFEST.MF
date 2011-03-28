@@ -2,12 +2,12 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Restlet Servlet Junit Tests
 Bundle-SymbolicName: org.eclipselabs.restlet.servlet.junit
-Bundle-Version: 1.0.0.qualifier
-Bundle-Vendor: Eclipse Labs
+Bundle-Version: 0.3.0.qualifier
+Bundle-Vendor: EclipseLabs
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Require-Bundle: org.junit;bundle-version="4.8.1",
- org.eclipselabs.restlet.servlet;bundle-version="1.0.0",
- org.eclipselabs.restlet;bundle-version="1.0.0"
+ org.eclipselabs.restlet.servlet;bundle-version="0.3.0",
+ org.eclipselabs.restlet;bundle-version="0.3.0"
 Bundle-ActivationPolicy: lazy
 Bundle-Activator: org.eclipselabs.restlet.servlet.junit.support.Activator
 Import-Package: javax.servlet;version="2.5.0",

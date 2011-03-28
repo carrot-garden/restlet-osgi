@@ -1,0 +1,25 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<?artifactRepository version='1.1.0'?>
+<artifacts size='2'>
+  <artifact classifier='osgi.bundle' id='org.eclipselabs.restlet.registry.junit' version='0.3.0.201103280132'>
+    <properties size='6'>
+      <property name='artifact.size' value='8268'/>
+      <property name='download.size' value='8268'/>
+      <property name='download.md5' value='be490e200ea879413f255f40c7dd65a5'/>
+      <property name='maven-groupId' value='mongo-emf'/>
+      <property name='maven-artifactId' value='org.eclipselabs.restlet.registry.junit'/>
+      <property name='maven-version' value='0.3.0-SNAPSHOT'/>
+    </properties>
+  </artifact>
+  <artifact classifier='osgi.bundle' id='org.eclipselabs.restlet.registry.junit.source' version='0.3.0.201103280059'>
+    <properties size='7'>
+      <property name='artifact.size' value='4921'/>
+      <property name='download.size' value='4921'/>
+      <property name='download.md5' value='a816bddf005c4bf9412bc0455baac1b5'/>
+      <property name='maven-groupId' value='mongo-emf'/>
+      <property name='maven-artifactId' value='org.eclipselabs.restlet.registry.junit'/>
+      <property name='maven-version' value='0.3.0-SNAPSHOT'/>
+      <property name='maven-classifier' value='sources'/>
+    </properties>
+  </artifact>
+</artifacts>

@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Restlet Dependency Injection
 Bundle-SymbolicName: org.eclipselabs.restlet.di.eclipse
-Bundle-Version: 1.0.0.qualifier
+Bundle-Version: 0.3.0.qualifier
 Bundle-Activator: org.eclipselabs.restlet.internal.di.bundle.Activator
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
@@ -11,3 +11,4 @@ Import-Package: org.eclipse.e4.core.contexts,
  org.restlet,
  org.restlet.resource
 Export-Package: org.eclipselabs.restlet.di
+Bundle-Vendor: EclipseLabs

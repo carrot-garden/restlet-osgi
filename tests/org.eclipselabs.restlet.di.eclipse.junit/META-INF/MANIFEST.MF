@@ -1,9 +1,9 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: Junit
+Bundle-Name: Restlet DI JUnit
 Bundle-SymbolicName: org.eclipselabs.restlet.di.eclipse.junit
-Bundle-Version: 1.0.0.qualifier
-Bundle-Vendor: Restlet DI JUnit
+Bundle-Version: 0.3.0.qualifier
+Bundle-Vendor: EclipseLabs
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Import-Package: javax.inject;version="1.0.0",
  org.eclipselabs.restlet,

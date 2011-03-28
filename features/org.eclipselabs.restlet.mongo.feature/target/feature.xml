@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feature
+      id="org.eclipselabs.restlet.mongo.feature"
+      label="Restlet MongoDB Feature"
+      version="0.3.0.201103280132"
+      provider-name="EclipseLabs">
+
+   <description url="http://www.example.com/description">
+      [Enter Feature Description here.]
+   </description>
+
+   <copyright url="http://www.example.com/copyright">
+      [Enter Copyright Description here.]
+   </copyright>
+
+   <license url="http://www.example.com/license">
+      [Enter License Description here.]
+   </license>
+
+   <requires>
+      <import plugin="com.mongodb"/>
+      <import plugin="org.eclipselabs.mongo"/>
+      <import plugin="org.json"/>
+      <import plugin="org.eclipse.osgi"/>
+      <import plugin="org.restlet"/>
+      <import plugin="org.restlet.ext.json"/>
+   </requires>
+
+   <plugin
+         id="org.eclipselabs.restlet.mongo"
+         download-size="5"
+         install-size="6"
+         version="0.3.0.201103280132"
+         unpack="false"/>
+
+</feature>

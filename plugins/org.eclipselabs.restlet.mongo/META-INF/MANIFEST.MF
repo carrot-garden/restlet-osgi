@@ -1,8 +1,8 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: MongoDB Restlet
+Bundle-Name: MongoDB Restlet Integration
 Bundle-SymbolicName: org.eclipselabs.restlet.mongo
-Bundle-Version: 1.0.0.qualifier
+Bundle-Version: 0.3.0.qualifier
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Import-Package: com.mongodb,
  com.mongodb.util,
@@ -20,3 +20,4 @@ Import-Package: com.mongodb,
 Bundle-ActivationPolicy: lazy
 Bundle-Activator: org.eclipselabs.restlet.internal.mongo.Activator
 Export-Package: org.eclipselabs.restlet.mongo
+Bundle-Vendor: EclipseLabs
