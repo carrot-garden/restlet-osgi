@@ -2,7 +2,7 @@
 <feature
       id="org.eclipselabs.restlet.registry.feature"
       label="Restlet Registry Feature"
-      version="0.3.0.201103280132">
+      version="0.3.0.201103282121">
 
    <description url="http://www.example.com/description">
       [Enter Feature Description here.]
@@ -28,7 +28,7 @@
          id="org.eclipselabs.restlet.registry"
          download-size="9"
          install-size="15"
-         version="0.3.0.201103280132"
+         version="0.3.0.201103282121"
          unpack="false"/>
 
 </feature>

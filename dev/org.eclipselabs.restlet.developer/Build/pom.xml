@@ -17,6 +17,7 @@
     <module>../../../features/org.eclipselabs.restlet.mongo.feature</module>
     <module>../../../features/org.eclipselabs.restlet.registry.feature</module>
     <module>../../../features/org.eclipselabs.restlet.servlet.feature</module>    
+    <module>../../../dev/org.eclipselabs.restlet.site</module>    
   </modules>
 
   <properties>

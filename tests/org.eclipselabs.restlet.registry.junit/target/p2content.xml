@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <units size='2'>
-  <unit id='org.eclipselabs.restlet.registry.junit' version='0.3.0.201103280132'>
-    <update id='org.eclipselabs.restlet.registry.junit' range='[0.0.0,0.3.0.201103280132)' severity='0'/>
+  <unit id='org.eclipselabs.restlet.registry.junit' version='0.3.0.201103282121'>
+    <update id='org.eclipselabs.restlet.registry.junit' range='[0.0.0,0.3.0.201103282121)' severity='0'/>
     <properties size='5'>
       <property name='org.eclipse.equinox.p2.name' value='Restlet Registry Junit Tests'/>
       <property name='org.eclipse.equinox.p2.provider' value='EclipseLabs'/>
@@ -10,8 +10,8 @@
       <property name='maven-version' value='0.3.0-SNAPSHOT'/>
     </properties>
     <provides size='4'>
-      <provided namespace='org.eclipse.equinox.p2.iu' name='org.eclipselabs.restlet.registry.junit' version='0.3.0.201103280132'/>
-      <provided namespace='osgi.bundle' name='org.eclipselabs.restlet.registry.junit' version='0.3.0.201103280132'/>
+      <provided namespace='org.eclipse.equinox.p2.iu' name='org.eclipselabs.restlet.registry.junit' version='0.3.0.201103282121'/>
+      <provided namespace='osgi.bundle' name='org.eclipselabs.restlet.registry.junit' version='0.3.0.201103282121'/>
       <provided namespace='java.package' name='org.eclipselabs.restlet.registry.junit.tests' version='0.0.0'/>
       <provided namespace='org.eclipse.equinox.p2.eclipse.type' name='bundle' version='1.0.0'/>
     </provides>
@@ -26,19 +26,19 @@
       <required namespace='java.package' name='org.restlet.util' range='0.0.0'/>
     </requires>
     <artifacts size='1'>
-      <artifact classifier='osgi.bundle' id='org.eclipselabs.restlet.registry.junit' version='0.3.0.201103280132'/>
+      <artifact classifier='osgi.bundle' id='org.eclipselabs.restlet.registry.junit' version='0.3.0.201103282121'/>
     </artifacts>
     <touchpoint id='org.eclipse.equinox.p2.osgi' version='1.0.0'/>
     <touchpointData size='1'>
       <instructions size='1'>
         <instruction key='manifest'>
-          Bundle-Name: Restlet Registry Junit Tests&#xA;Bundle-Version: 0.3.0.201103280132&#xA;Import-Package: org.restlet,org.restlet.data,org.restlet.resource,org.restlet.routing,org.restlet.util&#xA;Created-By: Apache Maven&#xA;Bundle-Vendor: EclipseLabs&#xA;Archiver-Version: Plexus Archiver&#xA;Require-Bundle: org.junit;bundle-version=&quot;4.8.1&quot;,org.eclipselabs.restlet.registry;bundle-version=&quot;0.3.0&quot;,org.eclipselabs.restlet;bundle-version=&quot;0.3.0&quot;&#xA;Export-Package: org.eclipselabs.restlet.registry.junit.tests&#xA;Bundle-SymbolicName: org.eclipselabs.restlet.registry.junit;singleton:=true&#xA;Built-By: bhunt&#xA;Manifest-Version: 1.0&#xA;Build-Jdk: 1.6.0_24&#xA;Bundle-ManifestVersion: 2&#xA;Bundle-RequiredExecutionEnvironment: JavaSE-1.6&#xA;
+          Bundle-Name: Restlet Registry Junit Tests&#xA;Bundle-Version: 0.3.0.201103282121&#xA;Import-Package: org.restlet,org.restlet.data,org.restlet.resource,org.restlet.routing,org.restlet.util&#xA;Created-By: Apache Maven&#xA;Bundle-Vendor: EclipseLabs&#xA;Archiver-Version: Plexus Archiver&#xA;Require-Bundle: org.junit;bundle-version=&quot;4.8.1&quot;,org.eclipselabs.restlet.registry;bundle-version=&quot;0.3.0&quot;,org.eclipselabs.restlet;bundle-version=&quot;0.3.0&quot;&#xA;Export-Package: org.eclipselabs.restlet.registry.junit.tests&#xA;Bundle-SymbolicName: org.eclipselabs.restlet.registry.junit;singleton:=true&#xA;Built-By: bhunt&#xA;Manifest-Version: 1.0&#xA;Build-Jdk: 1.6.0_24&#xA;Bundle-ManifestVersion: 2&#xA;Bundle-RequiredExecutionEnvironment: JavaSE-1.6&#xA;
         </instruction>
       </instructions>
     </touchpointData>
   </unit>
-  <unit id='org.eclipselabs.restlet.registry.junit.source' version='0.3.0.201103280059' singleton='false'>
-    <update id='org.eclipselabs.restlet.registry.junit.source' range='[0.0.0,0.3.0.201103280059)' severity='0'/>
+  <unit id='org.eclipselabs.restlet.registry.junit.source' version='0.3.0.201103282121' singleton='false'>
+    <update id='org.eclipselabs.restlet.registry.junit.source' range='[0.0.0,0.3.0.201103282121)' severity='0'/>
     <properties size='4'>
       <property name='maven-groupId' value='mongo-emf'/>
       <property name='maven-artifactId' value='org.eclipselabs.restlet.registry.junit'/>
@@ -46,18 +46,18 @@
       <property name='maven-classifier' value='sources'/>
     </properties>
     <provides size='3'>
-      <provided namespace='org.eclipse.equinox.p2.iu' name='org.eclipselabs.restlet.registry.junit.source' version='0.3.0.201103280059'/>
-      <provided namespace='osgi.bundle' name='org.eclipselabs.restlet.registry.junit.source' version='0.3.0.201103280059'/>
+      <provided namespace='org.eclipse.equinox.p2.iu' name='org.eclipselabs.restlet.registry.junit.source' version='0.3.0.201103282121'/>
+      <provided namespace='osgi.bundle' name='org.eclipselabs.restlet.registry.junit.source' version='0.3.0.201103282121'/>
       <provided namespace='org.eclipse.equinox.p2.eclipse.type' name='source' version='1.0.0'/>
     </provides>
     <artifacts size='1'>
-      <artifact classifier='osgi.bundle' id='org.eclipselabs.restlet.registry.junit.source' version='0.3.0.201103280059'/>
+      <artifact classifier='osgi.bundle' id='org.eclipselabs.restlet.registry.junit.source' version='0.3.0.201103282121'/>
     </artifacts>
     <touchpoint id='org.eclipse.equinox.p2.osgi' version='1.0.0'/>
     <touchpointData size='1'>
       <instructions size='1'>
         <instruction key='manifest'>
-          Bundle-ManifestVersion: 2&#xA;Built-By: bhunt&#xA;Bundle-Version: 0.3.0.201103280059&#xA;Build-Jdk: 1.6.0_24&#xA;Eclipse-SourceBundle: org.eclipselabs.restlet.registry.junit;version=&quot;0.3.0.201103280059&quot;;roots:=&quot;.&quot;&#xA;Created-By: Apache Maven&#xA;Bundle-SymbolicName: org.eclipselabs.restlet.registry.junit.source&#xA;Manifest-Version: 1.0&#xA;Archiver-Version: Plexus Archiver&#xA;
+          Bundle-ManifestVersion: 2&#xA;Built-By: bhunt&#xA;Bundle-Version: 0.3.0.201103282121&#xA;Build-Jdk: 1.6.0_24&#xA;Eclipse-SourceBundle: org.eclipselabs.restlet.registry.junit;version=&quot;0.3.0.201103282121&quot;;roots:=&quot;.&quot;&#xA;Created-By: Apache Maven&#xA;Bundle-SymbolicName: org.eclipselabs.restlet.registry.junit.source&#xA;Manifest-Version: 1.0&#xA;Archiver-Version: Plexus Archiver&#xA;
         </instruction>
       </instructions>
     </touchpointData>

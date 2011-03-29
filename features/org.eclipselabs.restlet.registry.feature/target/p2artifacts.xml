@@ -1,11 +1,11 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <?artifactRepository version='1.1.0'?>
 <artifacts size='1'>
-  <artifact classifier='org.eclipse.update.feature' id='org.eclipselabs.restlet.registry.feature' version='0.3.0.201103280132'>
+  <artifact classifier='org.eclipse.update.feature' id='org.eclipselabs.restlet.registry.feature' version='0.3.0.201103282121'>
     <properties size='7'>
       <property name='artifact.size' value='2137'/>
       <property name='download.size' value='2137'/>
-      <property name='download.md5' value='880b18097adb7efabb1f3767f12f5d5c'/>
+      <property name='download.md5' value='9c5ef1b78d5eb312fcc0861ce71140a8'/>
       <property name='maven-groupId' value='mongo-emf'/>
       <property name='maven-artifactId' value='org.eclipselabs.restlet.registry.feature'/>
       <property name='maven-version' value='0.3.0-SNAPSHOT'/>

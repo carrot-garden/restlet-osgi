@@ -1,21 +1,21 @@
 -------------------------------------------------------------------------------
 Test set: org.eclipselabs.restlet.servlet.junit.tests.TestRestletServletService
 -------------------------------------------------------------------------------
-Tests run: 17, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 4.127 sec
-testHttpApplicationResource(org.eclipselabs.restlet.servlet.junit.tests.TestRestletServletService)  Time elapsed: 0.481 sec
-testHttpResourceApplication(org.eclipselabs.restlet.servlet.junit.tests.TestRestletServletService)  Time elapsed: 0.212 sec
+Tests run: 17, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 4.099 sec
+testHttpApplicationResource(org.eclipselabs.restlet.servlet.junit.tests.TestRestletServletService)  Time elapsed: 0.492 sec
+testHttpResourceApplication(org.eclipselabs.restlet.servlet.junit.tests.TestRestletServletService)  Time elapsed: 0.211 sec
 testApplicationHttpResource(org.eclipselabs.restlet.servlet.junit.tests.TestRestletServletService)  Time elapsed: 0.211 sec
 testApplicationResourceHttp(org.eclipselabs.restlet.servlet.junit.tests.TestRestletServletService)  Time elapsed: 0.211 sec
-testResourceHttpApplication(org.eclipselabs.restlet.servlet.junit.tests.TestRestletServletService)  Time elapsed: 0.211 sec
-testResourceApplicationHttp(org.eclipselabs.restlet.servlet.junit.tests.TestRestletServletService)  Time elapsed: 0.211 sec
-testUnbindResource(org.eclipselabs.restlet.servlet.junit.tests.TestRestletServletService)  Time elapsed: 0.232 sec
-testUnbindApplication(org.eclipselabs.restlet.servlet.junit.tests.TestRestletServletService)  Time elapsed: 0.211 sec
-testUnbindHttpService(org.eclipselabs.restlet.servlet.junit.tests.TestRestletServletService)  Time elapsed: 0.213 sec
-testUnbindRebindHttpService(org.eclipselabs.restlet.servlet.junit.tests.TestRestletServletService)  Time elapsed: 0.211 sec
-testBindUnbindResource(org.eclipselabs.restlet.servlet.junit.tests.TestRestletServletService)  Time elapsed: 0.21 sec
-testDuplicateApplication(org.eclipselabs.restlet.servlet.junit.tests.TestRestletServletService)  Time elapsed: 0.215 sec
-testResourceWithMultiplePaths(org.eclipselabs.restlet.servlet.junit.tests.TestRestletServletService)  Time elapsed: 0.421 sec
-testFilter(org.eclipselabs.restlet.servlet.junit.tests.TestRestletServletService)  Time elapsed: 0.212 sec
-testFilterOrder1(org.eclipselabs.restlet.servlet.junit.tests.TestRestletServletService)  Time elapsed: 0.224 sec
-testFilterOrder2(org.eclipselabs.restlet.servlet.junit.tests.TestRestletServletService)  Time elapsed: 0.211 sec
-testServiceRegistration(org.eclipselabs.restlet.servlet.junit.tests.TestRestletServletService)  Time elapsed: 0.211 sec
+testResourceHttpApplication(org.eclipselabs.restlet.servlet.junit.tests.TestRestletServletService)  Time elapsed: 0.21 sec
+testResourceApplicationHttp(org.eclipselabs.restlet.servlet.junit.tests.TestRestletServletService)  Time elapsed: 0.21 sec
+testUnbindResource(org.eclipselabs.restlet.servlet.junit.tests.TestRestletServletService)  Time elapsed: 0.21 sec
+testUnbindApplication(org.eclipselabs.restlet.servlet.junit.tests.TestRestletServletService)  Time elapsed: 0.21 sec
+testUnbindHttpService(org.eclipselabs.restlet.servlet.junit.tests.TestRestletServletService)  Time elapsed: 0.209 sec
+testUnbindRebindHttpService(org.eclipselabs.restlet.servlet.junit.tests.TestRestletServletService)  Time elapsed: 0.21 sec
+testBindUnbindResource(org.eclipselabs.restlet.servlet.junit.tests.TestRestletServletService)  Time elapsed: 0.209 sec
+testDuplicateApplication(org.eclipselabs.restlet.servlet.junit.tests.TestRestletServletService)  Time elapsed: 0.226 sec
+testResourceWithMultiplePaths(org.eclipselabs.restlet.servlet.junit.tests.TestRestletServletService)  Time elapsed: 0.42 sec
+testFilter(org.eclipselabs.restlet.servlet.junit.tests.TestRestletServletService)  Time elapsed: 0.211 sec
+testFilterOrder1(org.eclipselabs.restlet.servlet.junit.tests.TestRestletServletService)  Time elapsed: 0.21 sec
+testFilterOrder2(org.eclipselabs.restlet.servlet.junit.tests.TestRestletServletService)  Time elapsed: 0.21 sec
+testServiceRegistration(org.eclipselabs.restlet.servlet.junit.tests.TestRestletServletService)  Time elapsed: 0.21 sec

@@ -1,21 +1,21 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <?artifactRepository version='1.1.0'?>
 <artifacts size='2'>
-  <artifact classifier='osgi.bundle' id='org.eclipselabs.restlet.junit' version='0.3.0.201103280132'>
+  <artifact classifier='osgi.bundle' id='org.eclipselabs.restlet.junit' version='0.3.0.201103282121'>
     <properties size='6'>
-      <property name='artifact.size' value='5231'/>
-      <property name='download.size' value='5231'/>
-      <property name='download.md5' value='afa385561368924ab230670b3232d4c5'/>
+      <property name='artifact.size' value='5232'/>
+      <property name='download.size' value='5232'/>
+      <property name='download.md5' value='c1bfaf9ee9046f23c064571be8c6b82d'/>
       <property name='maven-groupId' value='restlet-osgi'/>
       <property name='maven-artifactId' value='org.eclipselabs.restlet.junit'/>
       <property name='maven-version' value='0.3.0-SNAPSHOT'/>
     </properties>
   </artifact>
-  <artifact classifier='osgi.bundle' id='org.eclipselabs.restlet.junit.source' version='0.3.0.201103280059'>
+  <artifact classifier='osgi.bundle' id='org.eclipselabs.restlet.junit.source' version='0.3.0.201103282121'>
     <properties size='7'>
-      <property name='artifact.size' value='2979'/>
-      <property name='download.size' value='2979'/>
-      <property name='download.md5' value='9f0268ee0bf4d5ef4f697342490ecd7c'/>
+      <property name='artifact.size' value='2978'/>
+      <property name='download.size' value='2978'/>
+      <property name='download.md5' value='d8d3b26398e572f72acb8984ee321151'/>
       <property name='maven-groupId' value='restlet-osgi'/>
       <property name='maven-artifactId' value='org.eclipselabs.restlet.junit'/>
       <property name='maven-version' value='0.3.0-SNAPSHOT'/>

@@ -3,7 +3,7 @@ Export-Package: org.eclipselabs.restlet.junit
 Require-Bundle: org.hamcrest.core;bundle-version="1.1.0"
 Bundle-Vendor: EclipseLabs
 Bundle-ActivationPolicy: lazy
-Bundle-Version: 0.3.0.201103280132
+Bundle-Version: 0.3.0.201103282121
 Bundle-Name: Developer Junit Utilities
 Bundle-Activator: org.eclipselabs.restlet.junit.bundle.Activator
 Bundle-ManifestVersion: 2
