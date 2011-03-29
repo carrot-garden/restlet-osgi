@@ -18,7 +18,7 @@
         <artifactId>maven-osgi-test-plugin</artifactId>
         <version>${tycho-version}</version>
         <configuration>
-          <argLine>-Dorg.osgi.service.http.port=8080</argLine>
+          <argLine>-Dorg.osgi.service.http.port=8181</argLine>
           <testSuite>org.eclipselabs.restlet.registry.junit</testSuite>
           <testClass>org.eclipselabs.restlet.registry.junit.tests.TestRestletRegistry</testClass>
           <dependencies>
