@@ -2,7 +2,7 @@
 <feature
       id="org.eclipselabs.restlet.junt.feature"
       label="Restlet OSGi JUnit Feature"
-      version="0.3.0.201103282121"
+      version="0.3.0.201103291304"
       provider-name="EclipseLabs">
 
    <description url="http://www.example.com/description">
@@ -29,7 +29,7 @@
          id="org.eclipselabs.restlet.junit"
          download-size="5"
          install-size="7"
-         version="0.3.0.201103282121"
+         version="0.3.0.201103291304"
          unpack="false"/>
 
 </feature>

@@ -1,19 +1,19 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <units size='2'>
-  <unit id='org.eclipselabs.restlet.servlet.feature.feature.group' version='0.3.0.201103282121' singleton='false'>
-    <update id='org.eclipselabs.restlet.servlet.feature.feature.group' range='[0.0.0,0.3.0.201103282121)' severity='0'/>
+  <unit id='org.eclipselabs.restlet.servlet.feature.feature.group' version='0.3.0.201103291304' singleton='false'>
+    <update id='org.eclipselabs.restlet.servlet.feature.feature.group' range='[0.0.0,0.3.0.201103291304)' severity='0'/>
     <properties size='8'>
       <property name='org.eclipse.equinox.p2.name' value='Restlet Servlet Feature'/>
       <property name='org.eclipse.equinox.p2.description' value='Restlet OSGi runtime bundles.  Add this feature to your target platform to develop RESTful web services based on the Restlet framework.'/>
       <property name='org.eclipse.equinox.p2.description.url' value='http://code.google.com/a/eclipselabs.org/p/restlet-integration-with-equinox/'/>
       <property name='org.eclipse.equinox.p2.provider' value='EclipseLabs'/>
       <property name='org.eclipse.equinox.p2.type.group' value='true'/>
-      <property name='maven-groupId' value='mongo-emf'/>
+      <property name='maven-groupId' value='restlet-osgi'/>
       <property name='maven-artifactId' value='org.eclipselabs.restlet.servlet.feature'/>
       <property name='maven-version' value='0.3.0-SNAPSHOT'/>
     </properties>
     <provides size='1'>
-      <provided namespace='org.eclipse.equinox.p2.iu' name='org.eclipselabs.restlet.servlet.feature.feature.group' version='0.3.0.201103282121'/>
+      <provided namespace='org.eclipse.equinox.p2.iu' name='org.eclipselabs.restlet.servlet.feature.feature.group' version='0.3.0.201103291304'/>
     </provides>
     <requires size='8'>
       <required namespace='org.eclipse.equinox.p2.iu' name='org.eclipse.osgi' range='0.0.0'/>
@@ -21,9 +21,9 @@
       <required namespace='org.eclipse.equinox.p2.iu' name='org.restlet' range='0.0.0'/>
       <required namespace='org.eclipse.equinox.p2.iu' name='javax.servlet' range='0.0.0'/>
       <required namespace='org.eclipse.equinox.p2.iu' name='org.restlet.ext.servlet' range='0.0.0'/>
-      <required namespace='org.eclipse.equinox.p2.iu' name='org.eclipselabs.restlet' range='[0.3.0.201103282121,0.3.0.201103282121]'/>
-      <required namespace='org.eclipse.equinox.p2.iu' name='org.eclipselabs.restlet.servlet' range='[0.3.0.201103282121,0.3.0.201103282121]'/>
-      <required namespace='org.eclipse.equinox.p2.iu' name='org.eclipselabs.restlet.servlet.feature.feature.jar' range='[0.3.0.201103282121,0.3.0.201103282121]'>
+      <required namespace='org.eclipse.equinox.p2.iu' name='org.eclipselabs.restlet' range='[0.3.0.201103291304,0.3.0.201103291304]'/>
+      <required namespace='org.eclipse.equinox.p2.iu' name='org.eclipselabs.restlet.servlet' range='[0.3.0.201103291304,0.3.0.201103291304]'/>
+      <required namespace='org.eclipse.equinox.p2.iu' name='org.eclipselabs.restlet.servlet.feature.feature.jar' range='[0.3.0.201103291304,0.3.0.201103291304]'>
         <filter>
           (org.eclipse.update.install.features=true)
         </filter>
@@ -39,26 +39,26 @@
       Copyright (c) 2010 Bryan Hunt &amp; Wolfgang Werner.  All rights&#xA;reserved.
     </copyright>
   </unit>
-  <unit id='org.eclipselabs.restlet.servlet.feature.feature.jar' version='0.3.0.201103282121'>
+  <unit id='org.eclipselabs.restlet.servlet.feature.feature.jar' version='0.3.0.201103291304'>
     <properties size='7'>
       <property name='org.eclipse.equinox.p2.name' value='Restlet Servlet Feature'/>
       <property name='org.eclipse.equinox.p2.description' value='Restlet OSGi runtime bundles.  Add this feature to your target platform to develop RESTful web services based on the Restlet framework.'/>
       <property name='org.eclipse.equinox.p2.description.url' value='http://code.google.com/a/eclipselabs.org/p/restlet-integration-with-equinox/'/>
       <property name='org.eclipse.equinox.p2.provider' value='EclipseLabs'/>
-      <property name='maven-groupId' value='mongo-emf'/>
+      <property name='maven-groupId' value='restlet-osgi'/>
       <property name='maven-artifactId' value='org.eclipselabs.restlet.servlet.feature'/>
       <property name='maven-version' value='0.3.0-SNAPSHOT'/>
     </properties>
     <provides size='3'>
-      <provided namespace='org.eclipse.equinox.p2.iu' name='org.eclipselabs.restlet.servlet.feature.feature.jar' version='0.3.0.201103282121'/>
+      <provided namespace='org.eclipse.equinox.p2.iu' name='org.eclipselabs.restlet.servlet.feature.feature.jar' version='0.3.0.201103291304'/>
       <provided namespace='org.eclipse.equinox.p2.eclipse.type' name='feature' version='1.0.0'/>
-      <provided namespace='org.eclipse.update.feature' name='org.eclipselabs.restlet.servlet.feature' version='0.3.0.201103282121'/>
+      <provided namespace='org.eclipse.update.feature' name='org.eclipselabs.restlet.servlet.feature' version='0.3.0.201103291304'/>
     </provides>
     <filter>
       (org.eclipse.update.install.features=true)
     </filter>
     <artifacts size='1'>
-      <artifact classifier='org.eclipse.update.feature' id='org.eclipselabs.restlet.servlet.feature' version='0.3.0.201103282121'/>
+      <artifact classifier='org.eclipse.update.feature' id='org.eclipselabs.restlet.servlet.feature' version='0.3.0.201103291304'/>
     </artifacts>
     <touchpoint id='org.eclipse.equinox.p2.osgi' version='1.0.0'/>
     <touchpointData size='1'>

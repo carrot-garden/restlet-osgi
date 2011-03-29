@@ -2,7 +2,7 @@
 <feature
       id="org.eclipselabs.restlet.mongo.feature"
       label="Restlet MongoDB Feature"
-      version="0.3.0.201103282121"
+      version="0.3.0.201103291304"
       provider-name="EclipseLabs">
 
    <description url="http://www.example.com/description">
@@ -30,7 +30,7 @@
          id="org.eclipselabs.restlet.mongo"
          download-size="5"
          install-size="6"
-         version="0.3.0.201103282121"
+         version="0.3.0.201103291304"
          unpack="false"/>
 
 </feature>

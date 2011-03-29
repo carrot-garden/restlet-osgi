@@ -1,15 +1,18 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<parent>
 		<artifactId>build</artifactId>
-		<groupId>mongo-emf</groupId>
-		<version>0.3.2-SNAPSHOT</version>
-		<relativePath>../../dev/org.eclipselabs.mongo.emf.developer/Build/pom.xml</relativePath>
+		<groupId>restlet-osgi</groupId>
+		<version>0.3.0-SNAPSHOT</version>
+		<relativePath>../../dev/org.eclipselabs.restlet.developer/Build/pom.xml</relativePath>
 	</parent>
 	<modelVersion>4.0.0</modelVersion>
-  <groupId>mongo-emf</groupId>
+  <groupId>restlet-osgi</groupId>
   <artifactId>org.eclipselabs.restlet.di.eclipse.junit</artifactId>
   <version>0.3.0-SNAPSHOT</version>
   <packaging>eclipse-test-plugin</packaging>
+   <properties>
+  	<eclemma.instrument.bundles>org.eclipselabs.restlet,org.eclipselabs.restlet.servlet,org.eclipselabs.restlet.di.eclipse</eclemma.instrument.bundles>
+  </properties>
   
   <build>
     <plugins>
@@ -18,8 +21,59 @@
         <artifactId>maven-osgi-test-plugin</artifactId>
         <version>${tycho-version}</version>
         <configuration>
+           <argLine>-Dorg.osgi.service.http.port=8181</argLine>
           <testSuite>org.eclipselabs.restlet.di.eclipse.junit</testSuite>
           <testClass>org.eclipselabs.restlet.di.junit.tests.TestInjectedFinder</testClass>
+          <dependencies>
+             <dependency>
+              <type>eclipse-plugin</type>
+              <artifactId>org.eclipse.equinox.http.jetty</artifactId>
+              <version>0.0.0</version>
+            </dependency>
+            <dependency>
+              <type>eclipse-plugin</type>
+              <artifactId>org.eclipse.equinox.http.servlet</artifactId>
+              <version>0.0.0</version>
+            </dependency>
+            <dependency>
+              <type>eclipse-plugin</type>
+              <artifactId>org.eclipse.equinox.ds</artifactId>
+              <version>0.0.0</version>
+            </dependency>
+            <dependency>
+              <type>eclipse-plugin</type>
+              <artifactId>org.eclipse.equinox.ds</artifactId>
+              <version>0.0.0</version>
+            </dependency>
+            <dependency>
+              <type>eclipse-plugin</type>
+              <artifactId>org.eclipselabs.restlet.servlet</artifactId>
+              <version>0.0.0</version>
+            </dependency>
+           </dependencies>
+          <bundleStartLevel>
+            <bundle>
+             <id>org.eclipse.equinox.ds</id>
+             <level>1</level>
+             <autoStart>true</autoStart>
+           </bundle>
+            <bundle>
+             <id>org.eclipse.equinox.http.jetty</id>
+             <level>4</level>
+             <autoStart>true</autoStart>
+           </bundle>
+            <bundle>
+             <id>org.eclipse.equinox.http.servlet</id>
+             <level>4</level>
+             <autoStart>true</autoStart>
+           </bundle>
+            <bundle>
+             <id>org.eclipselabs.restlet.servlet</id>
+             <level>4</level>
+             <autoStart>true</autoStart>
+           </bundle>
+
+         </bundleStartLevel>
  				</configuration>
       </plugin>
      </plugins>

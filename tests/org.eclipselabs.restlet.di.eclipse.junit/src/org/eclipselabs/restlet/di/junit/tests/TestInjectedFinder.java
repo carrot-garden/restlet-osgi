@@ -38,6 +38,7 @@ public class TestInjectedFinder
 	@BeforeClass
 	public static void globalSetUp() throws InterruptedException
 	{
+		baseURI = "http://localhost:" + System.getProperty("org.osgi.service.http.port", "80");
 		testHarness = new RestletTestHarness();
 		testHarness.setUp();
 	}
@@ -63,7 +64,7 @@ public class TestInjectedFinder
 
 	private ClientResource createResource(String path)
 	{
-		return new ClientResource("http://localhost:8080" + path);
+		return new ClientResource(baseURI + path);
 	}
 
 	private static class TestLogListener implements LogListener
@@ -77,5 +78,6 @@ public class TestInjectedFinder
 		public ArrayList<LogEntry> entries = new ArrayList<LogEntry>();
 	}
 
+	private static String baseURI;
 	private static RestletTestHarness testHarness;
 }
