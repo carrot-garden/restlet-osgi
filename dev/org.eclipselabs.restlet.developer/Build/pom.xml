@@ -130,7 +130,7 @@
    </build>
 
    <profiles>
-		<profile>
+   	<profile>
 			<id>coverage</id>
 			<activation>
 				<property>
@@ -139,8 +139,7 @@
 			</activation>
 			<properties>
 				<emma.session.out.file>${project.build.directory}/emma/${project.artifactId}.es</emma.session.out.file>
-				<emma.filter>org.eclipselabs.*</emma.filter>
-				<eclemma.instrument.bundles>org.eclipselabs.restlet</eclemma.instrument.bundles>
+				<emma.filter>org.eclipselabs.restlet*</emma.filter>
 			</properties>
 			<build>
 				<plugins>

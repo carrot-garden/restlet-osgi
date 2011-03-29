@@ -4,7 +4,7 @@ Require-Bundle: org.junit;bundle-version="4.8.1",org.eclipselabs.restl
  et.registry;bundle-version="0.3.0",org.eclipselabs.restlet;bundle-ver
  sion="0.3.0"
 Bundle-Vendor: EclipseLabs
-Bundle-Version: 0.3.0.201103282121
+Bundle-Version: 0.3.0.201103290112
 Bundle-Name: Restlet Registry Junit Tests
 Bundle-ManifestVersion: 2
 Import-Package: org.restlet,org.restlet.data,org.restlet.resource,org.
