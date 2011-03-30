@@ -57,6 +57,7 @@
   </repositories>
 
   <build>
+  	<sourceDirectory>src</sourceDirectory>
     <plugins>
       <plugin>
         <!-- enable tycho build extension -->
@@ -66,6 +67,16 @@
         <extensions>true</extensions>
       </plugin>
       
+			<plugin>
+				<groupId>org.sonatype.tycho</groupId>
+				<artifactId>maven-osgi-compiler-plugin</artifactId>
+				<version>${tycho-version}</version>
+				<configuration>
+  				<source>1.6</source>
+  				<target>1.6</target>
+				</configuration>
+			</plugin>
+			
       <plugin>
     	  <groupId>org.sonatype.tycho</groupId>
 	      <artifactId>maven-osgi-packaging-plugin</artifactId>
