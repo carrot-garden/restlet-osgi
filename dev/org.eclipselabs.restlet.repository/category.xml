@@ -15,5 +15,21 @@
    <feature url="features/org.eclipselabs.restlet.servlet.feature_0.3.0.qualifier.jar" id="org.eclipselabs.restlet.servlet.feature" version="0.3.0.qualifier">
       <category name="restlet-osgi"/>
    </feature>
+   <feature url="features/org.eclipselabs.restlet.di.eclipse.source.feature_0.3.0.qualifier.jar" id="org.eclipselabs.restlet.di.eclipse.source.feature" version="0.3.0.qualifier">
+      <category name="restlet-osgi-source"/>
+   </feature>
+   <feature url="features/org.eclipselabs.restlet.junit.source.feature_0.3.0.qualifier.jar" id="org.eclipselabs.restlet.junit.source.feature" version="0.3.0.qualifier">
+      <category name="restlet-osgi-source"/>
+   </feature>
+   <feature url="features/org.eclipselabs.restlet.mongo.source.feature_0.3.0.qualifier.jar" id="org.eclipselabs.restlet.mongo.source.feature" version="0.3.0.qualifier">
+      <category name="restlet-osgi-source"/>
+   </feature>
+   <feature url="features/org.eclipselabs.restlet.registry.source.feature_0.3.0.qualifier.jar" id="org.eclipselabs.restlet.registry.source.feature" version="0.3.0.qualifier">
+      <category name="restlet-osgi-source"/>
+   </feature>
+   <feature url="features/org.eclipselabs.restlet.servlet.source.feature_0.3.0.qualifier.jar" id="org.eclipselabs.restlet.servlet.source.feature" version="0.3.0.qualifier">
+      <category name="restlet-osgi-source"/>
+   </feature>
    <category-def name="restlet-osgi" label="Restlet OSGi"/>
+   <category-def name="restlet-osgi-source" label="Restlet OSGi Source"/>
 </site>

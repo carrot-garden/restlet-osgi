@@ -7,7 +7,7 @@
 	</parent>
 	<modelVersion>4.0.0</modelVersion>
   <groupId>restlet-osgi</groupId>
-  <artifactId>org.eclipselabs.restlet.mongo.feature</artifactId>
+  <artifactId>org.eclipselabs.restlet.mongo.source.feature</artifactId>
   <version>0.3.0-SNAPSHOT</version>
   <packaging>eclipse-feature</packaging>
 </project>

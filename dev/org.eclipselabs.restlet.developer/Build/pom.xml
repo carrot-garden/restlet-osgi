@@ -1,7 +1,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>restlet-osgi</groupId>
-  <artifactId>build</artifactId>
+  <artifactId>org.eclipselabs.restlet.developer</artifactId>
   <version>0.3.0-SNAPSHOT</version>
   <packaging>pom</packaging>
 
@@ -20,6 +20,11 @@
     <module>../../../features/org.eclipselabs.restlet.registry.feature</module>
     <module>../../../features/org.eclipselabs.restlet.servlet.feature</module>    
     <module>../../../features/org.eclipselabs.restlet.di.eclipse.feature</module>    
+    <module>../../../features/org.eclipselabs.restlet.junit.source.feature</module>
+    <module>../../../features/org.eclipselabs.restlet.mongo.source.feature</module>
+    <module>../../../features/org.eclipselabs.restlet.registry.source.feature</module>
+    <module>../../../features/org.eclipselabs.restlet.servlet.source.feature</module>    
+    <module>../../../features/org.eclipselabs.restlet.di.eclipse.source.feature</module>    
     <module>../../../dev/org.eclipselabs.restlet.repository</module>    
   </modules>
 
