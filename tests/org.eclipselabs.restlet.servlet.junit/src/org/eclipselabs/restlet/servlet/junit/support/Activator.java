@@ -25,11 +25,6 @@ public class Activator implements BundleActivator
 		return instance;
 	}
 
-	public BundleContext getContext()
-	{
-		return context;
-	}
-
 	public HttpService getHttpService() throws InterruptedException
 	{
 		return (HttpService) httpServiceTracker.waitForService(1000);
@@ -53,7 +48,6 @@ public class Activator implements BundleActivator
 	@Override
 	public void start(BundleContext context) throws Exception
 	{
-		this.context = context;
 		httpServiceTracker = new ServiceTracker(context, HttpService.class.getName(), null);
 		httpServiceTracker.open();
 		logServiceTracker = new ServiceTracker(context, LogService.class.getName(), null);

@@ -2,6 +2,10 @@
 <scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0" immediate="true" name="org.eclipselabs.restlet.examples.emf.resource">
    <implementation class="org.eclipselabs.restlet.examples.emf.app.EMFResourceProvider"/>
    <service>
-      <provide interface="org.eclipselabs.restlet.IResourceProvider"/>
+      <provide interface="org.eclipselabs.restlet.providers.IResourceProvider"/>
    </service>
+   <property name="paths" type="String">
+   	/test/{collection}/
+   	/test/{collection}/{resource}
+   </property>
 </scr:component>

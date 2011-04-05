@@ -11,13 +11,9 @@
 
 package org.eclipselabs.restlet.servlet;
 
-import java.util.HashMap;
+import java.util.HashSet;
 
-import org.eclipselabs.restlet.IApplicationBuilder;
-import org.eclipselabs.restlet.IApplicationProvider;
-import org.eclipselabs.restlet.IFilterProvider;
-import org.eclipselabs.restlet.IResourceProvider;
-import org.eclipselabs.restlet.IRouterProvider;
+import org.eclipselabs.restlet.providers.IApplicationProvider;
 import org.osgi.service.http.HttpService;
 import org.osgi.service.log.LogService;
 
@@ -27,47 +23,20 @@ import org.osgi.service.log.LogService;
  */
 public class RestletServletService
 {
-	public void bindApplicationBuilder(IApplicationBuilder applicationBuilder)
-	{
-		ApplicationStagingArea applicationStagingArea = getApplicationStagingArea(applicationBuilder.getApplicationAlias());
-		applicationStagingArea.setApplicationBuilder(applicationBuilder);
-
-		if (applicationStagingArea.isReady() && httpService != null)
-			registerServlet(applicationStagingArea);
-	}
-
 	public void bindApplicationProvider(IApplicationProvider applicationProvider)
 	{
-		ApplicationStagingArea applicationStagingArea = getApplicationStagingArea(applicationProvider.getApplicationAlias());
+		applicationProviders.add(applicationProvider);
 
-		if (applicationStagingArea.getApplicationProvider() == null)
-		{
-			applicationStagingArea.setApplicationProvider(applicationProvider);
-
-			if (applicationStagingArea.isReady() && httpService != null)
-				registerServlet(applicationStagingArea);
-		}
-		else
-		{
-			if (logService != null)
-				logService.log(LogService.LOG_ERROR, "Application servlet at alias: '" + applicationProvider.getApplicationAlias() + "' is already registered");
-		}
-	}
-
-	public void bindFilterProvider(IFilterProvider filterProvider)
-	{
-		getApplicationStagingArea(filterProvider.getApplicationAlias()).addFilterProvider(filterProvider);
+		if (httpService != null)
+			registerServlet(applicationProvider);
 	}
 
 	public void bindHttpService(HttpService httpService)
 	{
 		this.httpService = httpService;
 
-		for (ApplicationStagingArea applicationStagingArea : applicationStagingAreas.values())
-		{
-			if (applicationStagingArea.isReady())
-				registerServlet(applicationStagingArea);
-		}
+		for (IApplicationProvider applicationProvider : applicationProviders)
+			registerServlet(applicationProvider);
 	}
 
 	public void bindLogService(LogService logService)
@@ -75,50 +44,30 @@ public class RestletServletService
 		this.logService = logService;
 	}
 
-	public void bindResourceProvider(IResourceProvider resourceProvider)
-	{
-		getApplicationStagingArea(resourceProvider.getApplicationAlias()).addResourceProvider(resourceProvider);
-	}
-
-	public void bindRouterProvider(IRouterProvider routerProvider)
-	{
-		getApplicationStagingArea(routerProvider.getApplicationAlias()).addRouterProvider(routerProvider);
-	}
-
-	public void unbindApplicationBuilder(IApplicationBuilder applicationBuilder)
-	{
-		getApplicationStagingArea(applicationBuilder.getApplicationAlias()).setApplicationBuilder(null);
-	}
-
 	public void unbindApplicationProvider(IApplicationProvider applicationProvider)
 	{
+		applicationProviders.remove(applicationProvider);
+
 		if (httpService != null)
 		{
 			try
 			{
-				httpService.unregister(applicationProvider.getApplicationAlias());
+				httpService.unregister(applicationProvider.getAlias());
 			}
 			catch (Throwable t)
 			{}
 		}
-
-		getApplicationStagingArea(applicationProvider.getApplicationAlias()).setApplicationProvider(null);
-	}
-
-	public void unbindFilterProvider(IFilterProvider filterProvider)
-	{
-		getApplicationStagingArea(filterProvider.getApplicationAlias()).removeFilterProvider(filterProvider);
 	}
 
 	public void unbindHttpService(HttpService httpService)
 	{
 		if (this.httpService == httpService)
 		{
-			for (String alias : applicationStagingAreas.keySet())
+			for (IApplicationProvider applicationProvider : applicationProviders)
 			{
 				try
 				{
-					httpService.unregister(alias);
+					httpService.unregister(applicationProvider.getAlias());
 				}
 				catch (IllegalArgumentException e)
 				{}
@@ -134,47 +83,23 @@ public class RestletServletService
 			this.logService = null;
 	}
 
-	public void unbindResourceProvider(IResourceProvider resourceProvider)
-	{
-		getApplicationStagingArea(resourceProvider.getApplicationAlias()).removeResourceProvider(resourceProvider);
-	}
-
-	public void unbindRouterProvider(IRouterProvider routerProvider)
-	{
-		getApplicationStagingArea(routerProvider.getApplicationAlias()).removeRouterProvider(routerProvider);
-	}
-
-	private synchronized ApplicationStagingArea getApplicationStagingArea(String applicationAlias)
-	{
-		ApplicationStagingArea applicationStagingArea = applicationStagingAreas.get(applicationAlias);
-
-		if (applicationStagingArea == null)
-		{
-			applicationStagingArea = new ApplicationStagingArea();
-			applicationStagingAreas.put(applicationAlias, applicationStagingArea);
-		}
-
-		return applicationStagingArea;
-	}
-
-	private void registerServlet(ApplicationStagingArea applicationStagingArea)
+	private void registerServlet(IApplicationProvider applicationProvider)
 	{
 		ApplicationServlet servlet = new ApplicationServlet();
-		servlet.setApplication(applicationStagingArea.getApplication());
-		IApplicationProvider applicationProvider = applicationStagingArea.getApplicationProvider();
+		servlet.setApplication(applicationProvider.getApplication());
 
 		try
 		{
-			httpService.registerServlet(applicationProvider.getApplicationAlias(), servlet, applicationProvider.getInitParms(), applicationProvider.getContext());
+			httpService.registerServlet(applicationProvider.getAlias(), servlet, applicationProvider.getInitParms(), applicationProvider.getContext());
 		}
 		catch (Exception e)
 		{
 			if (logService != null)
-				logService.log(LogService.LOG_ERROR, "Failed to register the application servlet at alias: '" + applicationProvider.getApplicationAlias() + "'", e);
+				logService.log(LogService.LOG_ERROR, "Failed to register the application servlet at alias: '" + applicationProvider.getAlias() + "'", e);
 		}
 	}
 
 	private HttpService httpService;
 	private LogService logService;
-	private HashMap<String, ApplicationStagingArea> applicationStagingAreas = new HashMap<String, ApplicationStagingArea>();
+	private HashSet<IApplicationProvider> applicationProviders = new HashSet<IApplicationProvider>();
 }

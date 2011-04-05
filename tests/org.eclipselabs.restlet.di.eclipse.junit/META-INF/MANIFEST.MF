@@ -7,8 +7,8 @@ Bundle-Vendor: EclipseLabs
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Import-Package: javax.inject;version="1.0.0",
  org.eclipselabs.restlet,
+ org.eclipselabs.restlet.components,
  org.eclipselabs.restlet.di,
- org.eclipselabs.restlet.impl,
  org.eclipselabs.restlet.junit,
  org.eclipselabs.restlet.servlet,
  org.junit;version="4.8.1",

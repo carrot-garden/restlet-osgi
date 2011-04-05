@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0" immediate="true" name="org.eclipselabs.restlet.examples.app.router">
+   <implementation class="org.eclipselabs.restlet.components.RouterProvider"/>
+   <service>
+      <provide interface="org.eclipselabs.restlet.providers.IRouterProvider"/>
+   </service>
+   <reference bind="bindResourceProvider" cardinality="0..n" interface="org.eclipselabs.restlet.providers.IResourceProvider" name="IResourceProvider" policy="dynamic" unbind="unbindResourceProvider"/>
+</scr:component>

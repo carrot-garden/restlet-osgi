@@ -1,9 +1,0 @@
-Manifest-Version: 1.0
-Bundle-ManifestVersion: 2
-Bundle-Name: Extension Example
-Bundle-SymbolicName: org.eclipselabs.restlet.examples.resource.extension;singleton:=true
-Bundle-Version: 1.0.0.qualifier
-Bundle-Vendor: EclipseLabs
-Bundle-RequiredExecutionEnvironment: JavaSE-1.6
-Require-Bundle: org.eclipselabs.restlet.registry;bundle-version="1.0.0"
-Import-Package: org.restlet.resource

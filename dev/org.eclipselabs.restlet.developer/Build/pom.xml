@@ -8,21 +8,21 @@
   <modules>
     <module>../../../plugins/org.eclipselabs.restlet</module>
     <module>../../../plugins/org.eclipselabs.restlet.mongo</module>
-    <module>../../../plugins/org.eclipselabs.restlet.registry</module>
+    
     <module>../../../plugins/org.eclipselabs.restlet.servlet</module>
     <module>../../../plugins/org.eclipselabs.restlet.di.eclipse</module>
-    <module>../../../tests/org.eclipselabs.restlet.junit</module>
-    <module>../../../tests/org.eclipselabs.restlet.registry.junit</module>
+    
+    
     <module>../../../tests/org.eclipselabs.restlet.servlet.junit</module>
     <module>../../../tests/org.eclipselabs.restlet.di.eclipse.junit</module>
     <module>../../../features/org.eclipselabs.restlet.junit.feature</module>
     <module>../../../features/org.eclipselabs.restlet.mongo.feature</module>
-    <module>../../../features/org.eclipselabs.restlet.registry.feature</module>
+    
     <module>../../../features/org.eclipselabs.restlet.servlet.feature</module>    
     <module>../../../features/org.eclipselabs.restlet.di.eclipse.feature</module>    
     <module>../../../features/org.eclipselabs.restlet.junit.source.feature</module>
     <module>../../../features/org.eclipselabs.restlet.mongo.source.feature</module>
-    <module>../../../features/org.eclipselabs.restlet.registry.source.feature</module>
+    
     <module>../../../features/org.eclipselabs.restlet.servlet.source.feature</module>    
     <module>../../../features/org.eclipselabs.restlet.di.eclipse.source.feature</module>    
     <module>../../../dev/org.eclipselabs.restlet.repository</module>    

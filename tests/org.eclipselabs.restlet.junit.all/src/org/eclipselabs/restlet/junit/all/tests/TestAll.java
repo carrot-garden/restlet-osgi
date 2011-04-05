@@ -11,7 +11,6 @@
 
 package org.eclipselabs.restlet.junit.all.tests;
 
-import org.eclipselabs.restlet.registry.junit.tests.TestRestletRegistry;
 import org.eclipselabs.restlet.servlet.junit.tests.TestRestletServletService;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
@@ -23,7 +22,7 @@ import org.junit.runners.Suite.SuiteClasses;
  */
 
 @RunWith(Suite.class)
-@SuiteClasses({ TestRestletServletService.class, TestRestletRegistry.class })
+@SuiteClasses({ TestRestletServletService.class })
 public class TestAll
 {
 

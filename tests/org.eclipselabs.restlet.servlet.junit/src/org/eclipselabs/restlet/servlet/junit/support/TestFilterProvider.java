@@ -11,10 +11,7 @@
 
 package org.eclipselabs.restlet.servlet.junit.support;
 
-import org.eclipselabs.restlet.IFilterProvider;
-import org.eclipselabs.restlet.IResourceProvider;
-import org.eclipselabs.restlet.IRouterProvider;
-import org.eclipselabs.restlet.impl.FilterProvider;
+import org.eclipselabs.restlet.components.FilterProvider;
 import org.restlet.routing.Filter;
 
 /**
@@ -23,32 +20,9 @@ import org.restlet.routing.Filter;
  */
 public class TestFilterProvider extends FilterProvider
 {
-	public TestFilterProvider(int weight)
-	{
-		super("/", weight);
-	}
-
 	@Override
 	protected Filter createFilter()
 	{
 		return new TestFilter();
-	}
-
-	@Override
-	public boolean isFilterFor(IFilterProvider filterProvider)
-	{
-		return getWeight() < filterProvider.getWeight();
-	}
-
-	@Override
-	public boolean isFilterFor(IResourceProvider resourceProvider)
-	{
-		return false;
-	}
-
-	@Override
-	public boolean isFilterFor(IRouterProvider routerProvider)
-	{
-		return true;
 	}
 }

@@ -5,10 +5,10 @@ Bundle-SymbolicName: org.eclipselabs.restlet.examples.mongo
 Bundle-Version: 1.0.0.qualifier
 Bundle-Vendor: EclipseLabs
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
-Import-Package: org.eclipselabs.restlet,
+Import-Package: org.eclipselabs.restlet.components,
  org.eclipselabs.restlet.mongo,
  org.osgi.service.http;version="1.2.1",
  org.restlet,
  org.restlet.resource,
  org.restlet.routing
-Service-Component: OSGI-INF/application.xml, OSGI-INF/mongo.xml
+Service-Component: OSGI-INF/application.xml, OSGI-INF/mongo.xml, OSGI-INF/router.xml

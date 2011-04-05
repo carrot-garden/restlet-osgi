@@ -11,8 +11,7 @@
 
 package org.eclipselabs.restlet.di.junit.support;
 
-import org.eclipselabs.restlet.di.InjectedFinder;
-import org.eclipselabs.restlet.impl.ResourceProvider;
+import org.eclipselabs.restlet.components.ResourceProvider;
 import org.restlet.resource.Finder;
 
 /**
@@ -21,14 +20,15 @@ import org.restlet.resource.Finder;
  */
 public class TestResourceProvider extends ResourceProvider
 {
-	public TestResourceProvider()
+	@Override
+	public String[] getPaths()
 	{
-		super("/", new String[] { "/junit/" }, "");
+		return new String[] { "/junit/" };
 	}
 
 	@Override
 	protected Finder createFinder()
 	{
-		return new InjectedFinder(null, TestResource.class);
+		return new Finder(null, TestResource.class);
 	}
 }

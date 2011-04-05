@@ -18,9 +18,11 @@ import static org.junit.Assert.assertThat;
 
 import java.util.ArrayList;
 
+import org.eclipselabs.restlet.components.ApplicationProvider;
+import org.eclipselabs.restlet.components.ResourceProvider;
+import org.eclipselabs.restlet.components.RouterProvider;
+import org.eclipselabs.restlet.di.junit.support.TestApplicationProvider;
 import org.eclipselabs.restlet.di.junit.support.TestResourceProvider;
-import org.eclipselabs.restlet.impl.ApplicationBuilder;
-import org.eclipselabs.restlet.impl.ApplicationProvider;
 import org.eclipselabs.restlet.junit.RestletTestHarness;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -46,9 +48,13 @@ public class TestInjectedFinder
 	@Test
 	public void testFinder()
 	{
-		testHarness.addApplicationBuilder(new ApplicationBuilder("/"));
-		testHarness.addApplication(new ApplicationProvider("/", null, null));
-		testHarness.addResource(new TestResourceProvider());
+		ApplicationProvider applicationProvider = new TestApplicationProvider();
+		RouterProvider routerProvider = new RouterProvider();
+		ResourceProvider resourceProvider = new TestResourceProvider();
+		applicationProvider.bindRouterProvider(routerProvider);
+		routerProvider.bindResourceProvider(resourceProvider);
+
+		testHarness.addApplication(applicationProvider);
 
 		TestLogListener logListener = new TestLogListener();
 		testHarness.getLogReaderService().addLogListener(logListener);

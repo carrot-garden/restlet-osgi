@@ -11,47 +11,46 @@
 
 package org.eclipselabs.restlet.examples.emf.app;
 
-import org.eclipselabs.restlet.IResourceProvider;
+import java.io.IOException;
+
+import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipselabs.restlet.components.ResourceProvider;
+import org.eclipselabs.restlet.examples.emf.model.Data;
+import org.eclipselabs.restlet.examples.emf.model.ModelFactory;
 import org.restlet.resource.Finder;
 
 /**
  * @author bhunt
  * 
  */
-public class EMFResourceProvider implements IResourceProvider
+public class EMFResourceProvider extends ResourceProvider
 {
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.eclipselabs.restlet.IResourceProvider#getApplicationAlias()
-	 */
 	@Override
-	public String getApplicationAlias()
+	protected Finder createFinder()
 	{
-		return "/";
+		return new Finder(null, EMFResource.class);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.eclipselabs.restlet.IResourceProvider#getPath()
-	 */
-	@Override
-	public String[] getPaths()
+	static
 	{
-		return new String[] { "/test/{collection}/", "/test/{collection}/{resource}" };
-	}
+		// Hack to get something in the database
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.eclipselabs.restlet.IResourceProvider#getFinder()
-	 */
-	@Override
-	public Finder getFinder()
-	{
-		return finder;
-	}
+		ResourceSet resourceSet = new ResourceSetImpl();
+		Resource dataResource = resourceSet.createResource(URI.createFileURI("/tmp/data.xml"));
+		Data data = ModelFactory.eINSTANCE.createData();
+		data.setName("test");
+		dataResource.getContents().add(data);
 
-	private Finder finder = new Finder(null, EMFResource.class);;
+		try
+		{
+			dataResource.save(null);
+		}
+		catch (IOException e)
+		{
+			e.printStackTrace();
+		}
+	}
 }

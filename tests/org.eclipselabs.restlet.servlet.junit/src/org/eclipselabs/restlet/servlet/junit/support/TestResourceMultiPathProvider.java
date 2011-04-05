@@ -11,7 +11,7 @@
 
 package org.eclipselabs.restlet.servlet.junit.support;
 
-import org.eclipselabs.restlet.impl.ResourceProvider;
+import org.eclipselabs.restlet.components.ResourceProvider;
 import org.restlet.resource.Finder;
 
 /**
@@ -20,9 +20,10 @@ import org.restlet.resource.Finder;
  */
 public class TestResourceMultiPathProvider extends ResourceProvider
 {
-	public TestResourceMultiPathProvider()
+	@Override
+	public String[] getPaths()
 	{
-		super("/", new String[] { "/junit/", "/junit/{$id}" }, "");
+		return new String[] { "/junit/", "/junit/{$id}" };
 	}
 
 	@Override

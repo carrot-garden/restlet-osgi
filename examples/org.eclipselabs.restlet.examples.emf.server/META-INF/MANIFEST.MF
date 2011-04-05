@@ -21,9 +21,10 @@ Import-Package: org.eclipse.emf.common,
  org.eclipse.emf.utilities.restlet.impl,
  org.eclipselabs.mongo.emf,
  org.eclipselabs.restlet,
+ org.eclipselabs.restlet.components,
  org.osgi.service.http;version="1.2.1",
  org.restlet,
  org.restlet.resource,
  org.restlet.routing
-Service-Component: OSGI-INF/app.xml, OSGI-INF/resource.xml
+Service-Component: OSGI-INF/app.xml, OSGI-INF/resource.xml, OSGI-INF/router.xml
 Require-Bundle: org.eclipselabs.restlet.examples.emf.model;bundle-version="1.0.0"

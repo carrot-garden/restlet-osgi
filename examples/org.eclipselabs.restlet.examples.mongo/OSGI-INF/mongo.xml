@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0" immediate="true" name="org.eclipselabs.restlet.mongo.resource">
-   <implementation class="org.eclipselabs.restlet.mongo.MongoResourceProvider"/>
+   <implementation class="org.eclilpselabs.restlet.examples.mongo.MongoResourceProvider"/>
    <service>
-      <provide interface="org.eclipselabs.restlet.IResourceProvider"/>
+      <provide interface="org.eclipselabs.restlet.providers.IResourceProvider"/>
    </service>
+   <property name="paths" type="String">
+   /mongo/{database}/{collection}/
+   /mongo/{database}/{collection}/{id}
+   </property>
 </scr:component>

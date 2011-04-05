@@ -11,47 +11,18 @@
 
 package org.eclipselabs.restlet.examples.app;
 
-import org.eclipselabs.restlet.IResourceProvider;
+import org.eclipselabs.restlet.components.ResourceProvider;
 import org.restlet.resource.Finder;
 
 /**
  * @author bhunt
  * 
  */
-public class HelloResourceProvider implements IResourceProvider
+public class HelloResourceProvider extends ResourceProvider
 {
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.eclipselabs.restlet.IResourceProvider#getApplicationAlias()
-	 */
 	@Override
-	public String getApplicationAlias()
+	protected Finder createFinder()
 	{
-		return "/";
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.eclipselabs.restlet.IResourceProvider#getPath()
-	 */
-	@Override
-	public String[] getPaths()
-	{
-		return new String[] { "/hello" };
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.eclipselabs.restlet.IResourceProvider#getFinder()
-	 */
-	@Override
-	public Finder getFinder()
-	{
-		return finder;
-	}
-
-	private Finder finder = new Finder(null, HelloResource.class);;
+		return new Finder(null, HelloResource.class);
+	};
 }

@@ -26,11 +26,6 @@ public class ApplicationServlet extends ServerServlet
 		this.application = application;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.restlet.ext.servlet.ServerServlet#createApplication(org.restlet.Context)
-	 */
 	@Override
 	protected Application createApplication(Context context)
 	{

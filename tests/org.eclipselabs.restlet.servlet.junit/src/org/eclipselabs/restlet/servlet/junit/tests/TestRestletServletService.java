@@ -14,20 +14,18 @@ package org.eclipselabs.restlet.servlet.junit.tests;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.hamcrest.CoreMatchers.nullValue;
-import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 
 import java.util.ArrayList;
 
-import org.eclipselabs.restlet.IApplicationBuilder;
-import org.eclipselabs.restlet.IApplicationProvider;
-import org.eclipselabs.restlet.IFilterProvider;
-import org.eclipselabs.restlet.IResourceProvider;
-import org.eclipselabs.restlet.impl.ApplicationBuilder;
-import org.eclipselabs.restlet.impl.ApplicationProvider;
+import org.eclipselabs.restlet.components.ApplicationProvider;
+import org.eclipselabs.restlet.components.FilterProvider;
+import org.eclipselabs.restlet.components.ResourceProvider;
+import org.eclipselabs.restlet.components.RouterProvider;
 import org.eclipselabs.restlet.servlet.RestletServletService;
 import org.eclipselabs.restlet.servlet.junit.support.Activator;
+import org.eclipselabs.restlet.servlet.junit.support.TestApplicationProvider;
 import org.eclipselabs.restlet.servlet.junit.support.TestFilter;
 import org.eclipselabs.restlet.servlet.junit.support.TestFilterProvider;
 import org.eclipselabs.restlet.servlet.junit.support.TestResourceMultiPathProvider;
@@ -36,7 +34,6 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import org.osgi.framework.BundleContext;
 import org.osgi.service.http.HttpService;
 import org.osgi.service.log.LogEntry;
 import org.osgi.service.log.LogListener;
@@ -56,7 +53,6 @@ public class TestRestletServletService
 	public static void globalSetup() throws InterruptedException
 	{
 		baseURI = "http://localhost:" + System.getProperty("org.osgi.service.http.port", "80");
-		context = Activator.getInstance().getContext();
 
 		httpService = Activator.getInstance().getHttpService();
 		assertThat(httpService, is(notNullValue()));
@@ -88,12 +84,16 @@ public class TestRestletServletService
 	}
 
 	@Test
-	public void testHttpApplicationResource()
+	public void testHttpServiceApplication()
 	{
-		restletServletService.bindApplicationBuilder(new ApplicationBuilder("/"));
+		ApplicationProvider applicationProvider = new TestApplicationProvider();
+		RouterProvider routerProvider = new RouterProvider();
+		ResourceProvider resourceProvider = new TestResourceProvider();
+		applicationProvider.bindRouterProvider(routerProvider);
+		routerProvider.bindResourceProvider(resourceProvider);
+
 		restletServletService.bindHttpService(httpService);
-		restletServletService.bindApplicationProvider(new ApplicationProvider("/"));
-		restletServletService.bindResourceProvider(new TestResourceProvider());
+		restletServletService.bindApplicationProvider(applicationProvider);
 
 		ClientResource client = createResource("/junit/");
 		String result = client.get(String.class);
@@ -102,100 +102,34 @@ public class TestRestletServletService
 	}
 
 	@Test
-	public void testHttpResourceApplication()
+	public void testApplicationHttpService()
 	{
-		restletServletService.bindApplicationBuilder(new ApplicationBuilder("/"));
-		restletServletService.bindHttpService(httpService);
-		restletServletService.bindResourceProvider(new TestResourceProvider());
-		restletServletService.bindApplicationProvider(new ApplicationProvider("/"));
+		ApplicationProvider applicationProvider = new TestApplicationProvider();
+		RouterProvider routerProvider = new RouterProvider();
+		ResourceProvider resourceProvider = new TestResourceProvider();
+		applicationProvider.bindRouterProvider(routerProvider);
+		routerProvider.bindResourceProvider(resourceProvider);
 
-		ClientResource client = createResource("/junit/");
-		String result = client.get(String.class);
-		assertThat(result, is(notNullValue()));
-		assertThat(result, is("JUnit"));
-	}
-
-	@Test
-	public void testApplicationHttpResource()
-	{
-		restletServletService.bindApplicationBuilder(new ApplicationBuilder("/"));
-		restletServletService.bindApplicationProvider(new ApplicationProvider("/"));
-		restletServletService.bindHttpService(httpService);
-		restletServletService.bindResourceProvider(new TestResourceProvider());
-
-		ClientResource client = createResource("/junit/");
-		String result = client.get(String.class);
-		assertThat(result, is(notNullValue()));
-		assertThat(result, is("JUnit"));
-	}
-
-	@Test
-	public void testApplicationResourceHttp()
-	{
-		restletServletService.bindApplicationBuilder(new ApplicationBuilder("/"));
-		restletServletService.bindApplicationProvider(new ApplicationProvider("/"));
-		restletServletService.bindResourceProvider(new TestResourceProvider());
+		restletServletService.bindApplicationProvider(applicationProvider);
 		restletServletService.bindHttpService(httpService);
 
 		ClientResource client = createResource("/junit/");
 		String result = client.get(String.class);
 		assertThat(result, is(notNullValue()));
 		assertThat(result, is("JUnit"));
-	}
-
-	@Test
-	public void testResourceHttpApplication()
-	{
-		restletServletService.bindApplicationBuilder(new ApplicationBuilder("/"));
-		restletServletService.bindResourceProvider(new TestResourceProvider());
-		restletServletService.bindHttpService(httpService);
-		restletServletService.bindApplicationProvider(new ApplicationProvider("/"));
-
-		ClientResource client = createResource("/junit/");
-		String result = client.get(String.class);
-		assertThat(result, is(notNullValue()));
-		assertThat(result, is("JUnit"));
-	}
-
-	@Test
-	public void testResourceApplicationHttp()
-	{
-		restletServletService.bindApplicationBuilder(new ApplicationBuilder("/"));
-		restletServletService.bindResourceProvider(new TestResourceProvider());
-		restletServletService.bindApplicationProvider(new ApplicationProvider("/"));
-		restletServletService.bindHttpService(httpService);
-
-		ClientResource client = createResource("/junit/");
-		String result = client.get(String.class);
-		assertThat(result, is(notNullValue()));
-		assertThat(result, is("JUnit"));
-	}
-
-	@Test(expected = ResourceException.class)
-	public void testUnbindResource()
-	{
-		TestResourceProvider resourceProvider = new TestResourceProvider();
-
-		restletServletService.bindHttpService(httpService);
-		restletServletService.bindApplicationBuilder(new ApplicationBuilder("/"));
-		restletServletService.bindApplicationProvider(new ApplicationProvider("/"));
-		restletServletService.bindResourceProvider(resourceProvider);
-
-		restletServletService.unbindResourceProvider(resourceProvider);
-
-		ClientResource client = createResource("/junit/");
-		client.get(String.class);
 	}
 
 	@Test(expected = ResourceException.class)
 	public void testUnbindApplication()
 	{
-		ApplicationProvider applicationProvider = new ApplicationProvider("/");
+		ApplicationProvider applicationProvider = new TestApplicationProvider();
+		RouterProvider routerProvider = new RouterProvider();
+		ResourceProvider resourceProvider = new TestResourceProvider();
+		applicationProvider.bindRouterProvider(routerProvider);
+		routerProvider.bindResourceProvider(resourceProvider);
 
 		restletServletService.bindHttpService(httpService);
-		restletServletService.bindApplicationBuilder(new ApplicationBuilder("/"));
 		restletServletService.bindApplicationProvider(applicationProvider);
-		restletServletService.bindResourceProvider(new TestResourceProvider());
 
 		restletServletService.unbindApplicationProvider(applicationProvider);
 
@@ -206,10 +140,14 @@ public class TestRestletServletService
 	@Test(expected = ResourceException.class)
 	public void testUnbindHttpService()
 	{
+		ApplicationProvider applicationProvider = new TestApplicationProvider();
+		RouterProvider routerProvider = new RouterProvider();
+		ResourceProvider resourceProvider = new TestResourceProvider();
+		applicationProvider.bindRouterProvider(routerProvider);
+		routerProvider.bindResourceProvider(resourceProvider);
+
 		restletServletService.bindHttpService(httpService);
-		restletServletService.bindApplicationBuilder(new ApplicationBuilder("/"));
-		restletServletService.bindApplicationProvider(new ApplicationProvider("/"));
-		restletServletService.bindResourceProvider(new TestResourceProvider());
+		restletServletService.bindApplicationProvider(applicationProvider);
 
 		restletServletService.unbindHttpService(httpService);
 
@@ -220,10 +158,14 @@ public class TestRestletServletService
 	@Test
 	public void testUnbindRebindHttpService()
 	{
+		ApplicationProvider applicationProvider = new TestApplicationProvider();
+		RouterProvider routerProvider = new RouterProvider();
+		ResourceProvider resourceProvider = new TestResourceProvider();
+		applicationProvider.bindRouterProvider(routerProvider);
+		routerProvider.bindResourceProvider(resourceProvider);
+
 		restletServletService.bindHttpService(httpService);
-		restletServletService.bindApplicationBuilder(new ApplicationBuilder("/"));
-		restletServletService.bindApplicationProvider(new ApplicationProvider("/"));
-		restletServletService.bindResourceProvider(new TestResourceProvider());
+		restletServletService.bindApplicationProvider(applicationProvider);
 
 		restletServletService.unbindHttpService(httpService);
 		restletServletService.bindHttpService(httpService);
@@ -234,34 +176,22 @@ public class TestRestletServletService
 		assertThat(result, is("JUnit"));
 	}
 
-	@Test(expected = ResourceException.class)
-	public void testBindUnbindResource()
-	{
-		TestResourceProvider resourceProvider = new TestResourceProvider();
-
-		restletServletService.bindHttpService(httpService);
-		restletServletService.bindApplicationBuilder(new ApplicationBuilder("/"));
-		restletServletService.bindResourceProvider(resourceProvider);
-
-		restletServletService.unbindResourceProvider(resourceProvider);
-		restletServletService.bindApplicationProvider(new ApplicationProvider("/"));
-
-		ClientResource client = createResource("/junit/");
-		client.get(String.class);
-	}
-
 	@Test
 	public void testDuplicateApplication()
 	{
 		TestLogListener logListener = new TestLogListener();
 		logReaderService.addLogListener(logListener);
 
-		restletServletService.bindHttpService(httpService);
+		ApplicationProvider applicationProvider = new TestApplicationProvider();
+		RouterProvider routerProvider = new RouterProvider();
+		ResourceProvider resourceProvider = new TestResourceProvider();
+		applicationProvider.bindRouterProvider(routerProvider);
+		routerProvider.bindResourceProvider(resourceProvider);
+
 		restletServletService.bindLogService(logService);
-		restletServletService.bindApplicationBuilder(new ApplicationBuilder("/"));
-		restletServletService.bindApplicationProvider(new ApplicationProvider("/"));
-		restletServletService.bindResourceProvider(new TestResourceProvider());
-		restletServletService.bindApplicationProvider(new ApplicationProvider("/"));
+		restletServletService.bindHttpService(httpService);
+		restletServletService.bindApplicationProvider(applicationProvider);
+		restletServletService.bindApplicationProvider(applicationProvider);
 
 		ClientResource client = createResource("/junit/");
 		String result = client.get(String.class);
@@ -275,10 +205,14 @@ public class TestRestletServletService
 	@Test
 	public void testResourceWithMultiplePaths()
 	{
+		ApplicationProvider applicationProvider = new TestApplicationProvider();
+		RouterProvider routerProvider = new RouterProvider();
+		ResourceProvider resourceProvider = new TestResourceMultiPathProvider();
+		applicationProvider.bindRouterProvider(routerProvider);
+		routerProvider.bindResourceProvider(resourceProvider);
+
 		restletServletService.bindHttpService(httpService);
-		restletServletService.bindApplicationBuilder(new ApplicationBuilder("/"));
-		restletServletService.bindApplicationProvider(new ApplicationProvider("/"));
-		restletServletService.bindResourceProvider(new TestResourceMultiPathProvider());
+		restletServletService.bindApplicationProvider(applicationProvider);
 
 		ClientResource client = createResource("/junit/");
 		String result = client.get(String.class);
@@ -293,14 +227,19 @@ public class TestRestletServletService
 	}
 
 	@Test
-	public void testFilter()
+	public void testFilterRouter()
 	{
+		ApplicationProvider applicationProvider = new TestApplicationProvider();
+		RouterProvider routerProvider = new RouterProvider();
+		ResourceProvider resourceProvider = new TestResourceProvider();
+		FilterProvider filterProvider = new TestFilterProvider();
+
+		routerProvider.bindResourceProvider(resourceProvider);
+		routerProvider.bindfilterProvider(filterProvider);
+		applicationProvider.bindRouterProvider(routerProvider);
+
 		restletServletService.bindHttpService(httpService);
-		restletServletService.bindApplicationBuilder(new ApplicationBuilder("/"));
-		restletServletService.bindApplicationProvider(new ApplicationProvider("/"));
-		restletServletService.bindResourceProvider(new TestResourceProvider());
-		IFilterProvider filterProvider = new TestFilterProvider(0);
-		restletServletService.bindFilterProvider(filterProvider);
+		restletServletService.bindApplicationProvider(applicationProvider);
 
 		TestFilter filter = (TestFilter) filterProvider.getFilter();
 		filter.setReturnValue(Filter.STOP);
@@ -312,71 +251,27 @@ public class TestRestletServletService
 	}
 
 	@Test
-	public void testFilterOrder1()
+	public void testFilterResource()
 	{
+		ApplicationProvider applicationProvider = new TestApplicationProvider();
+		RouterProvider routerProvider = new RouterProvider();
+		ResourceProvider resourceProvider = new TestResourceProvider();
+		FilterProvider filterProvider = new TestFilterProvider();
+
+		applicationProvider.bindRouterProvider(routerProvider);
+		resourceProvider.bindfilterProvider(filterProvider);
+		routerProvider.bindResourceProvider(resourceProvider);
+
 		restletServletService.bindHttpService(httpService);
-		restletServletService.bindApplicationBuilder(new ApplicationBuilder("/"));
-		restletServletService.bindApplicationProvider(new ApplicationProvider("/"));
-		restletServletService.bindResourceProvider(new TestResourceProvider());
+		restletServletService.bindApplicationProvider(applicationProvider);
 
-		IFilterProvider filterProvider1 = new TestFilterProvider(0);
-		restletServletService.bindFilterProvider(filterProvider1);
-
-		IFilterProvider filterProvider2 = new TestFilterProvider(1);
-		restletServletService.bindFilterProvider(filterProvider2);
-
-		TestFilter filter1 = (TestFilter) filterProvider1.getFilter();
-		filter1.setReturnValue(Filter.STOP);
-
-		TestFilter filter2 = (TestFilter) filterProvider2.getFilter();
-		filter2.setReturnValue(Filter.STOP);
-
-		ClientResource client = createResource("/junit/");
-		client.get(String.class);
-		assertTrue(filter1.isBeforeHandleCalled());
-		assertFalse(filter2.isBeforeHandleCalled());
-	}
-
-	@Test
-	public void testFilterOrder2()
-	{
-		restletServletService.bindHttpService(httpService);
-		restletServletService.bindApplicationBuilder(new ApplicationBuilder("/"));
-		restletServletService.bindApplicationProvider(new ApplicationProvider("/"));
-		restletServletService.bindResourceProvider(new TestResourceProvider());
-
-		IFilterProvider filterProvider1 = new TestFilterProvider(1);
-		restletServletService.bindFilterProvider(filterProvider1);
-
-		IFilterProvider filterProvider2 = new TestFilterProvider(0);
-		restletServletService.bindFilterProvider(filterProvider2);
-
-		TestFilter filter1 = (TestFilter) filterProvider1.getFilter();
-		filter1.setReturnValue(Filter.STOP);
-
-		TestFilter filter2 = (TestFilter) filterProvider2.getFilter();
-		filter2.setReturnValue(Filter.STOP);
-
-		ClientResource client = createResource("/junit/");
-		client.get(String.class);
-		assertFalse(filter1.isBeforeHandleCalled());
-		assertTrue(filter2.isBeforeHandleCalled());
-	}
-
-	@Test
-	public void testServiceRegistration()
-	{
-		// This test MUST be last
-
-		context.registerService(IApplicationBuilder.class.getName(), new ApplicationBuilder("/"), null);
-		context.registerService(IApplicationProvider.class.getName(), new ApplicationProvider("/"), null);
-		context.registerService(IResourceProvider.class.getName(), new TestResourceProvider(), null);
-		unregisterApplication = false;
+		TestFilter filter = (TestFilter) filterProvider.getFilter();
+		filter.setReturnValue(Filter.STOP);
 
 		ClientResource client = createResource("/junit/");
 		String result = client.get(String.class);
-		assertThat(result, is(notNullValue()));
-		assertThat(result, is("JUnit"));
+		assertThat(result, is(nullValue()));
+		assertTrue(filter.isBeforeHandleCalled());
 	}
 
 	private ClientResource createResource(String path)
@@ -385,7 +280,6 @@ public class TestRestletServletService
 	}
 
 	private static String baseURI;
-	private static BundleContext context;
 	private static HttpService httpService;
 	private static LogService logService;
 	private static LogReaderService logReaderService;

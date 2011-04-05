@@ -11,7 +11,7 @@
 
 package org.eclilpselabs.restlet.examples.mongo;
 
-import org.eclipselabs.restlet.IResourceProvider;
+import org.eclipselabs.restlet.components.ResourceProvider;
 import org.eclipselabs.restlet.mongo.MongoResource;
 import org.restlet.resource.Finder;
 
@@ -19,40 +19,17 @@ import org.restlet.resource.Finder;
  * @author bhunt
  * 
  */
-public class MongoResourceProvider implements IResourceProvider
+public class MongoResourceProvider extends ResourceProvider
 {
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.eclipselabs.restlet.IResourceProvider#getApplicationAlias()
-	 */
-	@Override
-	public String getApplicationAlias()
-	{
-		return "/";
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.eclipselabs.restlet.IResourceProvider#getPath()
-	 */
 	@Override
 	public String[] getPaths()
 	{
 		return new String[] { "/mongo/{database}/{collection}/", "/mongo/{database}/{collection}/{id}" };
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.eclipselabs.restlet.IResourceProvider#getFinder()
-	 */
 	@Override
-	public Finder getFinder()
+	protected Finder createFinder()
 	{
-		return finder;
+		return new Finder(null, MongoResource.class);
 	}
-
-	private Finder finder = new Finder(null, MongoResource.class);;
 }
