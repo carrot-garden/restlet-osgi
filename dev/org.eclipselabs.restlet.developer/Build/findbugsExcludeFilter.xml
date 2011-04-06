@@ -1,0 +1,10 @@
+<FindBugsFilter>
+	<Match>
+		<Class name="org.eclipselabs.restlet.internal.di.bundle.Activator"/>
+		<Or>
+			<Method name="start"/>
+			<Method name="stop"/>
+		</Or>
+		<Bug code="ST"/>
+	</Match>
+</FindBugsFilter>
