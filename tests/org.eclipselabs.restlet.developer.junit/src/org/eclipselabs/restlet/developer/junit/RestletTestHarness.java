@@ -9,13 +9,13 @@
  *    Bryan Hunt - initial API and implementation
  *******************************************************************************/
 
-package org.eclipselabs.restlet.junit;
+package org.eclipselabs.restlet.developer.junit;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.junit.Assert.assertThat;
 
-import org.eclipselabs.restlet.junit.bundle.Activator;
+import org.eclipselabs.restlet.developer.junit.bundle.Activator;
 import org.eclipselabs.restlet.providers.IApplicationProvider;
 import org.eclipselabs.restlet.servlet.RestletServletService;
 import org.osgi.service.http.HttpService;

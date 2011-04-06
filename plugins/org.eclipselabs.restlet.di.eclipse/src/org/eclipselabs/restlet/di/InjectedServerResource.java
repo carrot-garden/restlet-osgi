@@ -34,7 +34,9 @@ public class InjectedServerResource extends ServerResource
 	protected void doRelease() throws ResourceException
 	{
 		super.doRelease();
-		eclipseContext.dispose();
+
+		if (eclipseContext != null)
+			eclipseContext.dispose();
 	}
 
 	private IEclipseContext eclipseContext;

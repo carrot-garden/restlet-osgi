@@ -9,7 +9,7 @@
  *    Bryan Hunt - initial API and implementation
  *******************************************************************************/
 
-package org.eclipselabs.restlet.junit.bundle;
+package org.eclipselabs.restlet.developer.junit.bundle;
 
 import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;

@@ -12,6 +12,7 @@
 package org.eclipselabs.restlet.di.junit.support;
 
 import org.eclipselabs.restlet.components.ResourceProvider;
+import org.eclipselabs.restlet.di.InjectedFinder;
 import org.restlet.resource.Finder;
 
 /**
@@ -29,6 +30,6 @@ public class TestResourceProvider extends ResourceProvider
 	@Override
 	protected Finder createFinder()
 	{
-		return new Finder(null, TestResource.class);
+		return new InjectedFinder(null, TestResource.class);
 	}
 }

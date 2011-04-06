@@ -6,10 +6,10 @@ Bundle-Version: 0.3.0.qualifier
 Bundle-Vendor: EclipseLabs
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Import-Package: javax.inject;version="1.0.0",
- org.eclipselabs.restlet,
  org.eclipselabs.restlet.components,
+ org.eclipselabs.restlet.developer.junit,
  org.eclipselabs.restlet.di,
- org.eclipselabs.restlet.junit,
+ org.eclipselabs.restlet.providers,
  org.eclipselabs.restlet.servlet,
  org.junit;version="4.8.1",
  org.osgi.framework,

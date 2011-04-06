@@ -3,9 +3,6 @@
    <feature url="features/org.eclipselabs.restlet.di.feature_0.3.0.qualifier.jar" id="org.eclipselabs.restlet.di.feature" version="0.3.0.qualifier">
       <category name="restlet-osgi"/>
    </feature>
-   <feature url="features/org.eclipselabs.restlet.junt.feature_0.3.0.qualifier.jar" id="org.eclipselabs.restlet.junt.feature" version="0.3.0.qualifier">
-      <category name="restlet-osgi"/>
-   </feature>
    <feature url="features/org.eclipselabs.restlet.mongo.feature_0.3.0.qualifier.jar" id="org.eclipselabs.restlet.mongo.feature" version="0.3.0.qualifier">
       <category name="restlet-osgi"/>
    </feature>
@@ -13,9 +10,6 @@
       <category name="restlet-osgi"/>
    </feature>
    <feature url="features/org.eclipselabs.restlet.di.eclipse.source.feature_0.3.0.qualifier.jar" id="org.eclipselabs.restlet.di.eclipse.source.feature" version="0.3.0.qualifier">
-      <category name="restlet-osgi-source"/>
-   </feature>
-   <feature url="features/org.eclipselabs.restlet.junit.source.feature_0.3.0.qualifier.jar" id="org.eclipselabs.restlet.junit.source.feature" version="0.3.0.qualifier">
       <category name="restlet-osgi-source"/>
    </feature>
    <feature url="features/org.eclipselabs.restlet.mongo.source.feature_0.3.0.qualifier.jar" id="org.eclipselabs.restlet.mongo.source.feature" version="0.3.0.qualifier">
