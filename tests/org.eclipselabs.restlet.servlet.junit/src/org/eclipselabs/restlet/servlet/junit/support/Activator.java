@@ -78,7 +78,6 @@ public class Activator implements BundleActivator
 	}
 
 	private static Activator instance;
-	private BundleContext context;
 	private ServiceTracker httpServiceTracker;
 	private ServiceTracker logServiceTracker;
 	private ServiceTracker logReaderServiceTracker;
