@@ -20,7 +20,7 @@
     
     <module>../../../features/org.eclipselabs.restlet.servlet.feature</module>    
     <module>../../../features/org.eclipselabs.restlet.di.eclipse.feature</module>    
-    <module>../../../features/org.eclipselabs.restlet.junit.source.feature</module>
+    
     <module>../../../features/org.eclipselabs.restlet.mongo.source.feature</module>
     
     <module>../../../features/org.eclipselabs.restlet.servlet.source.feature</module>    
