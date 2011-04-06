@@ -7,4 +7,10 @@
 		</Or>
 		<Bug code="ST"/>
 	</Match>
+
+	<Match>
+		<Class name="org.eclipselabs.restlet.developer.junit.RestletTestHarness"/>
+		<Method name="setUp"/>
+		<Bug code="ST"/>
+	</Match>
 </FindBugsFilter>

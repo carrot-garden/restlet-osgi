@@ -43,7 +43,7 @@ public abstract class ResourceProvider extends RestletProvider implements IResou
 	@Override
 	public String[] getPaths()
 	{
-		return paths;
+		return paths.clone();
 	}
 
 	protected void activate(ComponentContext context)

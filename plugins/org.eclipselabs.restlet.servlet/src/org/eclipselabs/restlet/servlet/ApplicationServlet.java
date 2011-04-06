@@ -34,5 +34,5 @@ public class ApplicationServlet extends ServerServlet
 	}
 
 	private static final long serialVersionUID = 5252087180467260130L;
-	private Application application;
+	private transient Application application;
 }

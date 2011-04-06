@@ -5,5 +5,6 @@ Bundle-SymbolicName: org.eclipselabs.restlet.junit.all
 Bundle-Version: 0.3.0.qualifier
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Require-Bundle: org.eclipselabs.restlet.servlet.junit;bundle-version="0.3.0",
+ org.eclipselabs.restlet.di.eclipse.junit;bundle-version="0.3.0",
  org.junit;bundle-version="4.8.1"
 Bundle-Vendor: EclipseLabs

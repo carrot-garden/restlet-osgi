@@ -21,3 +21,4 @@ Import-Package: javax.inject;version="1.0.0",
 Require-Bundle: org.hamcrest.core;bundle-version="1.1.0"
 Bundle-ActivationPolicy: lazy
 Bundle-Activator: org.eclipselabs.restlet.di.junit.support.Activator
+Export-Package: org.eclipselabs.restlet.di.junit.tests
