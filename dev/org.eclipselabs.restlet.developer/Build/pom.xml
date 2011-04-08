@@ -89,30 +89,22 @@
         <artifactId>maven-osgi-source-plugin</artifactId>
         <version>${tycho-version}</version>
         <executions>
+                <!-- TODO remove workaround when https://issues.sonatype.org/browse/TYCHO-473 is fixed -->
+                <execution>
+            <id>attach-source</id>
+            <phase>process-classes</phase>
+            <goals>
+              <goal>plugin-source</goal>
+            </goals>
+          </execution>
+          <!-- Not sure if I need the one below or above or both
           <execution>
             <id>plugin-source</id>
             <goals>
               <goal>plugin-source</goal>
             </goals>
           </execution>
-        </executions>
-      </plugin>
-      
-      <plugin>
-        <groupId>org.codehaus.mojo</groupId>
-        <artifactId>findbugs-maven-plugin</artifactId>
-        <version>2.3.2</version>
-        <configuration>
-        	<excludeFilterFile>findbugsExcludeFilter.xml</excludeFilterFile>
-          <findbugsXmlOutput>true</findbugsXmlOutput>
-          <failOnError>false</failOnError>
-        </configuration>
-        <executions>
-          <execution>
-            <goals>
-              <goal>check</goal>
-            </goals>
-          </execution>
+           -->
         </executions>
       </plugin>
       
@@ -148,6 +140,36 @@
    </build>
 
    <profiles>
+   <profile>
+        <id>findbugs</id>
+        <activation>
+                <property>
+                        <name>findbugs</name>
+                </property>
+        </activation>
+        <build>
+                <plugins>
+        <plugin>
+          <groupId>org.codehaus.mojo</groupId>
+          <artifactId>findbugs-maven-plugin</artifactId>
+          <version>2.3.2</version>
+          <configuration>
+        	<excludeFilterFile>findbugsExcludeFilter.xml</excludeFilterFile>
+            <findbugsXmlOutput>true</findbugsXmlOutput>
+            <failOnError>false</failOnError>
+          </configuration>
+          <executions>
+            <execution>
+              <goals>
+                <goal>check</goal>
+              </goals>
+            </execution>
+          </executions>
+        </plugin>
+                </plugins>
+        </build>
+   </profile>
+ 
    	<profile>
 			<id>coverage</id>
 			<activation>
