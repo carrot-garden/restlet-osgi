@@ -29,7 +29,7 @@ public abstract class ResourceProvider extends RestletProvider implements IResou
 	public Restlet getInboundRoot(Context context)
 	{
 		if (finder == null)
-			finder = createFinder();
+			finder = createFinder(context);
 
 		Restlet inboundRoot = super.getInboundRoot(context);
 		return inboundRoot != null ? inboundRoot : finder;
@@ -48,7 +48,7 @@ public abstract class ResourceProvider extends RestletProvider implements IResou
 		paths = (String[]) properties.get("paths");
 	}
 
-	protected abstract Finder createFinder();
+	protected abstract Finder createFinder(Context context);
 
 	@Override
 	protected Restlet getFilteredRestlet()

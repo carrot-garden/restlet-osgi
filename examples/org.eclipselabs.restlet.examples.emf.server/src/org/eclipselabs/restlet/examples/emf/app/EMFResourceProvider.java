@@ -20,6 +20,7 @@ import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipselabs.restlet.components.ResourceProvider;
 import org.eclipselabs.restlet.examples.emf.model.Data;
 import org.eclipselabs.restlet.examples.emf.model.ModelFactory;
+import org.restlet.Context;
 import org.restlet.resource.Finder;
 
 /**
@@ -29,9 +30,9 @@ import org.restlet.resource.Finder;
 public class EMFResourceProvider extends ResourceProvider
 {
 	@Override
-	protected Finder createFinder()
+	protected Finder createFinder(Context context)
 	{
-		return new Finder(null, EMFResource.class);
+		return new Finder(context, EMFResource.class);
 	}
 
 	static

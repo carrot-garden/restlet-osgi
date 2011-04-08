@@ -12,6 +12,7 @@
 package org.eclipselabs.restlet.examples.resource;
 
 import org.eclipselabs.restlet.components.ResourceProvider;
+import org.restlet.Context;
 import org.restlet.resource.Finder;
 
 /**
@@ -21,8 +22,8 @@ import org.restlet.resource.Finder;
 public class ExampleResourceProvider extends ResourceProvider
 {
 	@Override
-	protected Finder createFinder()
+	protected Finder createFinder(Context context)
 	{
-		return new Finder(null, ExampleResource.class);
+		return new Finder(context, ExampleResource.class);
 	}
 }

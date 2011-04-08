@@ -13,6 +13,7 @@ package org.eclilpselabs.restlet.examples.mongo;
 
 import org.eclipselabs.restlet.components.ResourceProvider;
 import org.eclipselabs.restlet.mongo.MongoResource;
+import org.restlet.Context;
 import org.restlet.resource.Finder;
 
 /**
@@ -22,14 +23,8 @@ import org.restlet.resource.Finder;
 public class MongoResourceProvider extends ResourceProvider
 {
 	@Override
-	public String[] getPaths()
+	protected Finder createFinder(Context context)
 	{
-		return new String[] { "/mongo/{database}/{collection}/", "/mongo/{database}/{collection}/{id}" };
-	}
-
-	@Override
-	protected Finder createFinder()
-	{
-		return new Finder(null, MongoResource.class);
+		return new Finder(context, MongoResource.class);
 	}
 }
