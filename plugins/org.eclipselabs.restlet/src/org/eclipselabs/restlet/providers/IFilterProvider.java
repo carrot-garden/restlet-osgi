@@ -25,9 +25,5 @@ import org.restlet.routing.Filter;
  */
 public interface IFilterProvider extends IRestletProvider
 {
-	/**
-	 * 
-	 * @return the filter to add to the routing chain.
-	 */
 	Filter getFilter();
 }

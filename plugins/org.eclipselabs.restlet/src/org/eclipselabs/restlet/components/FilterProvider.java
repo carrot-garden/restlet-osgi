@@ -12,6 +12,7 @@
 package org.eclipselabs.restlet.components;
 
 import org.eclipselabs.restlet.providers.IFilterProvider;
+import org.restlet.Context;
 import org.restlet.Restlet;
 import org.restlet.routing.Filter;
 
@@ -24,20 +25,26 @@ public abstract class FilterProvider extends RestletProvider implements IFilterP
 	@Override
 	public Filter getFilter()
 	{
-		if (filter == null)
-			filter = createFilter();
-
 		return filter;
 	}
 
 	@Override
-	public Restlet getInboundRoot()
+	public Restlet getInboundRoot(Context context)
 	{
-		Restlet inboundRoot = super.getInboundRoot();
-		return inboundRoot != null ? inboundRoot : getFilter();
+		if (filter == null)
+			filter = createFilter(context);
+
+		Restlet inboundRoot = super.getInboundRoot(context);
+		return inboundRoot != null ? inboundRoot : filter;
 	}
 
-	protected abstract Filter createFilter();
+	protected abstract Filter createFilter(Context context);
+
+	@Override
+	protected Restlet getFilteredRestlet()
+	{
+		return filter;
+	}
 
 	private Filter filter;
 }

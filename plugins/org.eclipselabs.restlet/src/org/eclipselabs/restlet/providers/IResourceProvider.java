@@ -11,8 +11,6 @@
 
 package org.eclipselabs.restlet.providers;
 
-import org.restlet.resource.Finder;
-
 /**
  * This is an OSGi service interface for registering Restlet resources with an application.
  * Users are expected to implement this interface and register an instance as an OSGi service.
@@ -27,13 +25,6 @@ import org.restlet.resource.Finder;
  */
 public interface IResourceProvider extends IRestletProvider
 {
-	/**
-	 * 
-	 * @return the finder for locating the resource. It is recommended to use
-	 *         {@link org.eclipselabs.restlet.DynamicFinder} if you need to support lazy loading.
-	 */
-	Finder getFinder();
-
 	/**
 	 * 
 	 * @return the paths to the resource relative to the application alias. The paths must start with

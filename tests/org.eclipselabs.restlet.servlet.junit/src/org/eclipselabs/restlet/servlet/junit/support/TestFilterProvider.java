@@ -12,6 +12,7 @@
 package org.eclipselabs.restlet.servlet.junit.support;
 
 import org.eclipselabs.restlet.components.FilterProvider;
+import org.restlet.Context;
 import org.restlet.routing.Filter;
 
 /**
@@ -20,9 +21,18 @@ import org.restlet.routing.Filter;
  */
 public class TestFilterProvider extends FilterProvider
 {
-	@Override
-	protected Filter createFilter()
+	public TestFilterProvider(int returnValue)
 	{
-		return new TestFilter();
+		this.returnValue = returnValue;
 	}
+
+	@Override
+	protected Filter createFilter(Context context)
+	{
+		TestFilter testFilter = new TestFilter(context);
+		testFilter.setReturnValue(returnValue);
+		return testFilter;
+	}
+
+	private int returnValue;
 }

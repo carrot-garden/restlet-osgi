@@ -15,6 +15,7 @@ import java.util.Dictionary;
 
 import org.eclipselabs.restlet.providers.IResourceProvider;
 import org.osgi.service.component.ComponentContext;
+import org.restlet.Context;
 import org.restlet.Restlet;
 import org.restlet.resource.Finder;
 
@@ -25,19 +26,13 @@ import org.restlet.resource.Finder;
 public abstract class ResourceProvider extends RestletProvider implements IResourceProvider
 {
 	@Override
-	public Finder getFinder()
+	public Restlet getInboundRoot(Context context)
 	{
 		if (finder == null)
 			finder = createFinder();
 
-		return finder;
-	}
-
-	@Override
-	public Restlet getInboundRoot()
-	{
-		Restlet inboundRoot = super.getInboundRoot();
-		return inboundRoot != null ? inboundRoot : getFinder();
+		Restlet inboundRoot = super.getInboundRoot(context);
+		return inboundRoot != null ? inboundRoot : finder;
 	}
 
 	@Override
@@ -54,6 +49,12 @@ public abstract class ResourceProvider extends RestletProvider implements IResou
 	}
 
 	protected abstract Finder createFinder();
+
+	@Override
+	protected Restlet getFilteredRestlet()
+	{
+		return finder;
+	}
 
 	private Finder finder;
 	private String[] paths;

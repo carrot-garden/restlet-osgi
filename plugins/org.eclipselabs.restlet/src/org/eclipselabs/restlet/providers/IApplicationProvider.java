@@ -15,6 +15,7 @@ import java.util.Dictionary;
 
 import org.osgi.service.http.HttpContext;
 import org.restlet.Application;
+import org.restlet.Context;
 
 /**
  * This is an OSGi service interface for registering Restlet applications with a server servlet.
@@ -34,7 +35,7 @@ public interface IApplicationProvider
 	 * 
 	 * @return the application to be register at the specified alias.
 	 */
-	Application getApplication();
+	Application createApplication(Context context);
 
 	/**
 	 * The context is passed to

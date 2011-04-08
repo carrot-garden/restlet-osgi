@@ -11,8 +11,6 @@
 
 package org.eclipselabs.restlet.providers;
 
-import org.restlet.routing.Router;
-
 /**
  * This is an OSGi service interface for registering Restlet filters with an application. Users are
  * expected to implement this interface and register an instance as an OSGi service.
@@ -23,9 +21,4 @@ import org.restlet.routing.Router;
  * 
  */
 public interface IRouterProvider extends IRestletProvider
-{
-	/**
-	 * @return the router to add to the routing chain.
-	 */
-	Router getRouter();
-}
+{}

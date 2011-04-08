@@ -85,8 +85,7 @@ public class RestletServletService
 
 	private void registerServlet(IApplicationProvider applicationProvider)
 	{
-		ApplicationServlet servlet = new ApplicationServlet();
-		servlet.setApplication(applicationProvider.getApplication());
+		ApplicationServlet servlet = new ApplicationServlet(applicationProvider);
 
 		try
 		{

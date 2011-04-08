@@ -11,6 +11,10 @@
 
 package org.eclipselabs.restlet.servlet;
 
+import javax.servlet.ServletConfig;
+import javax.servlet.ServletException;
+
+import org.eclipselabs.restlet.providers.IApplicationProvider;
 import org.restlet.Application;
 import org.restlet.Context;
 import org.restlet.ext.servlet.ServerServlet;
@@ -21,18 +25,27 @@ import org.restlet.ext.servlet.ServerServlet;
  */
 public class ApplicationServlet extends ServerServlet
 {
-	public void setApplication(Application application)
+	public ApplicationServlet(IApplicationProvider applicationProvider)
 	{
-		this.application = application;
+		this.applicationProvider = applicationProvider;
 	}
 
 	@Override
 	protected Application createApplication(Context context)
 	{
-		application.setContext(context.createChildContext());
-		return application;
+		Context childContext = context.createChildContext();
+		childContext.getAttributes().put("javax.servlet.ServletConfig", servletConfig);
+		return applicationProvider.createApplication(childContext);
+	}
+
+	@Override
+	public void init(ServletConfig config) throws ServletException
+	{
+		servletConfig = config;
+		super.init(config);
 	}
 
 	private static final long serialVersionUID = 5252087180467260130L;
-	private transient Application application;
+	private IApplicationProvider applicationProvider;
+	private ServletConfig servletConfig;
 }

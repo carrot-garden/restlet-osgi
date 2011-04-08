@@ -18,6 +18,7 @@ import org.eclipselabs.restlet.providers.IRouterProvider;
 import org.osgi.service.component.ComponentContext;
 import org.osgi.service.http.HttpContext;
 import org.restlet.Application;
+import org.restlet.Context;
 
 /**
  * @author bhunt
@@ -28,22 +29,15 @@ public class ApplicationProvider implements IApplicationProvider
 	public void bindRouterProvider(IRouterProvider routerProvider)
 	{
 		this.routerProvider = routerProvider;
-		getApplication().setInboundRoot(routerProvider.getInboundRoot());
+
+		if (application != null)
+			application.setInboundRoot(routerProvider.getInboundRoot(application.getContext()));
 	}
 
 	@Override
 	public String getAlias()
 	{
 		return alias;
-	}
-
-	@Override
-	public Application getApplication()
-	{
-		if (application == null)
-			application = createApplication();
-
-		return application;
 	}
 
 	@Override
@@ -71,9 +65,15 @@ public class ApplicationProvider implements IApplicationProvider
 		alias = (String) properties.get("alias");
 	}
 
-	protected Application createApplication()
+	@Override
+	public Application createApplication(Context context)
 	{
-		return new Application();
+		application = new Application(context);
+
+		if (routerProvider != null)
+			application.setInboundRoot(routerProvider.getInboundRoot(context));
+
+		return application;
 	}
 
 	private String alias;

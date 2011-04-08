@@ -11,6 +11,7 @@
 
 package org.eclipselabs.restlet.providers;
 
+import org.restlet.Context;
 import org.restlet.Restlet;
 
 /**
@@ -21,5 +22,5 @@ import org.restlet.Restlet;
  */
 public interface IRestletProvider
 {
-	Restlet getInboundRoot();
+	Restlet getInboundRoot(Context context);
 }

@@ -11,6 +11,7 @@
 
 package org.eclipselabs.restlet.servlet.junit.support;
 
+import org.restlet.Context;
 import org.restlet.Request;
 import org.restlet.Response;
 import org.restlet.routing.Filter;
@@ -21,6 +22,11 @@ import org.restlet.routing.Filter;
  */
 public class TestFilter extends Filter
 {
+	public TestFilter(Context context)
+	{
+		super(context);
+	}
+
 	public boolean isBeforeHandleCalled()
 	{
 		return beforeHandleCalled;

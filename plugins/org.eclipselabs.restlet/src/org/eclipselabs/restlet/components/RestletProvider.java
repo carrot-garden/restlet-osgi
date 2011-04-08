@@ -13,13 +13,14 @@ package org.eclipselabs.restlet.components;
 
 import org.eclipselabs.restlet.providers.IFilterProvider;
 import org.eclipselabs.restlet.providers.IRestletProvider;
+import org.restlet.Context;
 import org.restlet.Restlet;
 
 /**
  * @author bhunt
  * 
  */
-public class RestletProvider implements IRestletProvider
+public abstract class RestletProvider implements IRestletProvider
 {
 	public void bindfilterProvider(IFilterProvider filterProvider)
 	{
@@ -27,9 +28,17 @@ public class RestletProvider implements IRestletProvider
 	}
 
 	@Override
-	public Restlet getInboundRoot()
+	public Restlet getInboundRoot(Context context)
 	{
-		return filterProvider != null ? filterProvider.getInboundRoot() : null;
+		Restlet inboundRoot = null;
+
+		if (filterProvider != null)
+		{
+			inboundRoot = filterProvider.getInboundRoot(context);
+			filterProvider.getFilter().setNext(getFilteredRestlet());
+		}
+
+		return inboundRoot;
 	}
 
 	public void unbindFilterProvider(IFilterProvider filterProvider)
@@ -37,6 +46,8 @@ public class RestletProvider implements IRestletProvider
 		if (this.filterProvider == filterProvider)
 			this.filterProvider = null;
 	}
+
+	protected abstract Restlet getFilteredRestlet();
 
 	private IFilterProvider filterProvider;
 }
