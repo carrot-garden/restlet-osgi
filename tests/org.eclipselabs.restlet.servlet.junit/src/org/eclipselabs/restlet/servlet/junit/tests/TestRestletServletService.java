@@ -235,7 +235,7 @@ public class TestRestletServletService
 		FilterProvider filterProvider = new TestFilterProvider(Filter.CONTINUE);
 
 		routerProvider.bindResourceProvider(resourceProvider);
-		routerProvider.bindfilterProvider(filterProvider);
+		routerProvider.bindFilterProvider(filterProvider);
 		applicationProvider.bindRouterProvider(routerProvider);
 
 		restletServletService.bindHttpService(httpService);
@@ -256,7 +256,7 @@ public class TestRestletServletService
 		FilterProvider filterProvider = new TestFilterProvider(Filter.STOP);
 
 		routerProvider.bindResourceProvider(resourceProvider);
-		routerProvider.bindfilterProvider(filterProvider);
+		routerProvider.bindFilterProvider(filterProvider);
 		applicationProvider.bindRouterProvider(routerProvider);
 
 		restletServletService.bindHttpService(httpService);
@@ -277,7 +277,7 @@ public class TestRestletServletService
 		FilterProvider filterProvider = new TestFilterProvider(Filter.STOP);
 
 		applicationProvider.bindRouterProvider(routerProvider);
-		resourceProvider.bindfilterProvider(filterProvider);
+		resourceProvider.bindFilterProvider(filterProvider);
 		routerProvider.bindResourceProvider(resourceProvider);
 
 		restletServletService.bindHttpService(httpService);

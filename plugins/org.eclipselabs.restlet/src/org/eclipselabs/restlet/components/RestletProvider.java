@@ -22,7 +22,7 @@ import org.restlet.Restlet;
  */
 public abstract class RestletProvider implements IRestletProvider
 {
-	public void bindfilterProvider(IFilterProvider filterProvider)
+	public void bindFilterProvider(IFilterProvider filterProvider)
 	{
 		this.filterProvider = filterProvider;
 	}
