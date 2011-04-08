@@ -35,6 +35,17 @@ public class ApplicationProvider implements IApplicationProvider
 	}
 
 	@Override
+	public Application createApplication(Context context)
+	{
+		application = doCreateApplication(context);
+
+		if (routerProvider != null)
+			application.setInboundRoot(routerProvider.getInboundRoot(context));
+
+		return application;
+	}
+
+	@Override
 	public String getAlias()
 	{
 		return alias;
@@ -65,15 +76,9 @@ public class ApplicationProvider implements IApplicationProvider
 		alias = (String) properties.get("alias");
 	}
 
-	@Override
-	public Application createApplication(Context context)
+	protected Application doCreateApplication(Context context)
 	{
-		application = new Application(context);
-
-		if (routerProvider != null)
-			application.setInboundRoot(routerProvider.getInboundRoot(context));
-
-		return application;
+		return new Application(context);
 	}
 
 	private String alias;
