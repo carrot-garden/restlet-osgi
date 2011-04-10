@@ -48,6 +48,6 @@ public class ApplicationServlet extends ServerServlet
 	}
 
 	private static final long serialVersionUID = 5252087180467260130L;
-	private IApplicationProvider applicationProvider;
+	private transient IApplicationProvider applicationProvider;
 	private ServletConfig servletConfig;
 }
