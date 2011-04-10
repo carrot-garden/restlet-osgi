@@ -9,10 +9,8 @@
  *     - initial API and implementation
  *******************************************************************************/
 
-package org.eclipselabs.restlet.di;
+package org.eclipselabs.restlet.di.eclipse;
 
-import org.restlet.resource.ResourceException;
-import org.restlet.resource.ServerResource;
 import org.eclipse.e4.core.contexts.IEclipseContext;
 
 /**
@@ -20,24 +18,7 @@ import org.eclipse.e4.core.contexts.IEclipseContext;
  * 
  */
 @SuppressWarnings("restriction")
-public class InjectedServerResource extends ServerResource
+public interface InjectedResource
 {
-	/**
-	 * @param eclipseContext the eclipseContext to set
-	 */
-	public void setEclipseContext(IEclipseContext eclipseContext)
-	{
-		this.eclipseContext = eclipseContext;
-	}
-
-	@Override
-	protected void doRelease() throws ResourceException
-	{
-		super.doRelease();
-
-		if (eclipseContext != null)
-			eclipseContext.dispose();
-	}
-
-	private IEclipseContext eclipseContext;
+	void setEclipseContext(IEclipseContext eclipseContext);
 }

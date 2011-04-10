@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <?pde version="3.6"?>
 
-<target name="Restlet" sequenceNumber="8">
+<target name="Restlet Minimal" sequenceNumber="8">
 <locations>
 <location includeAllPlatforms="false" includeMode="planner" includeSource="true" type="InstallableUnit">
 <unit id="org.eclipse.equinox.sdk.feature.group" version="3.7.0.v20110123-7L7W8Z8W1Q5nsW4u0pf2k2lZoUZd"/>
@@ -9,9 +9,9 @@
 <repository location="http://download.eclipse.org/releases/indigo"/>
 </location>
 <location includeAllPlatforms="false" includeMode="planner" includeSource="true" type="InstallableUnit">
-<unit id="org.restlet.feature.feature.group" version="2.0.5.201104010001"/>
-<unit id="org.restlet.ext.json.feature.feature.group" version="2.0.5.201104010001"/>
-<unit id="org.restlet.ext.servlet.feature.feature.group" version="2.0.5.201104010001"/>
+<unit id="org.restlet.feature.feature.group" version="2.0.5.201104101340"/>
+<unit id="org.restlet.ext.json.feature.feature.group" version="2.0.5.201104101340"/>
+<unit id="org.restlet.ext.servlet.feature.feature.group" version="2.0.5.201104101340"/>
 <repository location="http://quickiemart.springfieldusa.net/Targets/Restlet"/>
 </location>
 </locations>

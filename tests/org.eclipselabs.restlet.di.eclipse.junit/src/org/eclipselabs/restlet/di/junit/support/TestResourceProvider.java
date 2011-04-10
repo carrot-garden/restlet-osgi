@@ -12,7 +12,7 @@
 package org.eclipselabs.restlet.di.junit.support;
 
 import org.eclipselabs.restlet.components.ResourceProvider;
-import org.eclipselabs.restlet.di.InjectedFinder;
+import org.eclipselabs.restlet.di.eclipse.InjectedFinder;
 import org.restlet.Context;
 import org.restlet.resource.Finder;
 

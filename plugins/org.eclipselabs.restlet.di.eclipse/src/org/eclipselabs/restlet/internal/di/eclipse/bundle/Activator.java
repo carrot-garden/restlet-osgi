@@ -1,5 +1,5 @@
 
-package org.eclipselabs.restlet.internal.di.bundle;
+package org.eclipselabs.restlet.internal.di.eclipse.bundle;
 
 import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;

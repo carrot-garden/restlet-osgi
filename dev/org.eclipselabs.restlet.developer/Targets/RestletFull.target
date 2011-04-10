@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <?pde version="3.6"?>
 
-<target name="Restlet EMF" sequenceNumber="45">
+<target name="Restlet Full" sequenceNumber="48">
 <locations>
 <location includeAllPlatforms="false" includeMode="planner" includeSource="true" type="InstallableUnit">
 <unit id="org.eclipse.e4.core.tools.feature.feature.group" version="0.9.0.v20110309-1330-57f1EVVFNMFcSp8RZOD"/>
@@ -15,18 +15,17 @@
 </location>
 <location path="${targets}/Extras" type="Directory"/>
 <location includeAllPlatforms="false" includeMode="planner" includeSource="true" type="InstallableUnit">
-<unit id="org.restlet.ext.json.feature.feature.group" version="2.0.5.201104010001"/>
-<unit id="org.restlet.feature.feature.group" version="2.0.5.201104010001"/>
-<unit id="org.restlet.ext.servlet.feature.feature.group" version="2.0.5.201104010001"/>
-<repository location="http://quickiemart.springfieldusa.net/Targets/Restlet"/>
-</location>
-<location includeAllPlatforms="false" includeMode="planner" includeSource="true" type="InstallableUnit">
 <unit id="com.mongodb.feature.feature.group" version="2.5.2.201104010035"/>
 <repository location="http://quickiemart.springfieldusa.net/Targets/MongoDB"/>
 </location>
 <location includeAllPlatforms="false" includeMode="planner" includeSource="true" type="InstallableUnit">
-<unit id="org.freemarker.feature.feature.group" version="2.3.0.201104010023"/>
-<repository location="http://quickiemart.springfieldusa.net/Targets/FreeMarker"/>
+<unit id="org.restlet.feature.feature.group" version="2.0.5.201104101340"/>
+<unit id="org.restlet.ext.freemarker.feature.feature.group" version="2.0.5.201104101340"/>
+<unit id="org.restlet.ext.json.feature.feature.group" version="2.0.5.201104101340"/>
+<unit id="org.restlet.ext.servlet.feature.feature.group" version="2.0.5.201104101340"/>
+<unit id="org.restlet.ext.wadl.feature.feature.group" version="2.0.5.201104101340"/>
+<unit id="org.restlet.ext.mxl.feature.feature.group" version="2.0.5.201104101340"/>
+<repository location="http://quickiemart.springfieldusa.net/Targets/Restlet"/>
 </location>
 <location includeAllPlatforms="false" includeMode="planner" includeSource="true" type="InstallableUnit">
 <unit id="org.eclipselabs.mongo.emf.freemarker.feature.feature.group" version="0.3.2.201104010101"/>
@@ -36,6 +35,11 @@
 <unit id="org.eclipselabs.mongo.junit.source.feature.feature.group" version="0.3.2.201104010101"/>
 <unit id="org.eclipselabs.mongo.emf.source.feature.feature.group" version="0.3.2.201104010101"/>
 <repository location="http://quickiemart.springfieldusa.net/Targets/MongoEMF"/>
+</location>
+<location includeAllPlatforms="false" includeMode="planner" includeSource="true" type="InstallableUnit">
+<unit id="org.freemarker.feature.feature.group" version="2.3.0.201104101347"/>
+<unit id="org.freemarker.source.feature.feature.group" version="2.3.0.201104101347"/>
+<repository location="http://quickiemart.springfieldusa.net/Targets/FreeMarker"/>
 </location>
 </locations>
 </target>

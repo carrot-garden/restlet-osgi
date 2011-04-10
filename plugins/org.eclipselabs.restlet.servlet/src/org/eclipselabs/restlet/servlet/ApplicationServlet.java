@@ -25,6 +25,8 @@ import org.restlet.ext.servlet.ServerServlet;
  */
 public class ApplicationServlet extends ServerServlet
 {
+	public static final String SERVLETCONFIG_ATTRIBUTE = "javax.servlet.ServletConfig";
+
 	public ApplicationServlet(IApplicationProvider applicationProvider)
 	{
 		this.applicationProvider = applicationProvider;
@@ -34,7 +36,7 @@ public class ApplicationServlet extends ServerServlet
 	protected Application createApplication(Context context)
 	{
 		Context childContext = context.createChildContext();
-		childContext.getAttributes().put("javax.servlet.ServletConfig", servletConfig);
+		childContext.getAttributes().put(SERVLETCONFIG_ATTRIBUTE, servletConfig);
 		return applicationProvider.createApplication(childContext);
 	}
 

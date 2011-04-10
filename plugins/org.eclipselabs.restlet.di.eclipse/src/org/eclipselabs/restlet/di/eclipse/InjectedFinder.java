@@ -9,12 +9,12 @@
  *     - initial API and implementation
  *******************************************************************************/
 
-package org.eclipselabs.restlet.di;
+package org.eclipselabs.restlet.di.eclipse;
 
 import org.eclipse.e4.core.contexts.ContextInjectionFactory;
 import org.eclipse.e4.core.contexts.EclipseContextFactory;
 import org.eclipse.e4.core.contexts.IEclipseContext;
-import org.eclipselabs.restlet.internal.di.bundle.Activator;
+import org.eclipselabs.restlet.internal.di.eclipse.bundle.Activator;
 
 import org.restlet.Context;
 import org.restlet.Request;
@@ -39,9 +39,9 @@ public class InjectedFinder extends Finder
 	public ServerResource create(Class<? extends ServerResource> clazz, Request request, Response response)
 	{
 		IEclipseContext childContext = serviceContext.createChild("ResourceContext");
-		InjectedServerResource serverResource = (InjectedServerResource) ContextInjectionFactory.make(clazz, childContext);
+		InjectedResource serverResource = (InjectedResource) ContextInjectionFactory.make(clazz, childContext);
 		serverResource.setEclipseContext(childContext);
-		return serverResource;
+		return (ServerResource) serverResource;
 	}
 
 	private IEclipseContext serviceContext;

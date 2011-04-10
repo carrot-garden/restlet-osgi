@@ -13,12 +13,11 @@ package org.eclipselabs.restlet.di.junit.support;
 
 import javax.inject.Inject;
 
-import org.eclipselabs.restlet.di.InjectedServerResource;
+import org.eclipselabs.restlet.di.eclipse.InjectedServerResource;
 import org.osgi.service.log.LogService;
 import org.restlet.representation.EmptyRepresentation;
 import org.restlet.representation.Representation;
 import org.restlet.resource.Put;
-import org.restlet.resource.ServerResource;
 
 /**
  * @author bhunt
