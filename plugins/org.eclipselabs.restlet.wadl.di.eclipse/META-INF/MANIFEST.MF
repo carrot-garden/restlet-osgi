@@ -1,0 +1,12 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: WADL DI
+Bundle-SymbolicName: org.eclipselabs.restlet.wadl.di.eclipse
+Bundle-Version: 0.3.0.qualifier
+Bundle-Vendor: EclipseLabs
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Import-Package: org.eclipse.e4.core.contexts,
+ org.eclipselabs.restlet.di.eclipse,
+ org.osgi.framework;version="1.6.0",
+ org.restlet.ext.wadl,
+ org.restlet.resource
