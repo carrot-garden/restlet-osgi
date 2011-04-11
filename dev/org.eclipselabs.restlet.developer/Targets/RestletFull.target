@@ -1,17 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <?pde version="3.6"?>
 
-<target name="Restlet Full" sequenceNumber="48">
+<target name="Restlet Full" sequenceNumber="50">
 <locations>
 <location includeAllPlatforms="false" includeMode="planner" includeSource="true" type="InstallableUnit">
 <unit id="org.eclipse.e4.core.tools.feature.feature.group" version="0.9.0.v20110309-1330-57f1EVVFNMFcSp8RZOD"/>
 <repository location="http://download.eclipse.org/e4/updates/0.11-I-builds"/>
-</location>
-<location includeAllPlatforms="false" includeMode="planner" includeSource="true" type="InstallableUnit">
-<unit id="org.eclipse.emf.sdk.feature.group" version="2.7.0.v20110310-1804"/>
-<unit id="org.eclipse.equinox.sdk.feature.group" version="3.7.0.v20110123-7L7W8Z8W1Q5nsW4u0pf2k2lZoUZd"/>
-<unit id="org.eclipse.pde.feature.group" version="3.7.0.v20110121-7b7oFXNFEx2Xmp_WfY574C"/>
-<repository location="http://download.eclipse.org/releases/indigo"/>
 </location>
 <location path="${targets}/Extras" type="Directory"/>
 <location includeAllPlatforms="false" includeMode="planner" includeSource="true" type="InstallableUnit">
@@ -28,18 +22,27 @@
 <repository location="http://quickiemart.springfieldusa.net/Targets/Restlet"/>
 </location>
 <location includeAllPlatforms="false" includeMode="planner" includeSource="true" type="InstallableUnit">
-<unit id="org.eclipselabs.mongo.emf.freemarker.feature.feature.group" version="0.3.2.201104010101"/>
-<unit id="org.eclipselabs.mongo.emf.junit.feature.feature.group" version="0.3.2.201104010101"/>
-<unit id="org.eclipselabs.emf.mongo.feature.feature.group" version="0.3.2.201104010101"/>
-<unit id="org.eclipselabs.mongo.emf.freemarker.source.feature.feature.group" version="0.3.2.201104010101"/>
-<unit id="org.eclipselabs.mongo.junit.source.feature.feature.group" version="0.3.2.201104010101"/>
-<unit id="org.eclipselabs.mongo.emf.source.feature.feature.group" version="0.3.2.201104010101"/>
+<unit id="org.eclipselabs.mongo.emf.freemarker.feature.feature.group" version="0.3.2.201104111425"/>
+<unit id="org.eclipselabs.mongo.emf.junit.feature.feature.group" version="0.3.2.201104111425"/>
+<unit id="org.eclipselabs.emf.mongo.feature.feature.group" version="0.3.2.201104111425"/>
+<unit id="org.eclipselabs.mongo.emf.freemarker.source.feature.feature.group" version="0.3.2.201104111425"/>
+<unit id="org.eclipselabs.mongo.junit.source.feature.feature.group" version="0.3.2.201104111425"/>
+<unit id="org.eclipselabs.mongo.emf.source.feature.feature.group" version="0.3.2.201104111425"/>
 <repository location="http://quickiemart.springfieldusa.net/Targets/MongoEMF"/>
 </location>
 <location includeAllPlatforms="false" includeMode="planner" includeSource="true" type="InstallableUnit">
 <unit id="org.freemarker.feature.feature.group" version="2.3.0.201104101347"/>
 <unit id="org.freemarker.source.feature.feature.group" version="2.3.0.201104101347"/>
 <repository location="http://quickiemart.springfieldusa.net/Targets/FreeMarker"/>
+</location>
+<location includeAllPlatforms="false" includeMode="planner" includeSource="true" type="InstallableUnit">
+<unit id="org.eclipse.equinox.sdk.feature.group" version="3.7.0.v20110123-7L7W8Z8W1Q5nsW4u0pf2k2lZoUZd"/>
+<unit id="org.eclipse.pde.feature.group" version="3.7.0.v20110121-7b7oFXNFEx2Xmp_WfY574C"/>
+<repository location="http://download.eclipse.org/releases/indigo"/>
+</location>
+<location includeAllPlatforms="false" includeMode="planner" includeSource="true" type="InstallableUnit">
+<unit id="org.eclipse.emf.ecore.feature.group" version="2.7.0.201104111140"/>
+<repository location="http://quickiemart.springfieldusa.net/Targets/EMF"/>
 </location>
 </locations>
 </target>

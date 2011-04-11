@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feature
-      id="org.eclipselabs.restlet.di.feature"
+      id="org.eclipselabs.restlet.di.eclipse.feature"
       label="Restlet DI Feature"
       version="0.3.0.qualifier"
       provider-name="EclipseLabs">
