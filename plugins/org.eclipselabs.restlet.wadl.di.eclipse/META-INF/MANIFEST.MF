@@ -10,3 +10,4 @@ Import-Package: org.eclipse.e4.core.contexts,
  org.osgi.framework;version="1.6.0",
  org.restlet.ext.wadl,
  org.restlet.resource
+Export-Package: org.eclipselabs.restlet.wadl.di.eclipse
