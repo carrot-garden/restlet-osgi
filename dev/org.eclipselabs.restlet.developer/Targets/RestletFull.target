@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <?pde version="3.6"?>
 
-<target name="Restlet Full" sequenceNumber="50">
+<target name="Restlet Full" sequenceNumber="52">
 <locations>
 <location includeAllPlatforms="false" includeMode="planner" includeSource="true" type="InstallableUnit">
 <unit id="org.eclipse.e4.core.tools.feature.feature.group" version="0.9.0.v20110309-1330-57f1EVVFNMFcSp8RZOD"/>
@@ -22,15 +22,6 @@
 <repository location="http://quickiemart.springfieldusa.net/Targets/Restlet"/>
 </location>
 <location includeAllPlatforms="false" includeMode="planner" includeSource="true" type="InstallableUnit">
-<unit id="org.eclipselabs.mongo.emf.freemarker.feature.feature.group" version="0.3.2.201104111425"/>
-<unit id="org.eclipselabs.mongo.emf.junit.feature.feature.group" version="0.3.2.201104111425"/>
-<unit id="org.eclipselabs.emf.mongo.feature.feature.group" version="0.3.2.201104111425"/>
-<unit id="org.eclipselabs.mongo.emf.freemarker.source.feature.feature.group" version="0.3.2.201104111425"/>
-<unit id="org.eclipselabs.mongo.junit.source.feature.feature.group" version="0.3.2.201104111425"/>
-<unit id="org.eclipselabs.mongo.emf.source.feature.feature.group" version="0.3.2.201104111425"/>
-<repository location="http://quickiemart.springfieldusa.net/Targets/MongoEMF"/>
-</location>
-<location includeAllPlatforms="false" includeMode="planner" includeSource="true" type="InstallableUnit">
 <unit id="org.freemarker.feature.feature.group" version="2.3.0.201104101347"/>
 <unit id="org.freemarker.source.feature.feature.group" version="2.3.0.201104101347"/>
 <repository location="http://quickiemart.springfieldusa.net/Targets/FreeMarker"/>
@@ -41,7 +32,79 @@
 <repository location="http://download.eclipse.org/releases/indigo"/>
 </location>
 <location includeAllPlatforms="false" includeMode="planner" includeSource="true" type="InstallableUnit">
-<unit id="org.eclipse.emf.ecore.feature.group" version="2.7.0.201104111140"/>
+<unit id="org.eclipselabs.emf.mongo.feature.feature.group" version="0.3.2.201104131034"/>
+<unit id="org.eclipselabs.emf.mongo.feature.source.feature.group" version="0.3.2.201104131034"/>
+<unit id="org.eclipselabs.mongo.emf.freemarker.feature.feature.group" version="0.3.2.201104131034"/>
+<unit id="org.eclipselabs.mongo.emf.freemarker.feature.source.feature.group" version="0.3.2.201104131034"/>
+<unit id="org.eclipselabs.mongo.emf.freemarker.source.feature.feature.group" version="0.3.2.201104131034"/>
+<unit id="org.eclipselabs.mongo.emf.freemarker.source.feature.source.feature.group" version="0.3.2.201104131034"/>
+<unit id="org.eclipselabs.mongo.emf.junit.feature.feature.group" version="0.3.2.201104131034"/>
+<unit id="org.eclipselabs.mongo.emf.junit.feature.source.feature.group" version="0.3.2.201104131034"/>
+<unit id="org.eclipselabs.mongo.junit.source.feature.source.feature.group" version="0.3.2.201104131034"/>
+<unit id="org.eclipselabs.mongo.junit.source.feature.feature.group" version="0.3.2.201104131034"/>
+<unit id="org.eclipselabs.mongo.emf.source.feature.source.feature.group" version="0.3.2.201104131034"/>
+<unit id="org.eclipselabs.mongo.emf.source.feature.feature.group" version="0.3.2.201104131034"/>
+<unit id="org.eclipselabs.emf.query.feature.source.feature.group" version="0.3.2.201104131034"/>
+<unit id="org.eclipselabs.emf.query.feature.feature.group" version="0.3.2.201104131034"/>
+<unit id="org.eclipselabs.emf.query.source.feature.feature.group" version="0.3.2.201104131034"/>
+<unit id="org.eclipselabs.emf.query.source.feature.source.feature.group" version="0.3.2.201104131034"/>
+<repository location="http://quickiemart.springfieldusa.net/Targets/MongoEMF"/>
+</location>
+<location includeAllPlatforms="false" includeMode="planner" includeSource="true" type="InstallableUnit">
+<unit id="org.eclipse.emf.ecore.feature.group" version="2.7.0.201104130744"/>
+<unit id="org.eclipse.emf.feature.group" version="2.7.0.201104130744"/>
+<unit id="org.eclipse.emf.codegen.feature.group" version="2.7.0.201104130744"/>
+<unit id="org.eclipse.emf.codegen.ui.feature.group" version="2.7.0.201104130744"/>
+<unit id="org.eclipse.emf.common.feature.group" version="2.7.0.201104130744"/>
+<unit id="org.eclipse.emf.common.ui.feature.group" version="2.7.0.201104130744"/>
+<unit id="org.eclipse.emf.databinding.feature.group" version="1.2.0.201104130744"/>
+<unit id="org.eclipse.emf.codegen.ecore.feature.group" version="2.7.0.201104130744"/>
+<unit id="org.eclipse.emf.codegen.ecore.ui.feature.group" version="2.7.0.201104130744"/>
+<unit id="org.eclipse.emf.ecore.edit.feature.group" version="2.7.0.201104130744"/>
+<unit id="org.eclipse.emf.mapping.ecore.feature.group" version="2.7.0.201104130744"/>
+<unit id="org.eclipse.emf.mapping.ecore.editor.feature.group" version="2.7.0.201104130744"/>
+<unit id="org.eclipse.emf.edit.feature.group" version="2.7.0.201104130744"/>
+<unit id="org.eclipse.emf.databinding.edit.feature.group" version="1.2.0.201104130744"/>
+<unit id="org.eclipse.emf.edit.ui.feature.group" version="2.7.0.201104130744"/>
+<unit id="org.eclipse.emf.license.source.feature.group" version="2.7.0.201104130744"/>
+<unit id="org.eclipse.emf.license.feature.group" version="2.7.0.201104130744"/>
+<unit id="org.eclipse.emf.mapping.feature.group" version="2.7.0.201104130744"/>
+<unit id="org.eclipse.emf.mapping.ui.feature.group" version="2.7.0.201104130744"/>
+<unit id="org.eclipse.emf.converter.feature.group" version="2.7.0.201104130744"/>
+<unit id="org.eclipse.emf.ecore.editor.feature.group" version="2.7.0.201104130744"/>
+<unit id="org.eclipse.emf.codegen.ecore.ui.source.feature.group" version="2.7.0.201104130744"/>
+<unit id="org.eclipse.emf.ecore.source.feature.group" version="2.7.0.201104130744"/>
+<unit id="org.eclipse.emf.ecore.editor.source.feature.group" version="2.7.0.201104130744"/>
+<unit id="org.eclipse.emf.edit.source.feature.group" version="2.7.0.201104130744"/>
+<unit id="org.eclipse.emf.codegen.source.feature.group" version="2.7.0.201104130744"/>
+<unit id="org.eclipse.emf.converter.source.feature.group" version="2.7.0.201104130744"/>
+<unit id="org.eclipse.xsd.ecore.converter.source.feature.group" version="2.7.0.201104130744"/>
+<unit id="org.eclipse.xsd.source.feature.group" version="2.7.0.201104130744"/>
+<unit id="org.eclipse.xsd.mapping.source.feature.group" version="2.7.0.201104130744"/>
+<unit id="org.eclipse.emf.ecore.edit.source.feature.group" version="2.7.0.201104130744"/>
+<unit id="org.eclipse.xsd.mapping.editor.source.feature.group" version="2.7.0.201104130744"/>
+<unit id="org.eclipse.emf.mapping.ecore.editor.source.feature.group" version="2.7.0.201104130744"/>
+<unit id="org.eclipse.emf.common.source.feature.group" version="2.7.0.201104130744"/>
+<unit id="org.eclipse.xsd.editor.source.feature.group" version="2.7.0.201104130744"/>
+<unit id="org.eclipse.emf.mapping.ecore.source.feature.group" version="2.7.0.201104130744"/>
+<unit id="org.eclipse.emf.mapping.source.feature.group" version="2.7.0.201104130744"/>
+<unit id="org.eclipse.emf.edit.ui.source.feature.group" version="2.7.0.201104130744"/>
+<unit id="org.eclipse.emf.mapping.ui.source.feature.group" version="2.7.0.201104130744"/>
+<unit id="org.eclipse.emf.codegen.ecore.source.feature.group" version="2.7.0.201104130744"/>
+<unit id="org.eclipse.xsd.edit.source.feature.group" version="2.7.0.201104130744"/>
+<unit id="org.eclipse.emf.source.feature.group" version="2.7.0.201104130744"/>
+<unit id="org.eclipse.emf.codegen.ui.source.feature.group" version="2.7.0.201104130744"/>
+<unit id="org.eclipse.emf.common.ui.source.feature.group" version="2.7.0.201104130744"/>
+<unit id="org.eclipse.emf.databinding.source.feature.group" version="1.2.0.201104130744"/>
+<unit id="org.eclipse.emf.databinding.edit.source.feature.group" version="1.2.0.201104130744"/>
+<unit id="org.eclipse.xsd.feature.group" version="2.7.0.201104130744"/>
+<unit id="org.eclipse.xsd.ecore.converter.feature.group" version="2.7.0.201104130744"/>
+<unit id="org.eclipse.xsd.edit.feature.group" version="2.7.0.201104130744"/>
+<unit id="org.eclipse.xsd.license.source.feature.group" version="2.7.0.201104130744"/>
+<unit id="org.eclipse.xsd.license.feature.group" version="2.7.0.201104130744"/>
+<unit id="org.eclipse.xsd.mapping.feature.group" version="2.7.0.201104130744"/>
+<unit id="org.eclipse.xsd.mapping.editor.feature.group" version="2.7.0.201104130744"/>
+<unit id="org.eclipse.xsd.editor.feature.group" version="2.7.0.201104130744"/>
 <repository location="http://quickiemart.springfieldusa.net/Targets/EMF"/>
 </location>
 </locations>
