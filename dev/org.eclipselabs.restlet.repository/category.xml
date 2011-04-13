@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <site>
-   <feature url="features/org.eclipselabs.restlet.di.feature_0.3.0.qualifier.jar" id="org.eclipselabs.restlet.di.feature" version="0.3.0.qualifier">
-      <category name="restlet-osgi"/>
-   </feature>
    <feature url="features/org.eclipselabs.restlet.mongo.feature_0.3.0.qualifier.jar" id="org.eclipselabs.restlet.mongo.feature" version="0.3.0.qualifier">
       <category name="restlet-osgi"/>
    </feature>
@@ -29,6 +26,9 @@
    </feature>
    <feature url="features/org.eclipselabs.restlet.wadl.di.eclipse.source.feature_0.3.0.qualifier.jar" id="org.eclipselabs.restlet.wadl.di.eclipse.source.feature" version="0.3.0.qualifier">
       <category name="restlet-osgi-source"/>
+   </feature>
+   <feature url="features/org.eclipselabs.restlet.di.eclipse.feature_0.3.0.qualifier.jar" id="org.eclipselabs.restlet.di.eclipse.feature" version="0.3.0.qualifier">
+      <category name="restlet-osgi"/>
    </feature>
    <category-def name="restlet-osgi" label="Restlet OSGi"/>
    <category-def name="restlet-osgi-source" label="Restlet OSGi Source"/>
