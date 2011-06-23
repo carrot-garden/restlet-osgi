@@ -9,11 +9,10 @@
  *     - initial API and implementation
  *******************************************************************************/
 
-package org.eclipselabs.restlet.components;
+package org.eclipselabs.restlet;
 
 import java.util.Dictionary;
 
-import org.eclipselabs.restlet.providers.IResourceProvider;
 import org.osgi.service.component.ComponentContext;
 import org.restlet.Context;
 import org.restlet.Restlet;

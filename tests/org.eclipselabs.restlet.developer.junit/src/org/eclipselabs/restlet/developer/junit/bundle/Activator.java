@@ -32,28 +32,28 @@ public class Activator implements BundleActivator
 
 	public HttpService getHttpService() throws InterruptedException
 	{
-		return (HttpService) httpServiceTracker.waitForService(1000);
+		return httpServiceTracker.waitForService(1000);
 	}
 
 	public LogService getLogService() throws InterruptedException
 	{
-		return (LogService) logServiceTracker.waitForService(1000);
+		return logServiceTracker.waitForService(1000);
 	}
 
 	public LogReaderService getLogReaderService() throws InterruptedException
 	{
-		return (LogReaderService) logReaderServiceTracker.waitForService(1000);
+		return logReaderServiceTracker.waitForService(1000);
 	}
 
 	@Override
 	public void start(BundleContext context) throws Exception
 	{
 		this.context = context;
-		httpServiceTracker = new ServiceTracker(context, HttpService.class.getName(), null);
+		httpServiceTracker = new ServiceTracker<HttpService, HttpService>(context, HttpService.class, null);
 		httpServiceTracker.open();
-		logServiceTracker = new ServiceTracker(context, LogService.class.getName(), null);
+		logServiceTracker = new ServiceTracker<LogService, LogService>(context, LogService.class, null);
 		logServiceTracker.open();
-		logReaderServiceTracker = new ServiceTracker(context, LogReaderService.class.getName(), null);
+		logReaderServiceTracker = new ServiceTracker<LogReaderService, LogReaderService>(context, LogReaderService.class, null);
 		logReaderServiceTracker.open();
 		instance = this;
 	}
@@ -75,7 +75,7 @@ public class Activator implements BundleActivator
 
 	private static Activator instance;
 	private BundleContext context;
-	private ServiceTracker httpServiceTracker;
-	private ServiceTracker logServiceTracker;
-	private ServiceTracker logReaderServiceTracker;
+	private ServiceTracker<HttpService, HttpService> httpServiceTracker;
+	private ServiceTracker<LogService, LogService> logServiceTracker;
+	private ServiceTracker<LogReaderService, LogReaderService> logReaderServiceTracker;
 }

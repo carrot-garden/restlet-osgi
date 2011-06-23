@@ -9,9 +9,8 @@
  *     - initial API and implementation
  *******************************************************************************/
 
-package org.eclipselabs.restlet.components;
+package org.eclipselabs.restlet;
 
-import org.eclipselabs.restlet.providers.IFilterProvider;
 import org.restlet.Context;
 import org.restlet.Restlet;
 import org.restlet.routing.Filter;

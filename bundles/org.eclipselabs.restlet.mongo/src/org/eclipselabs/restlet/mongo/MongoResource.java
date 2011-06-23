@@ -86,6 +86,9 @@ public class MongoResource extends ServerResource
 
 	private DBCollection getCollection() throws UnknownHostException
 	{
+		// TODO consider using dependency injection instead of a service tracker for the IMongoDB
+// service
+
 		IMongoDB mongoDB = Activator.getInstance().getMongoDB();
 		Mongo mongo = mongoDB.getMongo(new MongoURI("mongodb://localhost"));
 		DB db = mongo.getDB((String) getRequestAttributes().get("database"));

@@ -6,7 +6,6 @@ Bundle-Version: 0.3.0.qualifier
 Bundle-Vendor: EclipseLabs
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Import-Package: org.eclipselabs.restlet,
- org.eclipselabs.restlet.providers,
  org.eclipselabs.restlet.servlet,
  org.junit;version="4.8.1",
  org.osgi.framework;version="1.5.0",

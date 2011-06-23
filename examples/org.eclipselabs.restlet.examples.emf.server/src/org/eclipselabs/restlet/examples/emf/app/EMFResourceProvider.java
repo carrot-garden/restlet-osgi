@@ -17,7 +17,7 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
-import org.eclipselabs.restlet.components.ResourceProvider;
+import org.eclipselabs.restlet.ResourceProvider;
 import org.eclipselabs.restlet.examples.emf.model.Data;
 import org.eclipselabs.restlet.examples.emf.model.ModelFactory;
 import org.restlet.Context;

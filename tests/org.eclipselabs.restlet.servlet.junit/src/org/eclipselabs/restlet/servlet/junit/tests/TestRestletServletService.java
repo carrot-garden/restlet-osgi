@@ -19,10 +19,10 @@ import static org.junit.Assert.assertTrue;
 
 import java.util.ArrayList;
 
-import org.eclipselabs.restlet.components.ApplicationProvider;
-import org.eclipselabs.restlet.components.FilterProvider;
-import org.eclipselabs.restlet.components.ResourceProvider;
-import org.eclipselabs.restlet.components.RouterProvider;
+import org.eclipselabs.restlet.ApplicationProvider;
+import org.eclipselabs.restlet.FilterProvider;
+import org.eclipselabs.restlet.ResourceProvider;
+import org.eclipselabs.restlet.RouterProvider;
 import org.eclipselabs.restlet.servlet.RestletServletService;
 import org.eclipselabs.restlet.servlet.junit.support.Activator;
 import org.eclipselabs.restlet.servlet.junit.support.TestApplicationProvider;

@@ -9,13 +9,10 @@
  *     - initial API and implementation
  *******************************************************************************/
 
-package org.eclipselabs.restlet.components;
+package org.eclipselabs.restlet;
 
 import java.util.HashSet;
 
-import org.eclipselabs.restlet.providers.IResourceProvider;
-import org.eclipselabs.restlet.providers.IRestletProvider;
-import org.eclipselabs.restlet.providers.IRouterProvider;
 import org.restlet.Context;
 import org.restlet.Restlet;
 import org.restlet.routing.Router;

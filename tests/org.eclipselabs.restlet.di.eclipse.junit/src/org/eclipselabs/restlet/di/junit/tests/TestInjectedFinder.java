@@ -18,9 +18,9 @@ import static org.junit.Assert.assertThat;
 
 import java.util.ArrayList;
 
-import org.eclipselabs.restlet.components.ApplicationProvider;
-import org.eclipselabs.restlet.components.ResourceProvider;
-import org.eclipselabs.restlet.components.RouterProvider;
+import org.eclipselabs.restlet.ApplicationProvider;
+import org.eclipselabs.restlet.ResourceProvider;
+import org.eclipselabs.restlet.RouterProvider;
 import org.eclipselabs.restlet.developer.junit.RestletTestHarness;
 import org.eclipselabs.restlet.di.junit.support.TestApplicationProvider;
 import org.eclipselabs.restlet.di.junit.support.TestResourceProvider;

@@ -11,7 +11,7 @@
 
 package org.eclipselabs.restlet.servlet.junit.support;
 
-import org.eclipselabs.restlet.components.FilterProvider;
+import org.eclipselabs.restlet.FilterProvider;
 import org.restlet.Context;
 import org.restlet.routing.Filter;
 

@@ -9,7 +9,7 @@
  *   Bryan Hunt - initial API and implementation
  *******************************************************************************/
 
-package org.eclipselabs.restlet.providers;
+package org.eclipselabs.restlet;
 
 /**
  * This is an OSGi service interface for registering Restlet filters with an application. Users are

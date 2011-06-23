@@ -29,7 +29,7 @@ public class Activator implements BundleActivator
 
 	public IMongoDB getMongoDB()
 	{
-		return (IMongoDB) mongoServiceTracker.getService();
+		return mongoServiceTracker.getService();
 	}
 
 	/*
@@ -40,7 +40,7 @@ public class Activator implements BundleActivator
 	@Override
 	public void start(BundleContext context) throws Exception
 	{
-		mongoServiceTracker = new ServiceTracker(context, IMongoDB.class.getName(), null);
+		mongoServiceTracker = new ServiceTracker<IMongoDB, IMongoDB>(context, IMongoDB.class, null);
 		mongoServiceTracker.open();
 		instance = this;
 	}
@@ -60,5 +60,5 @@ public class Activator implements BundleActivator
 	}
 
 	private static Activator instance;
-	private ServiceTracker mongoServiceTracker;
+	private ServiceTracker<IMongoDB, IMongoDB> mongoServiceTracker;
 }

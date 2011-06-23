@@ -14,7 +14,7 @@ package org.eclipselabs.restlet.servlet;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 
-import org.eclipselabs.restlet.providers.IApplicationProvider;
+import org.eclipselabs.restlet.IApplicationProvider;
 import org.restlet.Application;
 import org.restlet.Context;
 import org.restlet.ext.servlet.ServerServlet;

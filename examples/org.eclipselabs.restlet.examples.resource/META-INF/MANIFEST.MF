@@ -5,7 +5,7 @@ Bundle-SymbolicName: org.eclipselabs.restlet.examples.resource
 Bundle-Version: 1.0.0.qualifier
 Bundle-Vendor: EclipseLabs
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
-Import-Package: org.eclipselabs.restlet.components,
+Import-Package: org.eclipselabs.restlet,
  org.restlet,
  org.restlet.resource
 Service-Component: OSGI-INF/example.xml

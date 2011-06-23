@@ -11,7 +11,7 @@
 
 package org.eclipselabs.restlet.di.junit.support;
 
-import org.eclipselabs.restlet.components.ApplicationProvider;
+import org.eclipselabs.restlet.ApplicationProvider;
 
 /**
  * @author bhunt

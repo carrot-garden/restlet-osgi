@@ -13,7 +13,7 @@ package org.eclipselabs.restlet.servlet;
 
 import java.util.HashSet;
 
-import org.eclipselabs.restlet.providers.IApplicationProvider;
+import org.eclipselabs.restlet.IApplicationProvider;
 import org.osgi.service.http.HttpService;
 import org.osgi.service.log.LogService;
 

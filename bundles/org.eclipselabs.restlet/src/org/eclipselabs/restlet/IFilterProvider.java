@@ -9,7 +9,7 @@
  *    Bryan Hunt - initial API and implementation
  *******************************************************************************/
 
-package org.eclipselabs.restlet.providers;
+package org.eclipselabs.restlet;
 
 import org.restlet.routing.Filter;
 
