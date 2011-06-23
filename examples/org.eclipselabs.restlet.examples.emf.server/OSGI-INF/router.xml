@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0" immediate="true" name="org.eclipselabs.restlet.examples.emf.server.router">
-   <implementation class="org.eclipselabs.restlet.components.RouterProvider"/>
+   <implementation class="org.eclipselabs.restlet.RouterProvider"/>
    <service>
-      <provide interface="org.eclipselabs.restlet.providers.IRouterProvider"/>
+      <provide interface="org.eclipselabs.restlet.IRouterProvider"/>
    </service>
 </scr:component>
