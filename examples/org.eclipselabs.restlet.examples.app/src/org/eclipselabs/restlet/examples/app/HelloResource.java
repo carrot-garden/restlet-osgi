@@ -23,7 +23,7 @@ public class HelloResource extends ServerResource
 	@Get("txt")
 	public String sayHello()
 	{
-		return "Hello";
+		return "Hello RESTful World";
 	}
 
 	@Get("html")
@@ -32,7 +32,7 @@ public class HelloResource extends ServerResource
 		StringBuilder html = new StringBuilder();
 		html.append("<html>\n");
 		html.append("  <body>\n");
-		html.append("    <h2>Hello</h2>\n");
+		html.append("    <h2>Hello RESTful World</h2>\n");
 		html.append("   </body>\n");
 		html.append("</html>\n");
 		return html.toString();

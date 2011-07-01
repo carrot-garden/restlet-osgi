@@ -25,5 +25,5 @@ public class HelloResourceProvider extends ResourceProvider
 	protected Finder createFinder(Context context)
 	{
 		return new Finder(context, HelloResource.class);
-	};
+	}
 }
